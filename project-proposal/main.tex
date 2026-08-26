@@ -1,61 +1,96 @@
 \documentclass[11pt,a4paper]{article}
+
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\usepackage{enumitem}
 \usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{tabularx}
 
-% -----------------------------------------------------
-% bvraghav-tiet-ucs503p-article.sty
-% -----------------------------------------------------
+% Colors
+\definecolor{mNavy}{RGB}{30, 58, 138}
+\definecolor{mDark}{RGB}{15, 23, 42}
+\definecolor{mSlate}{RGB}{71, 85, 105}
+\definecolor{mBlue}{RGB}{37, 99, 235}
+\definecolor{mPurple}{RGB}{124, 58, 237}
+\definecolor{mGreen}{RGB}{5, 150, 105}
 
-% Variable: Lab Instructor
-\makeatletter \newcommand{\BvrSetLabInstructor}[1]{%
-  \gdef\Bvr@LabInstructor{#1}}
-% default
-\newcommand{\Bvr@LabInstructor}{Dr. Raghav %
-  B. Venkataramaiyer}
-% public accessor
-\newcommand{\BvrLabInstructorValue}{\Bvr@LabInstructor}
-\makeatother
-
-% Add subtitle
-\usepackage{titling}
-% -- Set title bold
-\pretitle{\begin{center}\bfseries\fontsize{18bp}{18bp}\selectfont}
-\makeatletter
-\newcommand{\BvrSubtitle}[1]{%
-  \posttitle{%
-    \par\end{center}
-    \begin{center}\large#1\end{center}
-    \vskip 0.5em}%
+\hypersetup{
+    colorlinks=true,
+    linkcolor=mDark,
+    citecolor=mPurple,
+    urlcolor=mBlue
 }
-\makeatother
 
-% Hints in the section title(s)
-\newcommand{\BvrHint}[1]{%
-  {\normalfont\normalsize\itshape\hfill #1}}
+\captionsetup{
+    labelfont={bf,color=mDark},
+    font=small,
+    skip=8pt
+}
+
+% Section formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{mDark}}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{mDark}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries\color{mDark}}{\thesubsubsection}{1em}{}
+
+% Custom Title Styling
+\makeatletter
+\newcommand{\BvrLabInstructorValue}{}
+\newcommand{\BvrSetLabInstructor}[1]{\renewcommand{\BvrLabInstructorValue}{#1}}
+\newcommand{\BvrSubtitle}[1]{%
+  \gdef\@subtitle{%
+    \vskip 0.4em%
+    {\normalsize\scshape\color{mDark}#1\par}%
+  }%
+}
+\def\@maketitle{%
+  \newpage
+  \null
+  \begin{center}%
+  \let \footnote \thanks
+    {\huge\bfseries\color{mDark} \@title \par}%
+    \vskip 0.4em%
+    \@subtitle
+    \vskip 1.0em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 0.6em%
+    {\small\color{mSlate} \@date}%
+  \end{center}%
+  \par
+  \vskip 1.2em}
+\makeatother
 
 % -----------------------------------------------------
 
-\title{Grievance-Resolution System for a Tier-2/3 City}
+\title{Meridian: Latent Cartographer --- A Local-First Spatial Knowledge Engine}
 
-\BvrSetLabInstructor{Dr. Raghav B. Venkataramaiyer}
+\BvrSetLabInstructor{Dr. Jeelani Asif}
 
 \BvrSubtitle{%
-  Project Proposal for UCS503P  \\
-  Submitted to: \BvrLabInstructorValue \\ \bfseries
-  Thapar Institute of Engineering and Technology% 
+  Project Proposal for UCS503P \\
+  Submitted to: \BvrLabInstructorValue \\
+  \textbf{Thapar Institute of Engineering and Technology}%
 }
 
 \author{
-  Vidya Vaidyanathan, CSED%
-  \thanks{Roll No: \texttt{1024030xxx}, %
-    Email: \texttt{vvaidhanathan\_be24\@thapar.edu}}
+  Rahul Dadwal, CSED%
+  \thanks{Roll No: \texttt{1024160014}, Email: \texttt{rdadwal\_be24@thapar.edu}}
   \and 
-  Bhanurekha Ganesan, CSED%
-  \thanks{Roll No: \texttt{1024030xxx}, %
-    Email: \texttt{bganesan\_be24\@thapar.edu}}
+  Jyotsna Sachdeva, CSED%
+  \thanks{Roll No: \texttt{1024160133}, Email: \texttt{jsachdeva\_be24@thapar.edu}}
+  \and 
+  Bisman Singh Rai, CSED%
+  \thanks{Roll No: \texttt{1024160130}, Email: \texttt{brai\_be24@thapar.edu}}
 }
 
 \date{\today}
@@ -63,180 +98,198 @@
 \begin{document}
 \maketitle
 
-\section{Higher-order goal%
-  \BvrHint{\ldots secondary framing}}
-This project aims to improve sustainable urban
-governance by reducing the time and effort required to
-resolve citizen issues. While the topic is broader than
-any single municipality, the immediate engineering
-objective is to translate \emph{efficient public
-  service delivery} into a measurable, deployable
-software solution.
+\section{Higher-order goal}
+This project aims to enhance digital research productivity and knowledge synthesis by reducing cognitive load and context fragmentation during complex web sessions. While digital information management spans diverse personal knowledge workflows, the immediate engineering objective is to translate \emph{on-device spatial vector organization and semantic retrieval} into a measurable, responsive, and privacy-preserving browser extension.
 
-\section{Time-to-value %
-\BvrHint{\ldots primary heuristic}}
+\section{Time-to-value}
 \begin{itemize}[leftmargin=0.7cm]
-    \item We will deliver meaningful increments quickly by prototyping the core user workflow and validating it with users within a short iteration window.
-    \item We will prioritize fast feedback over perfection by using weekly iterations (and targeting CI-backed automation early) to reduce release friction.
-    \item Success is defined by what can be delivered and measured in the first iteration, then improved based on user feedback.
+    \item We will deliver meaningful increments quickly by prototyping the core DOM-to-canvas rendering and vector indexing workflow, validating cluster navigation within an initial 1--2 week iteration.
+    \item We will prioritize fast feedback over perfection by utilizing modular WebAssembly (WASM) ML inference workers and offscreen pipelines with CI-backed automation to minimize integration overhead.
+    \item Success is defined by achieving a functioning 2D interactive canvas with on-device semantic search in the first iteration, progressively refining tiered caching and layout physics in subsequent iterations.
 \end{itemize}
 
 \section{Problem Statement}
-Citizens in a tier-2/3 Indian city face delays and uncertainty when reporting local issues (e.g., streetlight outages, water leakage, garbage accumulation, road potholes). Common pain points include:
+Developers, researchers, and students routinely experience severe cognitive overload and context loss when conducting research across dozens of open tabs, PDFs, and code references. Key pain points include:
 \begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Fragmentation:} complaints are often made via multiple channels (calls, social media, paper forms), causing lost context.
-    \item \textbf{Low transparency:} citizens cannot easily see the status of their complaint (e.g., ``received'', ``assigned'', ``in progress'', ``resolved'').
-    \item \textbf{Slow coordination:} departments/field teams lack a unified, trackable workflow with clear ownership.
-    \item \textbf{Poor data quality:} duplicate or incomplete reports force rework and extend resolution time.
+    \item \textbf{Fragmentation \& Tab Overload:} Information is scattered across flat, linear tab bars where titles and context are clipped.
+    \item \textbf{Semantic Drift \& Shallow Indexing:} Standard bookmarking tools either store static URLs or rely on crude first-paragraph text matching, failing to capture embedded code snippets, tables, and granular knowledge.
+    \item \textbf{High Latency \& Privacy Vulnerabilities:} Cloud-dependent semantic search engines introduce network lag, API cost overhead, and expose sensitive browsing history to external servers.
+    \item \textbf{Memory Inefficiency:} Accumulating unmanaged screenshots and raw DOM snapshots exhausts browser memory and IndexedDB storage quotas.
 \end{itemize}
 
-\textbf{Why this matters now (contextual relevance):} In an urban setting with limited staff bandwidth, even small process improvements can noticeably reduce resolution delays and repeated submissions.
+\textbf{Why this matters now (contextual relevance):} In an era of intense information density, providing a zero-cost, local-first visual memory map directly inside the browser allows users to resume research workflows with minimal cognitive friction and total data privacy.
 
-\section{Proposed Solution %
-\BvrHint{\ldots Software Proposition}}
+\section{Proposed Solution}
 \subsection{Overview}
-Build a \textbf{web-based} ``Grievance-to-Resolution'' system with the following components:
+Build \textbf{Meridian: Latent Cartographer}, a client-side Chromium extension (Manifest V3) that organizes digital artifacts on an infinite 2D canvas:
 \begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Citizen submission portal:} users submit an issue with photo (optional), category, and locality/ward.
-    \item \textbf{Automated triage:} basic duplicate detection and completeness checks.
-    \item \textbf{Department workflow:} assign issues to relevant department/team and update statuses.
-    \item \textbf{Status transparency:} citizens track status and receive notifications when resolved.
-    \item \textbf{Admin/ops dashboard:} performance summaries (resolution time, backlog).
+    \item \textbf{Multi-Source Ingestion Pipeline:} Ingests active web tabs, local PDFs (via \texttt{pdf.js}), Markdown notes, and code snippets.
+    \item \textbf{Local-First AI Engine:} Executes on-device feature extraction using \texttt{Xenova/all-MiniLM-L6-v2} (ONNX/WASM) in dedicated Web Workers to generate 384-dimensional dense vectors.
+    \item \textbf{Interactive 2D Spatial Canvas:} Renders a 60 FPS spatial graph using HTML5 Canvas / Konva.js with force-directed semantic clustering.
+    \item \textbf{Sub-20ms Intent Search:} Real-time cosine similarity search navigating the canvas directly to relevant concept clusters.
+    \item \textbf{Tiered Storage Hierarchy:} Hybrid storage leveraging IndexedDB for quantized vectors and Origin Private File System (OPFS) for heavy binary screenshots.
 \end{itemize}
 
 \subsection{Core workflow}
-\begin{enumerate}[leftmargin=0.7cm]
-    \item Citizen creates a complaint and receives a complaint ID immediately.
-    \item System validates completeness and suggests possible duplicates (lightweight similarity on text/category and approximate location).
-    \item Department staff update status (Received $\rightarrow$ Assigned $\rightarrow$ In Progress $\rightarrow$ Resolved).
-    \item Citizen views status updates and resolution notes.
-\end{enumerate}
+The end-to-end operational execution is structured around an asynchronous multi-stage tree pipeline mapping raw digital artifacts to an on-device 2D vector landscape (Figure~\ref{fig:flowchart_ingestion}):
 
-\subsection{Operational constraints for an educational, tier-2/3 setting}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{flowchart_ingestion.png}
+\caption{Squarish Pipeline Architecture: Modular tree-fork flow showing DOM sanitization, sliding-window chunking, on-device WASM embedding, SQ8 quantization, and 60 FPS canvas projection.}
+\label{fig:flowchart_ingestion}
+\end{figure}
+
+\subsection{Operational constraints for an educational, local-first setting}
 \begin{itemize}[leftmargin=0.7cm]
-    \item Keep the solution usable on low-to-mid range devices via responsive web design.
-    \item Avoid dependence on advanced research algorithms; focus on workflow, automation, and system correctness.
-    \item Design for deployability using common web hosting and managed databases.
+    \item Strictly 100\% client-side execution; no reliance on paid external cloud APIs or proprietary LLM endpoints.
+    \item Adherence to Chromium Manifest V3 constraints (service worker termination handling via offscreen documents/IndexedDB persistence).
+    \item Memory-bounded operation through vector quantization (SQ8) and canvas viewport culling.
 \end{itemize}
 
-\section{Solution Approach %
-\BvrHint{\ldots Engineering focus}}
-This is an engineering course project, so we focus on scalable administrative and workflow aspects rather than novel algorithm research.
+\section{Solution Approach}
+This is an engineering course project focusing on robust local-first systems architecture, data pipeline engineering, and responsive UI rendering rather than novel neural network design.
 
-\subsection{Duplicate/quality assistance %
-\BvrHint{\ldots non-research}}
-Duplicate detection will be heuristic-based:
+\subsection{Knowledge extraction \& heuristic clustering}
+Data extraction and grouping rely on established engineering primitives:
 \begin{itemize}[leftmargin=0.7cm]
-    \item Normalize text (category + short description keywords).
-    \item Use a simple similarity measure (e.g., token overlap / TF-IDF cosine with threshold) without claiming state-of-the-art.
-    \item Show top candidate duplicates to staff for decision; never fully auto-delete or auto-reject.
+    \item \textbf{Hierarchical Chunking:} Sliding-window tokenization (256-token windows, 50-token overlap) to index granular sections.
+    \item \textbf{DOM AST Isolation:} Targeted parsing of \texttt{<pre><code>}, \texttt{<table>}, and \texttt{<h1>--<h3>} tags.
+    \item \textbf{Clustering \& Layout:} Vector similarity projection (cosine distance-seeded spring-force layout) executed off-thread to prevent UI blocking.
 \end{itemize}
 
-\subsection{Web architecture %
-\BvrHint{\ldots web-based solution}}
-A typical 3-tier web architecture:
+\subsection{Extension architecture \& Intent Search Flowchart}
+A decoupled local-first architecture separates compute-intensive ML inference, high-throughput graphics rendering, and persistent storage across isolated threads:
 \begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Frontend:} responsive UI for citizens and staff (status pages, submission form, dashboard).
-    \item \textbf{Backend API:} authentication, complaint submission, status transitions, assignment logic.
-    \item \textbf{Database:} store users, complaints, status history, attachments metadata.
+    \item \textbf{Frontend Canvas:} React + Vite + Konva.js rendering responsive cards, search overlays, and cluster boundaries at 60 FPS.
+    \item \textbf{Background Worker (MV3):} Manages tab capture events, viewport screenshots, and offscreen worker dispatching.
+    \item \textbf{Inference Web Worker:} Encapsulates \texttt{@huggingface/transformers} WASM engine for non-blocking embedding generation.
+    \item \textbf{Tiered Storage Engine:} IndexedDB (hot layer for SQ8 vectors and metadata) and OPFS (cold layer for WebP snapshots) with an automated LRU cache eviction policy.
 \end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{flowchart_search.png}
+\caption{Real-Time Search Retrieval Tree: 4-tier fork sequence covering live WASM embedding, fast SQ8 cosine scoring, smooth viewport easing ($\le 20$ms), and on-demand OPFS asset inspection.}
+\label{fig:flowchart_search}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{system_architecture.png}
+\caption{Meridian End-to-End System Architecture: decoupled Chromium MV3 runtime with dedicated ML Web Workers, tiered local storage, and high-performance Konva.js 2D spatial canvas.}
+\label{fig:system_architecture}
+\end{figure}
+
+\subsection{System Modeling: Use Cases and Functional Specifications}
+The functional surface is defined across three primary actors: the \emph{Researcher (User)}, the \emph{Chromium Browser Runtime}, and the \emph{Local File System}.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}lp{4.2cm}p{9.0cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Use Case} & \textbf{Functional Specification \& Scope} \\ \midrule
+\textbf{UC-1} & Ingest Active Tab & Extracts DOM text via \texttt{Readability.js} and captures a WebP thumbnail preview. \\
+\textbf{UC-2} & Ingest Local PDF/Notes & Parses dropped PDF streams via \texttt{pdf.js} or Markdown files into searchable AST blocks. \\
+\textbf{UC-3} & Toggle Deep Focus Mode & Triggers 256-token sliding-window chunking and explicit \texttt{<pre><code>} AST extraction. \\
+\textbf{UC-4} & Local Vector Generation & Generates 384d dense embeddings via ONNX/WASM Web Workers and executes SQ8 quantization. \\
+\textbf{UC-5} & Execute Intent Search & Matches natural language queries via Cosine Similarity and centers the viewport in $\le 20$ms. \\
+\textbf{UC-6} & LRU Storage Maintenance & Automated background purge of cold OPFS snapshots ($>3$--$7$ days) while retaining SQ8 vectors. \\
+\textbf{UC-7} & Export Portable Space & Packages canvas coordinates, metadata, and quantized vectors into a standalone \texttt{.html} file. \\ \bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{CI/CD and fast delivery enabler}
 CI/CD will be used to:
 \begin{itemize}[leftmargin=0.7cm]
-    \item Automatically build and run tests on every change.
-    \item Produce repeatable deployment artifacts to staging.
-    \item Enable safe and frequent releases of incremental features.
+    \item Automatically build Vite bundles and run unit tests for vector similarity and parsing functions.
+    \item Validate Manifest V3 compliance and extension packaging on pull requests.
+    \item Enable reproducible, automated builds for local browser testing and staged releases.
 \end{itemize}
 
-\section{Evaluation Criterion %
-\BvrHint{\ldots measurable and attributable}}
-We define success using measurable metrics tied to the core workflow.
+\section{Evaluation Criterion}
+Success is evaluated via concrete performance, memory, and usability benchmarks.
 
 \subsection{Primary evaluation metric}
-\textbf{Time-to-acknowledgement (TTA):} time between complaint submission and ``Received/Assigned'' status creation in the system.
+\textbf{Search Retrieval Latency (SRL):} Time elapsed from query submission to vector calculation, cosine scoring, and canvas focus transition.
 \begin{itemize}[leftmargin=0.7cm]
-    \item Target: median TTA $\le$ 2 hours during pilot window.
-    \item Attribution: measured from database timestamps (submission vs. first status update by staff).
+    \item Target: Median SRL $\le$ 20ms across an index of 200+ indexed artifacts.
+    \item Attribution: Measured via high-resolution browser performance timestamps (\texttt{performance.now()}).
 \end{itemize}
 
 \subsection{Secondary evaluation metrics}
 \begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Resolution time reduction:} reduce time-to-resolved compared to baseline process (even if baseline is collected via survey).
-    \item \textbf{Duplicate rate:} percentage of complaints flagged as duplicates and resolved without rework.
-    \item \textbf{User clarity:} citizen-reported clarity of status using a simple 1--5 feedback question.
-    \item \textbf{Reliability:} availability of staging/production for login and submission during business hours (e.g., $\ge$ 99\% uptime in pilot).
+    \item \textbf{Canvas Rendering Smoothness:} Maintain $\ge$ 55 FPS during viewport panning and zooming under 100+ active nodes.
+    \item \textbf{Storage Footprint Reduction:} Achieve $\ge$ 70\% storage savings for vector data via SQ8 quantization compared to raw Float32 representations.
+    \item \textbf{Ingestion Processing Time:} Background DOM extraction and vectorization completed within $\le$ 1.5 seconds per tab.
+    \item \textbf{Local Execution Reliability:} 100\% offline availability for embedding, indexing, and spatial search.
 \end{itemize}
 
-\subsection{Pilot validation plan %
-\BvrHint{\ldots high-level}}
+\subsection{Pilot validation plan}
 \begin{itemize}[leftmargin=0.7cm]
-    \item Recruit 10--20 pilot users (citizens) and 3--5 staff roles (department simulation if real staff unavailable).
-    \item Compare metrics before/after within the iteration window by logging baseline estimates via short interviews or existing process observations.
+    \item Conduct user trials with 10--15 engineering students performing structured literature review and debugging tasks.
+    \item Measure workflow resumption speed and subjective cognitive clarity comparing standard tab bars vs. Meridian spatial clusters.
 \end{itemize}
 
-\section{Scalability %
-\BvrHint{\ldots with foresight}}
-The proposition should scale in both theoretical and practical senses.
+\section{Scalability}
+The system scales both computationally and operationally.
 
 \begin{enumerate}[leftmargin=0.7cm]
-    \item \textbf{Scalable (theoretically):} The system should support growth in number of complaints and concurrent dashboard usage by:
+    \item \textbf{Scalable (theoretically):} The client-side architecture scales as user workspaces grow to hundreds of items by:
     \begin{itemize}[leftmargin=0.7cm]
-        \item decoupling components (frontend/backend),
-        \item enabling pagination and indexing for common queries,
-        \item using stateless API design.
+        \item applying viewport culling and bitmap caching in Konva.js to limit GPU draw overhead,
+        \item quantizing embedding matrices (SQ8 Int8) to minimize RAM consumption,
+        \item offloading dimensionality reduction and vector math to background Web Workers.
     \end{itemize}
     
-    \item \textbf{Operationally deployable (practically):} The system should run on common web hosting:
+    \item \textbf{Operationally deployable (practically):} The solution requires zero cloud infrastructure:
     \begin{itemize}[leftmargin=0.7cm]
-        \item managed database,
-        \item containerized or platform-hosted deployment,
-        \item CI/CD pipeline for staging/production.
+        \item distributed directly as a standard, standalone Chromium/Firefox extension bundle,
+        \item self-contained with pre-quantized ONNX model weights stored locally in browser cache,
+        \item support for single-file portable HTML/JSON export of canvas workspaces.
     \end{itemize}
 \end{enumerate}
 
 \section{Engine availability heuristic}
-A mature set of ``engines'' (tooling/services) is available to implement this as a web-based project:
+A mature ecosystem of client-side web technologies is directly available for implementation:
 \begin{itemize}[leftmargin=0.7cm]
-    \item Web framework for REST APIs and templated/reactive pages.
-    \item Managed relational or document database.
-    \item Authentication approach (token-based or session-based).
-    \item Object storage for optional attachments (or local storage for pilot).
-    \item Test framework for unit/integration tests.
-    \item CI runner and staging deployment target.
+    \item \textbf{Vite + React:} Modern frontend toolchain and component framework.
+    \item \textbf{HTML5 Canvas / Konva.js:} Production-ready 2D graphics rendering engine.
+    \item \textbf{Transformers.js (ONNX Runtime WASM):} Mature on-device ML execution framework.
+    \item \textbf{IndexedDB \& OPFS:} Standardized, high-throughput browser storage primitives.
+    \item \textbf{Readability.js \& PDF.js:} Battle-tested DOM and document parsing engines.
+    \item \textbf{GitHub Actions:} Automated CI test runner and extension packager.
 \end{itemize}
-We will use these mature components to focus on workflow design, correctness, and measurement rather than inventing new infrastructure.
 
-\section{Project scope and deliverables %
-\BvrHint{\ldots iteration-friendly}}
-\subsection{Initial deliverable %
-\BvrHint{\ldots first iteration}}
+\section{Project scope and deliverables}
+\subsection{Initial deliverable}
 \begin{itemize}[leftmargin=0.7cm]
-    \item Citizen submission form + complaint ID generation
-    \item Staff workflow: update status and assignment
-    \item Citizen status page: view timeline/history
-    \item Basic logging and timestamps for TTA measurement
-    \item CI: build + backend unit tests + linting
-    \item CD to staging with a single command or pipeline job
+    \item Chrome Extension skeleton (MV3) with DOM text and tab capture
+    \item Web Worker integration with \texttt{Transformers.js} running \texttt{all-MiniLM-L6-v2}
+    \item Basic Konva.js 2D canvas displaying captured tab cards
+    \item Sub-20ms cosine similarity query input with card highlight
+    \item Automated CI pipeline for linting, build verification, and unit tests
 \end{itemize}
 
 \subsection{Subsequent deliverables}
 \begin{itemize}[leftmargin=0.7cm]
-    \item Lightweight duplicate suggestions with staff review
-    \item Notification layer (email/SMS optional in later iteration; can start with in-app notifications)
-    \item Admin dashboard for metrics and backlog
-    \item Improved search/filtering and indexed queries for scale readiness
+    \item AST code block and Markdown table extraction pipeline
+    \item Dual-tier context mode (Default lightweight vs. Deep Focus mode)
+    \item Tiered storage management (IndexedDB + OPFS) with automated LRU purge
+    \item Multi-source ingestion support for local PDFs and standalone notes
+    \item Single-file standalone HTML export for portable canvas sharing
 \end{itemize}
 
 \section{Risks and mitigations}
 \begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Data privacy / consent:} minimize collected data; keep attachments optional; store only what is needed.
-    \item \textbf{Staff adoption:} provide an easy UI for status updates; keep workflow steps minimal; include shortcuts.
-    \item \textbf{Evaluation measurement ambiguity:} instrument timestamps and define clear status transitions before development begins.
-    \item \textbf{Operational issues in pilot:} use staging early; ensure CI/CD produces repeatable deployments.
+    \item \textbf{Manifest V3 Service Worker Inactivity:} Mitigate by offloading persistent tasks to offscreen canvas documents and persisting runtime state to IndexedDB.
+    \item \textbf{Browser Memory Overhead:} Mitigate by implementing SQ8 scalar quantization, OPFS screenshot offloading, and aggressive canvas viewport culling.
+    \item \textbf{WASM Initialization Latency:} Mitigate by pre-warming model pipelines asynchronously in background workers on browser startup.
+    \item \textbf{DOM Noise / Content Quality:} Mitigate by utilizing \texttt{Readability.js} heuristics to strip sidebars, navigation bars, and footers prior to tokenization.
 \end{itemize}
 
 \section{Summary}
-This project proposes a deployable web platform to reduce grievance handling delays in a tier-2/3 city context. It meets the course criteria by emphasizing time-to-value through rapid iterations, implementing CI/CD to support frequent safe releases, and using measurable evaluation criteria (especially time-to-acknowledgement). It remains focused on engineering workflow and scalability readiness rather than research-driven novelty.
+This project proposes \textbf{Meridian}, an on-device spatial knowledge engine that resolves digital context fragmentation by mapping research artifacts onto a dynamic 2D vector topology. By operating 100\% locally with WebAssembly, it satisfies key academic and engineering criteria: delivering rapid time-to-value, leveraging mature client-side engines, enforcing strict user data privacy, and providing measurable evaluation metrics centered around search latency and memory efficiency.
 
 \end{document}

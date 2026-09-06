@@ -1,4 +1,4 @@
-# 🧭 Meridian: Latent Cartographer
+# 🧭 Meridian: Spatial Cartographer
 ### *A Local-First Spatial Knowledge Engine & Vector Workspace*
 
 [![Chromium Manifest V3](https://img.shields.io/badge/Manifest-V3-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/intro/)

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.cache/
+public/models/
+public/wasm/
+test-results/
+playwright-report/
+*.tsbuildinfo

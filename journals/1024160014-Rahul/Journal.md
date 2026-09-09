@@ -75,3 +75,24 @@
 
 - Detailed and extended versions of the Use Case Diagram and Level 2 DFD were completed.
 - The diagrams were aligned with the updated project requirements and overall system design.
+
+---
+
+# Week 5: Meridian Technical Foundation Implementation
+### 2 September – 8 September
+
+## Work Done
+
+- Started implementing the technical foundation of Meridian as a Chromium Manifest V3 extension.
+- Set up the extension structure and configured the required components for local execution in Chrome.
+- Integrated Transformers.js and the MiniLM model for generating semantic embeddings locally.
+- Configured WASM and a dedicated Web Worker to support efficient browser-based model inference.
+- Implemented the pipeline for converting input sentences into 384-dimensional semantic embeddings.
+- Tested the embeddings using related and unrelated sentences to verify semantic similarity.
+- Tested the inference pipeline with network connectivity disabled to verify local/offline execution.
+
+## Outcome
+
+- The Meridian technical foundation was successfully implemented and the Level 0 prototype was made functional.
+- Local 384-dimensional semantic embedding generation was successfully demonstrated.
+- The foundation is ready for integration with future capture, storage, search and spatial-canvas components.

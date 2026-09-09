@@ -68,3 +68,18 @@
 ## Outcome
 
 - The project presentation was updated according to the latest project ideas and finalized for submission/presentation.
+---
+
+# Week 5: Documentation and Demonstration Preparation
+### 2 September – 8 September
+## Work Done
+
+- Studied the implemented technical foundation to understand its current functionality.
+- Prepared documentation and presentation content describing the implemented features and workflow.
+- Coordinated with the technical team members to collect implementation updates and prepare the project demonstration.
+- Updated the project material to clearly distinguish the completed foundation from future features such as capture, storage, search and spatial visualization.
+
+## Outcome
+
+- The latest project progress was documented and incorporated into the presentation material.
+- Demonstration content for the Meridian Foundation Prototype was prepared.

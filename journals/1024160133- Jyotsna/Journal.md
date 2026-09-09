@@ -74,3 +74,22 @@
 
 - Detailed and extended versions of the Level 0 and Level 1 DFDs were completed.
 - The diagrams were aligned with the updated Project Proposal.
+
+---
+
+# Week 5: Technical Integration and Validation
+### 2 September – 8 September
+## Work Done
+
+- Reviewed the implemented Meridian extension and its integration with the proposed system architecture.
+- Assisted in testing the Transformers.js and MiniLM-based embedding generation pipeline.
+- Tested the system with different sentences and verified generation of 384-dimensional vectors.
+- Compared embeddings of related and unrelated sentences to validate semantic similarity.
+- Assisted with debugging and testing the extension and Web Worker communication during implementation.
+- Verified that embedding generation continues to work when network connectivity is disabled.
+
+## Outcome
+
+- The implemented technical foundation was tested and validated successfully.
+- Semantic embedding generation and offline inference were verified.
+- The current implementation status and technical limitations were documented for the next development stages.

@@ -1,35 +1,37 @@
-site_name: "UCS503 : Software Engineering : Project Template"
-site_url: https://tiet-ucs503.github.io/ucs503p-202627odd-template
+site_name: "MERIDIAN : Latent Cartographer"
+site_url: https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/
+site_description: "A Local-First Spatial Knowledge Engine & Vector Workspace"
+site_author: "Rahul Dadwal, Jyotsna Sachdeva, Bisman Singh Rai"
+
+repo_url: https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN
+repo_name: rahulxdadwal/UCS503p-202627-MERIDIAN
+copyright: "Copyright &copy; 2026 Meridian Project Team &middot; TIET UCS503P"
+
+nav:
+  - Home: index.md
+  - Problem & Users: problem-users.md
+  - Solution: solution.md
+  - Demo: demo.md
+  - System Integration: system-integration.md
+  - Requirements: requirements.md
+  - Progress: progress.md
+  - Weekly Journal: weekly-journal.md
+  - Documentation: documentation.md
 
 plugins:
-- search
-# - gen-files:
-#     scripts:
-#     - scripts/gen_ref_pages.py
-- literate-nav:
-    nav_file: summary.md
-- section-index
-- git-revision-date-localized
-# - git-committers:
-#     repository: "tiet-unc512/tiet-unc512.github.io"
-- git-authors
-- mkdocstrings:
-    handlers:
-      python:
-        paths: [src]
-        options:
-          summary: true
-          show_symbol_type_heading: true
-          show_symbol_type_toc: true
-          # show_object_full_path: true
-          show_root_full_path: true
-          show_root_heading: true
-          show_source: false
+  - search
+  - section-index
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - git-authors:
+      fallback: true
 
 theme:
   name: material
   custom_dir: docs/assets/theme-overrides
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.footer
     - header.autohide
     - content.tabs.link
@@ -41,35 +43,45 @@ theme:
     repo: fontawesome/brands/github
     annotation: material/plus-circle-outline
   palette:
-    primary: amber
-    accent: orange
+    - scheme: default
+      primary: amber
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: amber
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   logo: assets/tiet-logo.svg
   favicon: assets/favicon.png
 
-repo_url: https://github.com/tiet-ucs503/ucs503p-202627odd-template
-repo_name: ucs503p-202627odd-template
-copyright: "Copyright &copy; 2025 <a href='https://bvraghav.com/'>Raghav B. Venkataramaiyer</a> &lt;<code style='color:inherit; background:transparent'>bv.raghav</code>&gt;"
 extra:
   social:
-  - icon: fontawesome/brands/github
-    link: https://github.com/tiet-ucs503/ucs503p-202627odd-template
-    name: Git Repo for UCS503P Project Template
+    - icon: fontawesome/brands/github
+      link: https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN
+      name: Meridian Project GitHub Repository
 
 extra_css:
   - assets/stylesheets/extra.css
   - https://unpkg.com/katex@0/dist/katex.min.css
 
 extra_javascript:
-- https://unpkg.com/katex@0/dist/katex.min.js
-- javascript/arithmatex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - javascript/arithmatex.js
 
 markdown_extensions:
   - abbr
+  - admonition
   - md_in_html
   - attr_list
   - toc:
       permalink: true
+      toc_depth: 4
   - footnotes
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.highlight:
@@ -87,6 +99,9 @@ markdown_extensions:
         - name: math
           class: arithmatex
           arithmatex: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format {which: generic}
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.emoji:
@@ -97,7 +112,4 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  # - mkdocs-click
-  - toc:
-      toc_depth: 4
   - sane_lists

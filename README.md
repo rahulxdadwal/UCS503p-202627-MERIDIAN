@@ -6,7 +6,7 @@ MERIDIAN is a Chromium browser-extension project for collecting research materia
 
 ## Current status
 
-The project has completed **Milestone 1: Foundation**. The working implementation is maintained on the `codex/foundation` branch until it is reviewed and merged into `master`.
+The project has completed **Milestone 1: Foundation**. The working implementation is available on `master`; `codex/foundation` preserves the reviewed milestone branch and its development history.
 
 Milestone 1 provides:
 

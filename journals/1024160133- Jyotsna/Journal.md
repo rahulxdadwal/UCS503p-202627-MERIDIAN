@@ -1,4 +1,8 @@
-# Meridian – Spatial Cartographer
+# MERIDIAN: Latent Cartographer
+
+## Primary Contribution Responsibility
+
+Jyotsna holds the second-largest contribution responsibility in the current project record. Her work focuses on requirements and proposal documentation, Level 0 and Level 1 data-flow modelling, consistency review across project artifacts, extraction-flow planning, and review of milestone documentation.
 
 ---
 
@@ -74,3 +78,41 @@
 
 - Detailed and extended versions of the Level 0 and Level 1 DFDs were completed.
 - The diagrams were aligned with the updated Project Proposal.
+
+---
+
+# Week 5: Requirements Alignment and Extraction-Flow Planning
+### 2 September – 8 September
+
+## Work Done
+
+- Reviewed the updated project scope against the proposal and existing Level 0 and Level 1 DFDs.
+- Separated current foundation requirements from the later capture, storage, search, and canvas workflow.
+- Refined the expected information flow from an explicitly selected source to extracted document blocks.
+- Reviewed the planned responsibilities of the browser extension, local inference worker, storage layer, and user interface.
+- Helped identify the document information that extraction must preserve, including headings, ordered blocks, code, tables, and source metadata.
+- Checked terminology and process names for consistency across the written requirements and data-flow models.
+
+## Outcome
+
+- Requirements and data-flow documentation were aligned with the milestone-based implementation plan.
+- A clear extraction-module boundary was prepared for later parallel development.
+
+---
+
+# Week 6: Documentation Review and System-Modelling Support
+### 9 September – 15 September
+
+## Work Done
+
+- Reviewed the implemented foundation flow from the React interface to the typed client, Web Worker, local model, and WASM runtime.
+- Checked that project documentation distinguished verified implementation from planned functionality.
+- Reviewed the stated offline boundary and ensured that it described browser-level verification accurately.
+- Helped organize functional requirements, non-functional requirements, system integration details, and progress information for academic documentation.
+- Cross-checked the updated architecture narrative with the Level 0 and Level 1 data-flow view.
+- Reviewed the planned extraction branch responsibilities and the shared data contracts required for integration.
+
+## Outcome
+
+- The system-modelling record remained consistent with the working foundation.
+- Milestone documentation described current capabilities and limitations without presenting future modules as complete.

@@ -1,4 +1,8 @@
-# Meridian – Spatial Cartographer
+# MERIDIAN: Latent Cartographer
+
+## Primary Contribution Responsibility
+
+Rahul holds the largest implementation and integration responsibility in the current milestone. His work covers project direction, foundation architecture, the Manifest V3 extension scaffold, local embedding execution, reproducible asset preparation, offline browser verification, technical documentation, and consolidation of the prototype report.
 
 ---
 
@@ -75,3 +79,46 @@
 
 - Detailed and extended versions of the Use Case Diagram and Level 2 DFD were completed.
 - The diagrams were aligned with the updated project requirements and overall system design.
+
+---
+
+# Week 5: Foundation Architecture and Implementation Planning
+### 2 September – 8 September
+
+## Work Done
+
+- Converted the approved MERIDIAN concept into an implementation plan with clear milestone boundaries.
+- Selected a Chromium Manifest V3 extension architecture using React, TypeScript, Vite, Transformers.js, and ONNX Runtime WASM.
+- Defined the implemented foundation separately from planned capture, storage, retrieval, and canvas modules.
+- Designed the background-worker, user-interface, typed-client, embedding-worker, and local-model boundaries.
+- Defined shared contracts so extraction and canvas work could proceed independently in later branches.
+- Planned reproducible model preparation using a pinned MiniLM revision and an asset-integrity lock file.
+- Documented a branch and module-ownership strategy for parallel team development.
+
+## Outcome
+
+- The Milestone 1 architecture and ownership boundaries were finalized.
+- The implementation could begin without changing the instructor's root repository structure.
+
+---
+
+# Week 6: Extension Foundation, Offline Verification and Reporting
+### 9 September – 15 September
+
+## Work Done
+
+- Implemented the extension scaffold inside `code/extension/` while preserving the repository template.
+- Configured Manifest V3, the background service worker, React interface, TypeScript, and Vite production build.
+- Implemented a typed `EmbeddingClient` and a dedicated Web Worker for serialized local inference.
+- Integrated `Xenova/all-MiniLM-L6-v2` through Transformers.js and ONNX Runtime WASM.
+- Added pinned asset preparation, integrity verification, local model packaging, and third-party licence attribution.
+- Disabled remote model loading, restricted fetches to the extension origin, and applied a strict extension Content Security Policy.
+- Built a Playwright integration test using a fresh Chromium profile, offline mode, an unreachable proxy, and disabled DNS resolution.
+- Verified real 384-dimensional normalized embeddings, local WASM execution, semantic separation, and the absence of external runtime requests.
+- Consolidated implementation details, measured results, current limitations, and next milestones for the README, prototype report, and implementation presentation.
+
+## Outcome
+
+- Milestone 1 produced a working local embedding diagnostic in a loadable Chromium extension.
+- The verified run recorded 384 dimensions, a unit vector norm, 360.2 ms initialization, 7.7 ms and 7.6 ms later calls, related cosine similarity of 0.588948, and unrelated similarity of -0.069150.
+- Capture, persistence, retrieval, and canvas work remained correctly identified as future milestones.

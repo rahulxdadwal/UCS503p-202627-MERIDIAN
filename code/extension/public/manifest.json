@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Meridian — Latent Cartographer",
+  "version": "0.1.0",
+  "description": "Local research workspace. Milestone 1: offline WASM embedding foundation.",
+  "minimum_chrome_version": "116",
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "Open Meridian" },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self'; object-src 'none'; base-uri 'none'"
+  }
+}

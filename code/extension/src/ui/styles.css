@@ -1,0 +1,22 @@
+:root { font-family: system-ui, sans-serif; color: #172a29; background: #f5f6f2; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 880px; margin: 64px auto; padding: 0 28px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .15em; color: #466c60; }
+h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.15; max-width: 620px; }
+.intro { color: #51635e; font-size: 18px; line-height: 1.6; }
+section { margin: 32px 0 20px; padding: 28px; background: white; border: 1px solid #dbe3db; border-radius: 14px; }
+h2 { margin-top: 0; }
+label { display: block; font-weight: 600; margin: 24px 0 10px; }
+textarea { width: 100%; resize: vertical; padding: 14px; font: inherit; line-height: 1.6; border: 1px solid #a8b9b0; border-radius: 8px; }
+button { background: #245947; color: white; border: 0; border-radius: 7px; padding: 13px 20px; font: inherit; cursor: pointer; }
+button:disabled { opacity: .6; cursor: default; }
+:focus-visible { outline: 3px solid #b28c27; outline-offset: 3px; }
+.hint { font-size: 13px; line-height: 1.6; color: #64716b; }
+[role=alert] { color: #a42b2b; overflow-wrap: anywhere; }
+dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; border-top: 1px solid #dbe3db; padding-top: 20px; }
+dt { font-size: 12px; color: #64716b; }
+dd { margin: 7px 0; font-weight: 650; }
+pre { max-height: 260px; overflow: auto; font-size: 12px; background: #f5f6f2; padding: 16px; }
+summary { cursor: pointer; }
+@media (max-width: 580px) { main { margin-top: 28px; } section { padding: 18px; } dl { grid-template-columns: repeat(2, 1fr); } }

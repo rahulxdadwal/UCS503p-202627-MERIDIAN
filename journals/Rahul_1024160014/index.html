@@ -24,7 +24,7 @@
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
-  <title>MERIDIAN: Latent Cartographer - MERIDIAN : Latent Cartographer</title>
+  <title>Meridian – Spatial Cartographer - MERIDIAN : Latent Cartographer</title>
 
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#meridian-latent-cartographer" class="md-skip">
+        <a href="#meridian-spatial-cartographer" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MERIDIAN: Latent Cartographer
+              Meridian – Spatial Cartographer
             
           </span>
         </div>
@@ -704,9 +704,7 @@
   
 
 
-<h1 id="meridian-latent-cartographer">MERIDIAN: Latent Cartographer<a class="headerlink" href="#meridian-latent-cartographer" title="Permanent link">&para;</a></h1>
-<h2 id="primary-contribution-responsibility">Primary Contribution Responsibility<a class="headerlink" href="#primary-contribution-responsibility" title="Permanent link">&para;</a></h2>
-<p>Rahul holds the largest implementation and integration responsibility in the current milestone. His work covers project direction, foundation architecture, the Manifest V3 extension scaffold, local embedding execution, reproducible asset preparation, offline browser verification, technical documentation, and consolidation of the prototype report.</p>
+<h1 id="meridian-spatial-cartographer">Meridian – Spatial Cartographer<a class="headerlink" href="#meridian-spatial-cartographer" title="Permanent link">&para;</a></h1>
 <hr />
 <h1 id="week-1-team-formation-and-problem-identification">Week 1: Team Formation and Problem Identification<a class="headerlink" href="#week-1-team-formation-and-problem-identification" title="Permanent link">&para;</a></h1>
 <h3 id="5-august-11-august">5 August – 11 August<a class="headerlink" href="#5-august-11-august" title="Permanent link">&para;</a></h3>
@@ -776,45 +774,42 @@
 <li>The diagrams were aligned with the updated project requirements and overall system design.</li>
 </ul>
 <hr />
-<h1 id="week-5-foundation-architecture-and-implementation-planning">Week 5: Foundation Architecture and Implementation Planning<a class="headerlink" href="#week-5-foundation-architecture-and-implementation-planning" title="Permanent link">&para;</a></h1>
+<h1 id="week-5-extension-architecture-wasm-embedding-pipeline-implementation">Week 5: Extension Architecture &amp; WASM Embedding Pipeline Implementation<a class="headerlink" href="#week-5-extension-architecture-wasm-embedding-pipeline-implementation" title="Permanent link">&para;</a></h1>
 <h3 id="2-september-8-september">2 September – 8 September<a class="headerlink" href="#2-september-8-september" title="Permanent link">&para;</a></h3>
 <h2 id="work-done_4">Work Done<a class="headerlink" href="#work-done_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Converted the approved MERIDIAN concept into an implementation plan with clear milestone boundaries.</li>
-<li>Selected a Chromium Manifest V3 extension architecture using React, TypeScript, Vite, Transformers.js, and ONNX Runtime WASM.</li>
-<li>Defined the implemented foundation separately from planned capture, storage, retrieval, and canvas modules.</li>
-<li>Designed the background-worker, user-interface, typed-client, embedding-worker, and local-model boundaries.</li>
-<li>Defined shared contracts so extraction and canvas work could proceed independently in later branches.</li>
-<li>Planned reproducible model preparation using a pinned MiniLM revision and an asset-integrity lock file.</li>
-<li>Documented a branch and module-ownership strategy for parallel team development.</li>
+<li>Implemented the technical foundation of the Meridian Chromium Manifest V3 extension using React, TypeScript, and Vite (<code>code/extension/</code>).</li>
+<li>Developed the background service worker lifecycle (<code>background.ts</code>), configuring <code>chrome.action.onClicked</code> to instantiate and manage extension tabs via the Chrome Tabs API.</li>
+<li>Engineered a dedicated Web Worker to offload machine learning inference from the UI thread, integrating <code>@huggingface/transformers</code> with ONNX Runtime Web.</li>
+<li>Configured the local WebAssembly (WASM) CPU inference backend for the <code>Xenova/all-MiniLM-L6-v2</code> transformer model.</li>
+<li>Implemented the end-to-end vector generation pipeline, successfully producing normalized 384-dimensional dense semantic embeddings from input text.</li>
+<li>Built the Milestone 1 diagnostic UI interface displaying real-time model loading states, inference execution latencies, and vector dimension inspectors.</li>
 </ul>
 <h2 id="outcome_4">Outcome<a class="headerlink" href="#outcome_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The Milestone 1 architecture and ownership boundaries were finalized.</li>
-<li>The implementation could begin without changing the instructor's root repository structure.</li>
+<li>Fully functional Milestone 1 Foundation Prototype running locally inside the Chromium browser environment.</li>
+<li>Verified off-main-thread execution of 384-dimensional embedding inference using WebAssembly.</li>
+<li>Core extension architecture established for upcoming webpage extraction, persistence, and spatial visualization modules.</li>
 </ul>
 <hr />
-<h1 id="week-6-extension-foundation-offline-verification-and-reporting">Week 6: Extension Foundation, Offline Verification and Reporting<a class="headerlink" href="#week-6-extension-foundation-offline-verification-and-reporting" title="Permanent link">&para;</a></h1>
+<h1 id="week-6-activity-diagrams-architecture-implementation-prototype-report">Week 6: Activity Diagrams, Architecture Implementation &amp; Prototype Report<a class="headerlink" href="#week-6-activity-diagrams-architecture-implementation-prototype-report" title="Permanent link">&para;</a></h1>
 <h3 id="9-september-15-september">9 September – 15 September<a class="headerlink" href="#9-september-15-september" title="Permanent link">&para;</a></h3>
 <h2 id="work-done_5">Work Done<a class="headerlink" href="#work-done_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Implemented the extension scaffold inside <code>code/extension/</code> while preserving the repository template.</li>
-<li>Configured Manifest V3, the background service worker, React interface, TypeScript, and Vite production build.</li>
-<li>Implemented a typed <code>EmbeddingClient</code> and a dedicated Web Worker for serialized local inference.</li>
-<li>Integrated <code>Xenova/all-MiniLM-L6-v2</code> through Transformers.js and ONNX Runtime WASM.</li>
-<li>Added pinned asset preparation, integrity verification, local model packaging, and third-party licence attribution.</li>
-<li>Disabled remote model loading, restricted fetches to the extension origin, and applied a strict extension Content Security Policy.</li>
-<li>Built a Playwright integration test using a fresh Chromium profile, offline mode, an unreachable proxy, and disabled DNS resolution.</li>
-<li>Verified real 384-dimensional normalized embeddings, local WASM execution, semantic separation, and the absence of external runtime requests.</li>
-<li>Prepared the activity and swimlane diagrams describing the current foundation and planned end-to-end workflow.</li>
-<li>Consolidated implementation details, measured results, current limitations, and next milestones for the README, prototype report, and implementation presentation.</li>
+<li>Developed the formal <strong>Activity Diagram</strong> for Meridian, modeling the complete end-to-end workflow from active browser tab ingestion to semantic vector generation.</li>
+<li>Designed the <strong>Activity Diagram with Swimlanes</strong>, formally partitioning operational responsibilities across Chromium Browser Context, Background Service Worker, WASM Inference Worker, and Local Storage.</li>
+<li>Advanced the technical implementation and runtime stability of the extension:</li>
+<li>Optimized the Transformers.js inference execution pipeline with memory cleanup and tensor disposal routines for continuous embedding runs.</li>
+<li>Implemented typed IPC error-handling boundaries and worker crash recovery mechanisms for high-throughput browser execution.</li>
+<li>Streamlined asynchronous message passing between the diagnostic UI view and the background Web Worker.</li>
+<li>Authored core technical sections of the <strong>Prototype Stage Report</strong>, detailing the Manifest V3 multi-thread architecture, WebAssembly runtime performance benchmarks, and implementation progress.</li>
+<li>Coordinated with team members to integrate Entity-Relationship data specifications and prototype demonstration artifacts.</li>
 </ul>
 <h2 id="outcome_5">Outcome<a class="headerlink" href="#outcome_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Milestone 1 produced a working local embedding diagnostic in a loadable Chromium extension.</li>
-<li>The verified run recorded 384 dimensions, a unit vector norm, 360.2 ms initialization, 7.7 ms and 7.6 ms later calls, related cosine similarity of 0.588948, and unrelated similarity of -0.069150.</li>
-<li>The architecture, implementation evidence, diagrams, and prototype-report material were consolidated for evaluation.</li>
-<li>Capture, persistence, retrieval, and canvas work remained correctly identified as future milestones.</li>
+<li>Completed the Activity Diagram and Activity Diagram with Swimlanes aligned with system architectural specifications.</li>
+<li>Enhanced core extension implementation with improved vector inference efficiency, worker resilience, and reduced execution latency.</li>
+<li>Authored the technical architecture, WASM benchmark data, and implementation sections for the Prototype Stage Report.</li>
 </ul>
 
 
@@ -836,7 +831,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:55:07 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 21:29:25 UTC">September 15, 2026</span>
   </span>
 
     

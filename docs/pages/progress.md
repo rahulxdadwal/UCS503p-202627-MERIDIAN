@@ -65,17 +65,29 @@ The current system represents a functional **Level 0 Foundation Prototype** desi
 ## ⚡ Immediate Project Action
 
 ```mermaid
-gitGraph
-    commit id: "Initial Template"
-    branch codex/foundation
-    checkout codex/foundation
-    commit id: "1253aae: Build Foundation Prototype"
-    commit id: "Verify WASM & Offline Embeddings"
-    checkout master
-    merge codex/foundation id: "Merge Foundation to Master"
-    branch feature/capture-storage
-    checkout feature/capture-storage
-    commit id: "Milestone 2: Content Scripts & IDB"
+flowchart LR
+    subgraph MasterBranch["Branch: master"]
+        T["Initial Template"]
+        M["Merge: Foundation into Master"]
+    end
+
+    subgraph FoundationBranch["Branch: codex/foundation"]
+        F1["1253aae: Foundation Prototype"]
+        F2["Verify WASM and Offline Vectors"]
+    end
+
+    subgraph NextMilestone["Branch: feature/capture-storage"]
+        M2["Milestone 2: Content Scripts and IDB"]
+    end
+
+    T --> F1 --> F2 --> M
+    M --> M2
+
+    style T fill:#f5f5f5,stroke:#999
+    style M fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style F1 fill:#e3f2fd,stroke:#1565c0
+    style F2 fill:#e3f2fd,stroke:#1565c0
+    style M2 fill:#fff3e0,stroke:#e65100
 ```
 
 1. **Review and Merge Foundation Branch:** Merge `codex/foundation` into default `master`.
@@ -89,16 +101,20 @@ gitGraph
 ```mermaid
 gantt
     title Meridian Milestone Roadmap
-    dateFormat  YYYY-MM-DD
+    dateFormat YYYY-MM-DD
+    axisFormat %b %d
+    todayMarker stroke-width:2px,stroke:#e65100,opacity:0.6
+
     section Completed
-    Milestone 1: Foundation Prototype       :done, m1, 2026-09-02, 2026-09-08
-    section In Progress / Upcoming
-    Milestone 2: Capture & Storage          :active, m2, 2026-09-16, 2026-09-29
-    Milestone 3: Working Search Prototype   :m3, 2026-09-30, 2026-10-13
-    Milestone 4: Deep Research Chunking     :m4, 2026-10-14, 2026-10-27
-    Milestone 5: Spatial 2D Map (UMAP)      :m5, 2026-10-28, 2026-11-10
-    Milestone 6: Product Completion & Export:m6, 2026-11-11, 2026-11-24
-    Milestone 7: Validation & Final Handover:m7, 2026-11-25, 2026-12-08
+    Milestone 1 - Foundation Prototype          :done, m1, 2026-09-02, 2026-09-08
+
+    section In Progress and Upcoming
+    Milestone 2 - Capture and Storage           :active, m2, 2026-09-16, 2026-09-29
+    Milestone 3 - Working Search Prototype      :m3, 2026-09-30, 2026-10-13
+    Milestone 4 - Deep Research Chunking        :m4, 2026-10-14, 2026-10-27
+    Milestone 5 - Spatial 2D Map (UMAP)         :m5, 2026-10-28, 2026-11-10
+    Milestone 6 - Product Completion and Export :m6, 2026-11-11, 2026-11-24
+    Milestone 7 - Validation and Final Handover :m7, 2026-11-25, 2026-12-08
 ```
 
 ### Milestone 2: Capture and Storage

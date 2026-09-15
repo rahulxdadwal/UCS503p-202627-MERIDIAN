@@ -95,15 +95,15 @@ Through user workflow analysis, Meridian identifies ten essential needs:
 
 ```mermaid
 graph TD
-    A[1. User encounters webpage, PDF, or code snippet] --> B[2. User initiates explicit capture into Meridian]
-    B --> C[3. Content extraction & normalization pipeline]
-    C --> D[4. Dedicated Web Worker generates 384d semantic vector]
-    D --> E[5. Item, chunks, and metadata stored in IndexedDB/OPFS]
-    E --> F[6. Node rendered on interactive 2D research canvas]
-    F --> G[7. Semantically related nodes cluster into neighbourhoods]
-    G --> H[8. User queries workspace using natural language]
-    H --> I[9. Cosine scoring highlights relevant matching nodes]
-    I --> J[10. User inspects matching passage & reopens source URL]
+    A["1. User encounters webpage, PDF, or code snippet"] --> B["2. User initiates explicit capture into Meridian"]
+    B --> C["3. Content extraction and normalization pipeline"]
+    C --> D["4. Dedicated Web Worker generates 384d semantic vector"]
+    D --> E["5. Item, chunks, and metadata stored in IndexedDB/OPFS"]
+    E --> F["6. Node rendered on interactive 2D research canvas"]
+    F --> G["7. Semantically related nodes cluster into neighbourhoods"]
+    G --> H["8. User queries workspace using natural language"]
+    H --> I["9. Cosine scoring highlights relevant matching nodes"]
+    I --> J["10. User inspects matching passage and reopens source URL"]
 
     classDef done fill:#d4edda,stroke:#28a745,color:#155724;
     classDef planned fill:#fff3cd,stroke:#ffc107,color:#856404;

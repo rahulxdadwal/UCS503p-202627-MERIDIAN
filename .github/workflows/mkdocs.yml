@@ -1,30 +1,115 @@
-name: mkdocs 
-on:
-  push:
-    branches:
-      - master 
-      - main
-  workflow_dispatch:
-permissions:
-  contents: write
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 14331962+bvraghav@users.noreply.github.com
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v4
-        with:
-          key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
-      - run: pip install click numpy pandas scikit-learn mkdocs mkdocs-material mkdocs-material-extensions mkdocstrings mkdocstrings-python mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-click mkdocs-git-revision-date-localized-plugin mkdocs-git-committers-plugin-2 mkdocs-git-authors-plugin pymdown-extensions
-      - run: PYTHONPATH=src:$PYTHONPATH mkdocs gh-deploy --force
+site_name: "MERIDIAN : Latent Cartographer"
+site_url: https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/
+site_description: "A Local-First Spatial Knowledge Engine & Vector Workspace"
+site_author: "Rahul Dadwal, Jyotsna Sachdeva, Bisman Singh Rai"
+
+repo_url: https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN
+repo_name: rahulxdadwal/UCS503p-202627-MERIDIAN
+copyright: "Copyright &copy; 2026 Meridian Project Team &middot; TIET UCS503P"
+
+nav:
+  - Home: index.md
+  - Problem & Users: pages/problem-users.md
+  - Solution: pages/solution.md
+  - Demo: pages/demo.md
+  - System Integration: pages/system-integration.md
+  - Requirements: pages/requirements.md
+  - Progress: pages/progress.md
+  - Weekly Journal: pages/weekly-journal.md
+  - Documentation: pages/documentation.md
+
+plugins:
+  - search
+  - section-index
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+  - git-authors:
+      fallback: true
+
+theme:
+  name: material
+  custom_dir: docs/assets/theme-overrides
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.footer
+    - header.autohide
+    - content.tabs.link
+    - navigation.tracking
+    - navigation.top
+    - toc.integrate
+    - content.tooltips
+  icon:
+    repo: fontawesome/brands/github
+    annotation: material/plus-circle-outline
+  palette:
+    - scheme: default
+      primary: amber
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: amber
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  logo: assets/tiet-logo.svg
+  favicon: assets/favicon.png
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN
+      name: Meridian Project GitHub Repository
+
+extra_css:
+  - assets/stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+extra_javascript:
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - javascript/arithmatex.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - md_in_html
+  - attr_list
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - footnotes
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: math
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_inline_format {which: generic}
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: math
+          class: arithmatex
+          arithmatex: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format {which: generic}
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - sane_lists

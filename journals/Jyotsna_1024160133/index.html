@@ -24,7 +24,7 @@
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
-  <title>Meridian – Spatial Cartographer - MERIDIAN : Latent Cartographer</title>
+  <title>MERIDIAN: Latent Cartographer - MERIDIAN : Latent Cartographer</title>
 
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#meridian-spatial-cartographer" class="md-skip">
+        <a href="#meridian-latent-cartographer" class="md-skip">
           Skip to content
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Meridian – Spatial Cartographer
+              MERIDIAN: Latent Cartographer
             
           </span>
         </div>
@@ -704,7 +704,9 @@
   
 
 
-<h1 id="meridian-spatial-cartographer">Meridian – Spatial Cartographer<a class="headerlink" href="#meridian-spatial-cartographer" title="Permanent link">&para;</a></h1>
+<h1 id="meridian-latent-cartographer">MERIDIAN: Latent Cartographer<a class="headerlink" href="#meridian-latent-cartographer" title="Permanent link">&para;</a></h1>
+<h2 id="primary-contribution-responsibility">Primary Contribution Responsibility<a class="headerlink" href="#primary-contribution-responsibility" title="Permanent link">&para;</a></h2>
+<p>Jyotsna holds the second-largest contribution responsibility in the current project record. Her work focuses on requirements and proposal documentation, Level 0 and Level 1 data-flow modelling, consistency review across project artifacts, extraction-flow planning, and review of milestone documentation.</p>
 <hr />
 <h1 id="week-1-team-formation-and-problem-identification">Week 1: Team Formation and Problem Identification<a class="headerlink" href="#week-1-team-formation-and-problem-identification" title="Permanent link">&para;</a></h1>
 <h3 id="5-august-11-august">5 August – 11 August<a class="headerlink" href="#5-august-11-august" title="Permanent link">&para;</a></h3>
@@ -773,45 +775,41 @@
 <li>The diagrams were aligned with the updated Project Proposal.</li>
 </ul>
 <hr />
-<h1 id="week-5-data-contracts-worker-communication-offline-validation">Week 5: Data Contracts, Worker Communication &amp; Offline Validation<a class="headerlink" href="#week-5-data-contracts-worker-communication-offline-validation" title="Permanent link">&para;</a></h1>
+<h1 id="week-5-requirements-alignment-and-extraction-flow-planning">Week 5: Requirements Alignment and Extraction-Flow Planning<a class="headerlink" href="#week-5-requirements-alignment-and-extraction-flow-planning" title="Permanent link">&para;</a></h1>
 <h3 id="2-september-8-september">2 September – 8 September<a class="headerlink" href="#2-september-8-september" title="Permanent link">&para;</a></h3>
 <h2 id="work-done_4">Work Done<a class="headerlink" href="#work-done_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Formulated and defined the shared TypeScript contracts and message protocols (<code>contracts.ts</code>: <code>EmbeddingRequest</code>, <code>EmbeddingResponse</code>, <code>ExtractedDocument</code>, <code>WorkerStatus</code>).</li>
-<li>Tested and debugged asynchronous IPC message passing and serialized data transfers between the main React UI thread and the dedicated embedding Web Worker.</li>
-<li>Executed offline validation of the inference pipeline by disabling browser network connectivity to confirm 100% local model loading and execution.</li>
-<li>Conducted semantic similarity validation on benchmark sentence pairs, verifying that related inputs produced higher cosine similarity (~0.589) compared to unrelated inputs (~ -0.069).</li>
-<li>Documented vector normalization properties and float-array verification metrics for the diagnostic user interface.</li>
+<li>Reviewed the updated project scope against the proposal and existing Level 0 and Level 1 DFDs.</li>
+<li>Separated current foundation requirements from the later capture, storage, search, and canvas workflow.</li>
+<li>Refined the expected information flow from an explicitly selected source to extracted document blocks.</li>
+<li>Reviewed the planned responsibilities of the browser extension, local inference worker, storage layer, and user interface.</li>
+<li>Helped identify the document information that extraction must preserve, including headings, ordered blocks, code, tables, and source metadata.</li>
+<li>Checked terminology and process names for consistency across the written requirements and data-flow models.</li>
 </ul>
 <h2 id="outcome_4">Outcome<a class="headerlink" href="#outcome_4" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Shared data contracts and asynchronous Web Worker message passing successfully established.</li>
-<li>Local, offline execution and semantic similarity behavior verified with reproducible benchmark metrics.</li>
-<li>Technical baseline established for integration into upcoming document storage and search pipelines.</li>
+<li>Requirements and data-flow documentation were aligned with the milestone-based implementation plan.</li>
+<li>A clear extraction-module boundary was prepared for later parallel development.</li>
 </ul>
 <hr />
-<h1 id="week-6-entity-relationship-modeling-technical-implementation-prototype-presentation">Week 6: Entity-Relationship Modeling, Technical Implementation &amp; Prototype Presentation<a class="headerlink" href="#week-6-entity-relationship-modeling-technical-implementation-prototype-presentation" title="Permanent link">&para;</a></h1>
+<h1 id="week-6-documentation-review-and-system-modelling-support">Week 6: Documentation Review and System-Modelling Support<a class="headerlink" href="#week-6-documentation-review-and-system-modelling-support" title="Permanent link">&para;</a></h1>
 <h3 id="9-september-15-september">9 September – 15 September<a class="headerlink" href="#9-september-15-september" title="Permanent link">&para;</a></h3>
 <h2 id="work-done_5">Work Done<a class="headerlink" href="#work-done_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Contributed to technical implementation and testing of the Meridian extension:</li>
-<li>Validated data flow and serialization between the extension frontend and local vector processing components.</li>
-<li>Developed test suites for multi-sentence semantic similarity verification and edge-case token handling.</li>
-<li>Assisted with profiling embedding generation latency (cold vs. warm start) and worker memory consumption under offline conditions.</li>
-<li>Designed the <strong>Entity-Relationship (ER) Diagram</strong> for Meridian:</li>
-<li>Modeled core system entities including <code>TabArtifact</code>, <code>TextChunk</code>, <code>VectorEmbedding</code>, <code>MetadataRecord</code>, and <code>StoragePartition</code>.</li>
-<li>Defined entity attributes, primary keys, foreign keys, and cardinalities supporting IndexedDB and OPFS tiered storage.</li>
-<li>Contributed the <strong>technical slides for the Prototype Presentation</strong>:</li>
-<li>Prepared architectural breakdown slides detailing the Chromium Manifest V3 multi-thread architecture.</li>
-<li>Created slides covering the WASM ONNX Runtime inference pipeline, vector dimensions (384d), and local-first offline execution flow.</li>
-<li>Documented technical validation results, benchmark metrics, and system limitations.</li>
-<li>Contributed data modeling, testing methodology, and performance validation sections to the Prototype Stage Report.</li>
+<li>Reviewed the implemented foundation flow from the React interface to the typed client, Web Worker, local model, and WASM runtime.</li>
+<li>Checked that project documentation distinguished verified implementation from planned functionality.</li>
+<li>Reviewed the stated offline boundary and ensured that it described browser-level verification accurately.</li>
+<li>Helped organize functional requirements, non-functional requirements, system integration details, and progress information for academic documentation.</li>
+<li>Cross-checked the updated architecture narrative with the Level 0 and Level 1 data-flow view.</li>
+<li>Developed and refined the entity-relationship model for the planned artifact, chunk, embedding, metadata, and storage records.</li>
+<li>Helped prepare the data-modelling and technical-review material used in the prototype documentation and presentation.</li>
+<li>Reviewed the planned extraction branch responsibilities and the shared data contracts required for integration.</li>
 </ul>
 <h2 id="outcome_5">Outcome<a class="headerlink" href="#outcome_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Complete Entity-Relationship (ER) Diagram finalized for the local storage and vector schemas.</li>
-<li>Technical implementation tested and verified with benchmarked offline inference performance.</li>
-<li>Technical slides of the Prototype Presentation completed and integrated into the slide deck.</li>
+<li>The system-modelling record remained consistent with the working foundation.</li>
+<li>The ER model documented the planned storage relationships without presenting the storage module as implemented.</li>
+<li>Milestone documentation described current capabilities and limitations without presenting future modules as complete.</li>
 </ul>
 
 
@@ -833,7 +831,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 18:48:06 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:55:07 UTC">September 15, 2026</span>
   </span>
 
     

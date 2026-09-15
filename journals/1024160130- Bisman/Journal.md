@@ -68,3 +68,31 @@
 ## Outcome
 
 - The project presentation was updated according to the latest project ideas and finalized for submission/presentation.
+---
+
+# Week 5: Demonstration Planning & Overview Review
+### 2 September – 8 September
+
+## Work Done
+
+- Reviewed the Milestone 1 diagnostic user interface to understand the basic demonstration flow.
+- Assisted in preparing a brief non-technical outline for the upcoming prototype demonstration.
+
+## Outcome
+
+- Acquired basic familiarity with the prototype interface and outlined simple demonstration steps.
+
+---
+
+# Week 6: Presentation Assembly & Slide Formatting
+### 9 September – 15 September
+
+## Work Done
+
+- Prepared introductory non-technical slides for the Prototype Presentation (project title, team introduction, and problem overview).
+- Assisted with basic slide formatting, visual alignment, and proofreading of the presentation deck.
+
+## Outcome
+
+- Initial non-technical introductory slides prepared and proofread for the prototype presentation.
+

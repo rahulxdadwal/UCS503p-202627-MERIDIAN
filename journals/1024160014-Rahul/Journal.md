@@ -75,3 +75,46 @@
 
 - Detailed and extended versions of the Use Case Diagram and Level 2 DFD were completed.
 - The diagrams were aligned with the updated project requirements and overall system design.
+
+---
+
+# Week 5: Extension Architecture & WASM Embedding Pipeline Implementation
+### 2 September – 8 September
+
+## Work Done
+
+- Implemented the technical foundation of the Meridian Chromium Manifest V3 extension using React, TypeScript, and Vite (`code/extension/`).
+- Developed the background service worker lifecycle (`background.ts`), configuring `chrome.action.onClicked` to instantiate and manage extension tabs via the Chrome Tabs API.
+- Engineered a dedicated Web Worker to offload machine learning inference from the UI thread, integrating `@huggingface/transformers` with ONNX Runtime Web.
+- Configured the local WebAssembly (WASM) CPU inference backend for the `Xenova/all-MiniLM-L6-v2` transformer model.
+- Implemented the end-to-end vector generation pipeline, successfully producing normalized 384-dimensional dense semantic embeddings from input text.
+- Built the Milestone 1 diagnostic UI interface displaying real-time model loading states, inference execution latencies, and vector dimension inspectors.
+
+## Outcome
+
+- Fully functional Milestone 1 Foundation Prototype running locally inside the Chromium browser environment.
+- Verified off-main-thread execution of 384-dimensional embedding inference using WebAssembly.
+- Core extension architecture established for upcoming webpage extraction, persistence, and spatial visualization modules.
+
+---
+
+# Week 6: Activity Diagrams, Architecture Implementation & Prototype Report
+### 9 September – 15 September
+
+## Work Done
+
+- Developed the formal **Activity Diagram** for Meridian, modeling the complete end-to-end workflow from active browser tab ingestion to semantic vector generation.
+- Designed the **Activity Diagram with Swimlanes**, formally partitioning operational responsibilities across Chromium Browser Context, Background Service Worker, WASM Inference Worker, and Local Storage.
+- Advanced the technical implementation and runtime stability of the extension:
+  - Optimized the Transformers.js inference execution pipeline with memory cleanup and tensor disposal routines for continuous embedding runs.
+  - Implemented typed IPC error-handling boundaries and worker crash recovery mechanisms for high-throughput browser execution.
+  - Streamlined asynchronous message passing between the diagnostic UI view and the background Web Worker.
+- Authored core technical sections of the **Prototype Stage Report**, detailing the Manifest V3 multi-thread architecture, WebAssembly runtime performance benchmarks, and implementation progress.
+- Coordinated with team members to integrate Entity-Relationship data specifications and prototype demonstration artifacts.
+
+## Outcome
+
+- Completed the Activity Diagram and Activity Diagram with Swimlanes aligned with system architectural specifications.
+- Enhanced core extension implementation with improved vector inference efficiency, worker resilience, and reduced execution latency.
+- Authored the technical architecture, WASM benchmark data, and implementation sections for the Prototype Stage Report.
+

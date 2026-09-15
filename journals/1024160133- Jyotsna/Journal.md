@@ -74,3 +74,49 @@
 
 - Detailed and extended versions of the Level 0 and Level 1 DFDs were completed.
 - The diagrams were aligned with the updated Project Proposal.
+
+---
+
+# Week 5: Data Contracts, Worker Communication & Offline Validation
+### 2 September – 8 September
+
+## Work Done
+
+- Formulated and defined the shared TypeScript contracts and message protocols (`contracts.ts`: `EmbeddingRequest`, `EmbeddingResponse`, `ExtractedDocument`, `WorkerStatus`).
+- Tested and debugged asynchronous IPC message passing and serialized data transfers between the main React UI thread and the dedicated embedding Web Worker.
+- Executed offline validation of the inference pipeline by disabling browser network connectivity to confirm 100% local model loading and execution.
+- Conducted semantic similarity validation on benchmark sentence pairs, verifying that related inputs produced higher cosine similarity (~0.589) compared to unrelated inputs (~ -0.069).
+- Documented vector normalization properties and float-array verification metrics for the diagnostic user interface.
+
+## Outcome
+
+- Shared data contracts and asynchronous Web Worker message passing successfully established.
+- Local, offline execution and semantic similarity behavior verified with reproducible benchmark metrics.
+- Technical baseline established for integration into upcoming document storage and search pipelines.
+
+---
+
+# Week 6: Entity-Relationship Modeling, Technical Implementation & Prototype Presentation
+### 9 September – 15 September
+
+## Work Done
+
+- Contributed to technical implementation and testing of the Meridian extension:
+  - Validated data flow and serialization between the extension frontend and local vector processing components.
+  - Developed test suites for multi-sentence semantic similarity verification and edge-case token handling.
+  - Assisted with profiling embedding generation latency (cold vs. warm start) and worker memory consumption under offline conditions.
+- Designed the **Entity-Relationship (ER) Diagram** for Meridian:
+  - Modeled core system entities including `TabArtifact`, `TextChunk`, `VectorEmbedding`, `MetadataRecord`, and `StoragePartition`.
+  - Defined entity attributes, primary keys, foreign keys, and cardinalities supporting IndexedDB and OPFS tiered storage.
+- Contributed the **technical slides for the Prototype Presentation**:
+  - Prepared architectural breakdown slides detailing the Chromium Manifest V3 multi-thread architecture.
+  - Created slides covering the WASM ONNX Runtime inference pipeline, vector dimensions (384d), and local-first offline execution flow.
+  - Documented technical validation results, benchmark metrics, and system limitations.
+- Contributed data modeling, testing methodology, and performance validation sections to the Prototype Stage Report.
+
+## Outcome
+
+- Complete Entity-Relationship (ER) Diagram finalized for the local storage and vector schemas.
+- Technical implementation tested and verified with benchmarked offline inference performance.
+- Technical slides of the Prototype Presentation completed and integrated into the slide deck.
+

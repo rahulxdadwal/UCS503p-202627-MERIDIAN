@@ -1,0 +1,1266 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Local-First Spatial Knowledge Engine & Vector Workspace">
+      
+      
+        <meta name="author" content="Rahul Dadwal, Jyotsna Sachdeva, Bisman Singh Rai">
+      
+      
+        <link rel="canonical" href="https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/pages/requirements/">
+      
+      
+        <link rel="prev" href="../system-integration/">
+      
+      
+        <link rel="next" href="../progress/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+  <title>Requirements - MERIDIAN : Latent Cartographer</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M12%2020c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m0-18A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202m1%205h-2v4H7v2h4v4h2v-4h4v-2h-4z%22/%3E%3C/svg%3E');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requirements-specification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MERIDIAN : Latent Cartographer" class="md-header__button md-logo" aria-label="MERIDIAN : Latent Cartographer" data-md-component="logo">
+      
+  <img src="../../assets/tiet-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MERIDIAN : Latent Cartographer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requirements
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="amber" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rahulxdadwal/UCS503p-202627-MERIDIAN
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../problem-users/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Problem & Users
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../solution/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Solution
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../demo/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Demo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../system-integration/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  System Integration
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Requirements
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../progress/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Progress
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../weekly-journal/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Weekly Journal
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../documentation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Documentation
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MERIDIAN : Latent Cartographer" class="md-nav__button md-logo" aria-label="MERIDIAN : Latent Cartographer" data-md-component="logo">
+      
+  <img src="../../assets/tiet-logo.svg" alt="logo">
+
+    </a>
+    MERIDIAN : Latent Cartographer
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rahulxdadwal/UCS503p-202627-MERIDIAN
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../problem-users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem & Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functional-requirements-fr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Functional Requirements (FR)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-functional-requirements-nfr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛡️ Non-Functional Requirements (NFR)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Non-Functional Requirements (NFR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-privacy-data-sovereignty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Privacy &amp; Data Sovereignty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-offline-autonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Offline Autonomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-client-performance-responsiveness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Client Performance &amp; Responsiveness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-storage-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Storage Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-architectural-reliability-maintainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architectural Reliability &amp; Maintainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#explicit-scope-boundaries-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚫 Explicit Scope Boundaries &amp; Constraints
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../weekly-journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Weekly Journal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="requirements-specification">Requirements Specification<a class="headerlink" href="#requirements-specification" title="Permanent link">&para;</a></h1>
+<h2 id="functional-requirements-fr">📋 Functional Requirements (FR)<a class="headerlink" href="#functional-requirements-fr" title="Permanent link">&para;</a></h2>
+<p>The system requirements are categorized by functional area and tracked against project milestones:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Requirement ID</th>
+<th>Specification</th>
+<th style="text-align: center;">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>FR-01</strong></td>
+<td>The system shall package and execute as a Chromium Manifest V3 browser extension.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-02</strong></td>
+<td>The extension action click shall open the primary Meridian workspace in a browser tab.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-03</strong></td>
+<td>The system shall accept arbitrary, non-empty user text for vectorization.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-04</strong></td>
+<td>Semantic embedding inference shall execute within a dedicated background Web Worker.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-05</strong></td>
+<td>The system shall generate a normalized 384-dimensional dense vector using MiniLM.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-06</strong></td>
+<td>The model weights, tokenizer, and WASM binaries shall load from packaged local extension assets.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-07</strong></td>
+<td>The system shall strictly prevent remote model downloads during runtime execution.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-08</strong></td>
+<td>The interface shall display real-time inference lifecycle states (loading, ready, error).</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-09</strong></td>
+<td>The diagnostic view shall report vector dimensions, execution backend, latency, and vector norm.</td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /> <strong>Implemented</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-10</strong></td>
+<td>The user shall be able to initiate explicit capture of an active browser tab.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-11</strong></td>
+<td>The system shall extract readable content from active webpages using DOM sanitization.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-12</strong></td>
+<td>Extraction shall preserve structured headings, paragraphs, code blocks, and data tables.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-13</strong></td>
+<td>The system shall provide a fallback extraction strategy when article extraction fails.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-14</strong></td>
+<td>The system shall detect duplicate captures of existing URLs and offer updates over duplicates.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-15</strong></td>
+<td>The user shall be able to choose between Lightweight Mode and Deep Focus Mode capture.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-16</strong></td>
+<td>Deep Focus Mode shall segment documents using token-based overlapping windows (256w / 50o).</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-17</strong></td>
+<td>Chunks shall retain parent heading hierarchy, page indexes, and source URL metadata.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-18</strong></td>
+<td>The system shall compute item-level centroid vectors and chunk-level passage vectors.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-19</strong></td>
+<td>The system shall persist searchable records, chunks, and vectors in browser IndexedDB.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-20</strong></td>
+<td>The system shall store heavy screenshots and binary snapshots in Origin Private File System (OPFS).</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-21</strong></td>
+<td>Saved research workspaces shall persist reliably across browser restarts and device reboots.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-22</strong></td>
+<td>The user shall be able to import local PDF documents into the workspace.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-23</strong></td>
+<td>Extracted PDF passages shall preserve respective page number references.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-24</strong></td>
+<td>The user shall be able to import local Markdown notes and documentation.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-25</strong></td>
+<td>The user shall be able to manually create and paste standalone code snippets.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-26</strong></td>
+<td>The system shall vectorize natural-language search queries using the local model.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-27</strong></td>
+<td>Search results shall be ranked against stored vectors using cosine similarity scoring.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-28</strong></td>
+<td>The search interface shall highlight the exact passage matching the query intent.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-29</strong></td>
+<td>Saved research items shall be rendered as interactive visual cards on a 2D spatial canvas.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-30</strong></td>
+<td>The canvas shall support smooth panning, multi-level zooming, zoom-to-fit, and card selection.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-31</strong></td>
+<td>Users shall be able to drag, pin, inspect, delete, and reopen original source tabs from cards.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-32</strong></td>
+<td>Pinned and manually repositioned cards shall remain fixed during layout updates.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-33</strong></td>
+<td>The user shall be able to trigger an explicit spatial map reorganization on demand.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-34</strong></td>
+<td>The system shall provide an accessible tabular list view as an alternative to the 2D canvas.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-35</strong></td>
+<td>The system shall display storage quota consumption and provide manual cleanup tools.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-36</strong></td>
+<td>Automated storage cleanup routines shall guarantee the protection of user-pinned assets.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-37</strong></td>
+<td>The system shall support versioned JSON workspace export and import.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-38</strong></td>
+<td>Export and import shall preserve all vector data, metadata, and 2D canvas coordinates.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>FR-39</strong></td>
+<td>The system shall generate a self-contained, standalone HTML file to review workspaces offline.</td>
+<td style="text-align: center;"><img alt="⏳" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" title=":hourglass_flowing_sand:" /> <em>Planned</em></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="non-functional-requirements-nfr">🛡️ Non-Functional Requirements (NFR)<a class="headerlink" href="#non-functional-requirements-nfr" title="Permanent link">&para;</a></h2>
+<h3 id="1-privacy-data-sovereignty">1. Privacy &amp; Data Sovereignty<a class="headerlink" href="#1-privacy-data-sovereignty" title="Permanent link">&para;</a></h3>
+<ul>
+<li>All extracted prose, code, PDFs, vectors, and search queries must remain exclusively on the user's device.</li>
+<li>Zero analytics, telemetry, or external network requests during inference.</li>
+<li>No paid cloud AI subscriptions or API keys required.</li>
+<li>Sanitized HTML exports must render captured scripts completely inert.</li>
+</ul>
+<h3 id="2-offline-autonomy">2. Offline Autonomy<a class="headerlink" href="#2-offline-autonomy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Full embedding generation, local search, and canvas navigation must operate without internet connectivity.</li>
+<li>Bundled model and WASM binaries must be verified and self-contained within the extension archive.</li>
+</ul>
+<h3 id="3-client-performance-responsiveness">3. Client Performance &amp; Responsiveness<a class="headerlink" href="#3-client-performance-responsiveness" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Search Retrieval Latency (SRL):</strong> Target median latency <span class="arithmatex">\(\le 20 ext{ ms}\)</span> across 200+ indexed artifacts.</li>
+<li><strong>Canvas Rendering Smoothness:</strong> Target <span class="arithmatex">\(\ge 55   ext{--}60   ext{ FPS}\)</span> during continuous pan and zoom with 100+ visible nodes.</li>
+<li><strong>Tab Ingestion Latency:</strong> Target <span class="arithmatex">\(\le 1.5    ext{ s}\)</span> per tab for DOM extraction, chunking, and embedding.</li>
+</ul>
+<h3 id="4-storage-optimization">4. Storage Optimization<a class="headerlink" href="#4-storage-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Dense Float32 vectors must support SQ8 scalar quantization, targeting <span class="arithmatex">\(\ge 70\%\)</span> storage space savings.</li>
+<li>Heavy binary previews (screenshots) must reside in OPFS separate from IndexedDB structured records.</li>
+<li>Automated 7-day LRU purge for unpinned previews.</li>
+</ul>
+<h3 id="5-architectural-reliability-maintainability">5. Architectural Reliability &amp; Maintainability<a class="headerlink" href="#5-architectural-reliability-maintainability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Background services must be stateless and survive Chromium Manifest V3 service-worker suspensions.</li>
+<li>Centralized TypeScript contracts (<code>contracts.ts</code>) must prevent schema drift between modules.</li>
+<li>Checksum verification (<code>assets.lock.json</code>) ensures bit-for-bit reproducibility across team environments.</li>
+</ul>
+<hr />
+<h2 id="explicit-scope-boundaries-constraints">🚫 Explicit Scope Boundaries &amp; Constraints<a class="headerlink" href="#explicit-scope-boundaries-constraints" title="Permanent link">&para;</a></h2>
+<p>To ensure achievable milestone delivery within the academic schedule, the following features are explicitly out of initial scope:</p>
+<ul>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /> <strong>Optical Character Recognition (OCR):</strong> Scanned image-only PDFs without text layers will display an informative warning.</li>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /> <strong>Full Language AST Compilation:</strong> Code blocks are extracted as structured text with language tags; full semantic compiler AST analysis is deferred.</li>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /> <strong>Continuous Clipboard Ingestion:</strong> Automatic background clipboard snooping is avoided for privacy and security reasons.</li>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /> <strong>Dwell-Time Auto Capture:</strong> Automated tab saving based on viewing time is excluded to prevent workspace pollution.</li>
+<li><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /> <strong>WebGPU Acceleration:</strong> Deferred until browser WebGPU compatibility and cross-platform stability are verified.</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 20:17:39 UTC">September 15, 2026</span>
+  </span>
+
+    
+    
+    
+      
+  
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Contributors">
+      
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+      
+    </span>
+    <nav>
+      
+        <a href="mailto:jyotsnasachdeva3@gmail.com">Jyotsna Sachdeva</a>
+    </nav>
+  </span>
+
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../system-integration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: System Integration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                System Integration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../progress/" class="md-footer__link md-footer__link--next" aria-label="Next: Progress">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Progress
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Meridian Project Team &middot; TIET UCS503P
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN" target="_blank" rel="noopener" title="Meridian Project GitHub Repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.footer", "header.autohide", "content.tabs.link", "navigation.tracking", "navigation.top", "toc.integrate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="../../javascript/arithmatex.js"></script>
+      
+    
+  </body>
+</html>

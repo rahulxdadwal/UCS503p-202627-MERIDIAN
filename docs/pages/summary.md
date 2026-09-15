@@ -1,6 +1,6 @@
 # Table of Contents
 
-* [Home](index.md)
+* [Home](../index.md)
 * [Problem & Users](problem-users.md)
 * [Solution](solution.md)
 * [Demo](demo.md)

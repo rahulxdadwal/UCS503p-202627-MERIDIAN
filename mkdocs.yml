@@ -9,14 +9,14 @@ copyright: "Copyright &copy; 2026 Meridian Project Team &middot; TIET UCS503P"
 
 nav:
   - Home: index.md
-  - Problem & Users: problem-users.md
-  - Solution: solution.md
-  - Demo: demo.md
-  - System Integration: system-integration.md
-  - Requirements: requirements.md
-  - Progress: progress.md
-  - Weekly Journal: weekly-journal.md
-  - Documentation: documentation.md
+  - Problem & Users: pages/problem-users.md
+  - Solution: pages/solution.md
+  - Demo: pages/demo.md
+  - System Integration: pages/system-integration.md
+  - Requirements: pages/requirements.md
+  - Progress: pages/progress.md
+  - Weekly Journal: pages/weekly-journal.md
+  - Documentation: pages/documentation.md
 
 plugins:
   - search

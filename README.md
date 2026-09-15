@@ -1,185 +1,179 @@
-# 🧭 Meridian: Spatial Cartographer
-### *A Local-First Spatial Knowledge Engine & Vector Workspace*
+# MERIDIAN: Latent Cartographer
 
-[![Chromium Manifest V3](https://img.shields.io/badge/Manifest-V3-4285F4?style=flat-square&logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/intro/)
-[![React + Vite](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?style=flat-square&logo=react&logoColor=black)](https://vitejs.dev/)
-[![WASM + ONNX](https://img.shields.io/badge/AI%20Engine-ONNX%20%2F%20Transformers.js-FF6F00?style=flat-square&logo=webassembly&logoColor=white)](https://huggingface.co/docs/transformers.js)
-[![HTML5 Canvas](https://img.shields.io/badge/Rendering-Konva.js%20(60%20FPS)-0D99FF?style=flat-square)](https://konvajs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
-[![Institution](https://img.shields.io/badge/TIET-UCS503P%20Software%20Engineering-crimson?style=flat-square)](https://www.thapar.edu/)
+**A local-first spatial knowledge engine and vector workspace**
 
----
+MERIDIAN is a Chromium browser-extension project for collecting research material, generating semantic representations locally, and eventually arranging related material on a spatial canvas. The project is being developed for **UCS503P: Software Engineering Project** at Thapar Institute of Engineering and Technology under the supervision of **Dr. Jeelani Asif**.
 
-## 📌 Overview
+## Current status
 
-Ever found yourself drowning under 70+ open browser tabs, scattered code snippets, and research PDFs while desperately trying to remember where you found that one critical insight? Standard bookmarking is too static, and cloud-based AI tools send your private browsing history to external servers with high latency and subscription costs.
+The project has completed **Milestone 1: Foundation**. The working implementation is available on `master`; `codex/foundation` preserves the reviewed milestone branch and its development history.
 
-**Meridian** solves cognitive overload and context fragmentation by turning your browsing and research artifacts into an interactive **2D spatial vector map** right inside your browser. Operating **100% on-device** via WebAssembly (WASM) and local storage primitives, Meridian semantically clusters your information landscape with zero latency, zero cloud costs, and total data privacy.
+Milestone 1 provides:
 
----
+- A Chromium **Manifest V3** extension scaffold.
+- A **React 19**, **TypeScript**, and **Vite 8** diagnostic interface.
+- A dedicated Web Worker for local semantic inference.
+- `@huggingface/transformers` 3.8.1 with the pinned `Xenova/all-MiniLM-L6-v2` model.
+- ONNX Runtime WebAssembly execution on the CPU.
+- Real normalized embeddings containing **384 dimensions**.
+- Runtime controls that prevent external model loading and network access.
+- An automated Playwright integration test that launches the built extension in a fresh offline Chromium profile.
 
-## ✨ Key Features
+The current interface is an engineering diagnostic for the embedding foundation. Web-page capture, document extraction, persistent storage, semantic search, clustering, and the spatial canvas are planned milestones and are not presented as completed features.
 
-- **🧠 100% On-Device AI Embedding:** Powered by `@huggingface/transformers` (`Xenova/all-MiniLM-L6-v2`) running on ONNX Runtime WASM in background Web Workers to generate 384-dimensional dense vectors without ever making external API calls.
-- **🗺️ 60 FPS Infinite Spatial Canvas:** Interactive 2D graph rendered using **Konva.js / HTML5 Canvas** featuring force-directed semantic clustering, card previews, and smooth viewport navigation.
-- **⚡ Sub-20ms Intent Search:** Real-time cosine similarity search navigating the canvas directly to relevant concept clusters in $\le 20\text{ ms}$.
-- **🌐 Multi-Source Ingestion Pipeline:** 
-  - Real-time tab extraction with DOM decluttering via `Readability.js`.
-  - Local research papers parsed via `pdf.js`.
-  - Markdown notes and structured AST code blocks extracted from `<pre><code>` tags.
-  - Deep Focus Mode with 256-token sliding-window chunking (50-token overlap).
-- **🗄️ Tiered Local Storage Architecture:**
-  - **Hot Layer (IndexedDB):** Stores SQ8 scalar-quantized vectors ($>70\%$ memory footprint reduction) and searchable metadata.
-  - **Cold Layer (OPFS):** Origin Private File System stores compressed WebP visual thumbnails with an automated background LRU purge.
-- **🔒 Privacy-Preserving & Offline-First:** Zero telemetry, no remote servers, and fully operational offline.
-- **📦 Standalone Space Export:** Export your entire spatial knowledge map as a self-contained `.html` / `.json` bundle to share or archive.
+## Verified foundation result
 
----
+The offline integration test produced the following result:
 
-## 🏗️ System Architecture
+| Check | Verified result |
+| --- | ---: |
+| Embedding dimensions | 384 |
+| Backend | ONNX Runtime WASM |
+| Vector norm | 1.000000 |
+| First call, including model initialization | 360.2 ms |
+| Later calls | 7.7 ms and 7.6 ms |
+| Related-text cosine similarity | 0.588948 |
+| Unrelated-text cosine similarity | -0.069150 |
+| External HTTP(S) or WebSocket requests during inference | 0 observed |
 
-Meridian decouples heavy ML vector processing, UI rendering, and storage I/O across isolated threads adhering strictly to Chromium Manifest V3:
+The test uses browser-level controls: offline mode, an unreachable proxy, disabled DNS resolution, a fresh browser profile, a strict extension Content Security Policy, and an external-navigation probe. It verifies application behaviour inside Chromium; it is not a claim of a machine-wide firewall test.
 
-```mermaid
-flowchart TD
-    subgraph Browser["Chromium Browser Runtime (MV3)"]
-        Tab["Active Tabs & DOM"]
-        PDF["Local PDFs / Notes"]
-        BG["Service Worker / Offscreen Document"]
-    end
-
-    subgraph Pipeline["Ingestion & Processing"]
-        Readability["Readability.js + AST Parser"]
-        Chunker["Sliding-Window Tokenizer (256w / 50o)"]
-    end
-
-    subgraph Workers["Inference Web Worker"]
-        WASM["Transformers.js (ONNX Runtime WASM)"]
-        Model["all-MiniLM-L6-v2 (384d Dense Vectors)"]
-        Quant["SQ8 Scalar Quantization"]
-    end
-
-    subgraph Storage["Tiered Local Storage"]
-        IDB[("IndexedDB (Hot Layer)\nSQ8 Vectors & Metadata")]
-        OPFS[("OPFS (Cold Layer)\nWebP Snapshots & LRU Purge")]
-    end
-
-    subgraph UI["Frontend UI (React + Vite)"]
-        Canvas["Konva.js Infinite 2D Canvas (60 FPS)"]
-        Search["Intent Search Bar (Sub-20ms Cosine Scoring)"]
-    end
-
-    Tab & PDF --> BG
-    BG --> Readability --> Chunker
-    Chunker --> WASM
-    WASM --> Model --> Quant
-    Quant --> IDB
-    BG --> OPFS
-    IDB & OPFS --> Canvas
-    Search --> IDB
-    Search -. Smooth Viewport Pan .-> Canvas
-```
-
----
-
-## 📊 Performance Targets & Benchmarks
-
-| Metric | Target Specification | Attribution / Evaluation |
-| :--- | :--- | :--- |
-| **Search Retrieval Latency (SRL)** | **$\le 20\text{ ms}$** | `performance.now()` across 200+ indexed artifacts |
-| **Canvas Rendering Smoothness** | **$\ge 55\text{--}60\text{ FPS}$** | Viewport culling & Konva.js batch draw loops |
-| **Storage Footprint Reduction** | **$\ge 70\%$ savings** | SQ8 Int8 quantization vs. raw Float32 embeddings |
-| **Tab Ingestion Latency** | **$\le 1.5\text{ s}$** | Off-thread DOM sanitization & vector generation |
-| **Offline Reliability** | **$100\%$ Local** | Zero external network calls or remote dependencies |
-
----
-
-## 📂 Repository Structure
+## Implemented architecture
 
 ```text
-meridian/
-├── UCS503p-202627-MERIDIAN/
-│   ├── assets/                      # Logos, icons, and UI stylesheets
-│   │   ├── tiet-logo.svg
-│   │   ├── favicon.png
-│   │   └── stylesheets/extra.css
-│   ├── code/                        # Core codebase and native modules
-│   │   ├── Makefile                 # C++ compilation workflow
-│   │   ├── inc/                     # C++ header files
-│   │   └── src/                     # C++ libraries & runner entry points
-│   ├── docs/                        # MkDocs documentation source
-│   │   ├── diagrams/                # Architectural, DFD, and Use Case diagrams
-│   │   │   ├── data flow diagrams/  # Level 0, Level 1, Level 2 DFDs (LaTeX / TikZ & PDF)
-│   │   │   └── use case diagrams/   # Use case diagrams (Draw.io & PNG)
-│   │   └── journals/                # Documentation site journals symlink
-│   ├── journals/                    # Team weekly work logs and ticket resolutions
-│   │   ├── 1024030xxx-bhanurekha/
-│   │   └── 1024030xxx-vidya/
-│   ├── project-proposal/            # LaTeX Project Proposal documentation
-│   │   └── main.tex
-│   ├── project-report-prototype-stage/ # Prototype Stage LaTeX Report
-│   ├── project-report-final/        # Final Academic LaTeX Report
-│   ├── Makefile                     # Root Makefile for docs & assets
-│   ├── mkdocs.yml                   # MkDocs Material configuration
-│   └── README.md
+Toolbar action
+    -> Manifest V3 background service worker
+    -> React diagnostic page
+    -> typed EmbeddingClient
+    -> dedicated embedding Web Worker
+    -> Transformers.js
+    -> packaged MiniLM ONNX model
+    -> ONNX Runtime WASM
+    -> normalized Float32Array with 384 values
 ```
 
----
+All model, tokenizer, and WASM requests resolve from the installed `chrome-extension://` origin. The extension does not require a backend, account, API key, or runtime CDN connection.
 
-## 🚀 Getting Started
+## Repository structure
 
-### 1. Prerequisites
-- **Node.js**: `v18.0.0` or higher
-- **Package Manager**: `npm` / `pnpm` / `yarn`
-- **Python**: `3.10+` (for local MkDocs build)
-- **C++ Compiler**: `g++` / `clang++` supporting C++17 (for native modules)
+The instructor-provided repository structure remains in place. The extension implementation is isolated inside `code/extension/`.
 
----
+```text
+UCS503p-202627-MERIDIAN/
+├── assets/                         Project and documentation assets
+├── code/
+│   └── extension/                  MERIDIAN Manifest V3 implementation
+│       ├── public/manifest.json
+│       ├── scripts/prepare-assets.mjs
+│       ├── src/background/
+│       ├── src/shared/
+│       ├── src/ui/
+│       ├── src/workers/
+│       └── tests/offline.spec.ts
+├── docs/                           MkDocs content and diagrams
+├── journals/                       Individual weekly work journals
+├── project-proposal/               Instructor proposal template and report
+├── project-report-prototype-stage/ Prototype-stage report location
+├── project-report-final/           Final-report location
+├── mkdocs.yml
+└── README.md
+```
 
-### 2. Building & Serving the Documentation
+The earlier C++ material belongs to the instructor's example structure. MERIDIAN's working foundation uses TypeScript and browser technologies.
 
-The documentation site is powered by [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/).
+## Build the extension
+
+### Prerequisites
+
+- Node.js 22.12 or newer
+- npm
+- Chrome or another compatible Chromium browser
+
+### Prepare and build
 
 ```bash
-# Navigate to the project folder
-cd UCS503p-202627-MERIDIAN
-
-# Start local MkDocs live-reload server
-make docs
-
-# Or build static documentation
-make docbuild
+cd code/extension
+npm ci
+npm run assets:prepare
+npm run build
 ```
 
----
+`npm run assets:prepare` downloads the pinned public model revision, verifies it against `assets.lock.json`, and copies the matching ONNX Runtime WASM files. This setup step needs internet access once. The production build itself does not download assets.
 
-### 3. Compiling the C++ Modules
+### Load in Chrome
+
+1. Open `chrome://extensions`.
+2. Enable **Developer mode**.
+3. Select **Load unpacked**.
+4. Choose `code/extension/dist/`.
+5. Open MERIDIAN from the extension toolbar.
+6. Enter a short sentence and select **Generate embedding**.
+
+The result displays the vector dimension, backend, elapsed time, vector norm, and the generated values.
+
+## Run the offline integration test
 
 ```bash
-# Navigate to the code directory
-cd UCS503p-202627-MERIDIAN/code
-
-# Build dynamic libraries and executable
-make all
-
-# Clean build artifacts
-make clean
+cd code/extension
+npm run browser:install
+npm test
 ```
 
----
+The test writes its evidence to:
 
-## 👥 Authors & Team Information
+- `code/extension/test-results/offline-verification.json`
+- `code/extension/test-results/foundation.png`
 
-This project is developed as part of **UCS503P: Software Engineering Project** at **Thapar Institute of Engineering and Technology (TIET)** under the supervision of **Dr. Jeelani Asif**.
+## Planned milestones
 
-| Name | Roll Number | Email | Department |
-| :--- | :--- | :--- | :--- |
-| **Rahul Dadwal** | `1024160014` | [`rdadwal_be24@thapar.edu`](mailto:rdadwal_be24@thapar.edu) | Computer Science & Engineering |
-| **Jyotsna Sachdeva** | `1024160133` | [`jsachdeva_be24@thapar.edu`](mailto:jsachdeva_be24@thapar.edu) | Computer Science & Engineering |
-| **Bisman Singh Rai** | `1024160130` | [`brai_be24@thapar.edu`](mailto:brai_be24@thapar.edu) | Computer Science & Engineering |
+### Capture and extraction
 
----
+- Capture an explicitly selected browser page.
+- Extract readable text while preserving useful headings, code, and tables.
+- Add PDF and Markdown import after the web-page flow is stable.
 
-## 📜 License
+### Persistence and retrieval
 
-This project is licensed under the [MIT License](LICENSE).
+- Store artifact metadata and searchable chunks in IndexedDB.
+- Use OPFS for larger binary assets when required.
+- Generate a query embedding locally and rank saved content with cosine similarity.
+
+### Spatial workspace
+
+- Present saved artifacts on an interactive canvas.
+- Add semantic neighbourhoods, search focus, inspection, and workspace export.
+- Measure search latency and rendering performance only after the integrated workflow exists.
+
+## Parallel development
+
+The project uses module ownership so team members can work from separate systems without editing the same files.
+
+| Area | Suggested branch | Primary files |
+| --- | --- | --- |
+| Foundation and integration | `codex/foundation` | Manifest, package files, build configuration, workers, and shared contracts |
+| Extraction | `codex/extraction` | `code/extension/src/extraction/` and its tests |
+| Canvas interface | `codex/canvas-ui` | `code/extension/src/ui/` and UI tests |
+
+Each teammate should branch from the same reviewed base, commit only the files owned by that module, push the feature branch, and open a pull request. Shared-contract or dependency changes require coordination before implementation. Pull requests should be merged one at a time, followed by a build and the relevant tests.
+
+## Team contribution areas
+
+The journals contain the detailed weekly record. The current allocation reflects the relative contribution requested by the team.
+
+| Member | Roll number | Main contribution areas |
+| --- | --- | --- |
+| **Rahul Dadwal** | `1024160014` | Project direction; foundation architecture; extension scaffold; local embedding worker; asset reproducibility; offline integration testing; technical integration; implementation documentation and reporting |
+| **Jyotsna Sachdeva** | `1024160133` | Requirements and proposal documentation; Level 0 and Level 1 data-flow modelling; consistency review; extraction and data-flow planning; documentation review |
+| **Bisman Singh Rai** | `1024160130` | Project presentation; communication of the proposed workflow; presentation revisions; demo narrative; supporting documentation review |
+
+## Documentation
+
+- Extension setup and verification: `code/extension/README.md`
+- Parallel-development handoff: `code/extension/HANDOFF.md`
+- Project website source: `docs/`
+- Individual work records: `journals/`
+- Proposal and report templates: `project-proposal/`, `project-report-prototype-stage/`, and `project-report-final/`
+
+## License
+
+This repository uses the [MIT License](LICENSE). The packaged third-party model and runtime retain their own licences and attribution files inside the extension package.

@@ -74,7 +74,7 @@ Weekly progress logs recording individual and team contributions across all six 
 | Deliverable | Repository Location | Current Status |
 |---|---|:---:|
 | **Project Presentation Slide Deck** | `docs/ppt/presentation.pptx` | :white_check_mark: **Available** |
-| **Gantt Project Schedule** | `simple-gantt-chart_ms.xlsx` | :white_check_mark: **Maintained (Weeks 1–6)** |
+| **Gantt Project Schedule** | [`docs/GANTT-Chart/`](../GANTT-Chart/GANTT-Chart.html) (`.pdf`, `.xlsx`, `.html`, `.csv`) | :white_check_mark: **Maintained (Weeks 1–11)** |
 | **Prototype Stage Report** | `project-report-prototype-stage/` | :hourglass_flowing_sand: *Under Active Compilation* |
 | **Final Stage Report** | `project-report-final/` | :hourglass_flowing_sand: *Scheduled for Semester End* |
 

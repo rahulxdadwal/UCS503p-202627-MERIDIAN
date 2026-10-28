@@ -202,3 +202,177 @@ Entries are synthesized directly from the authentic team journals maintained in 
     - Completed formal Activity Diagram and Swimlane Activity Diagram aligned with Chromium process architecture.
     - Finalized Entity-Relationship (ER) storage schema modeling tiered storage across IndexedDB and OPFS.
     - Assembled and finalized Prototype Presentation slide deck and authored core technical sections of the Prototype Stage Report.
+
+---
+
+=== "Week 7: Mid-Semester Evaluation & Review"
+    ### 16 September – 22 September 2026
+
+    #### 📌 Objectives
+    Deliver the formal Mid-Semester Prototype Demonstration, defend system modeling and technical architecture, and prepare for academic mid-semester examinations.
+
+    #### 🛠️ Individual Contributions
+
+    ##### **Rahul Dadwal (Member 1)**
+    - Prepared and delivered the technical prototype demonstration for the official Mid-Semester Evaluation session.
+    - Demonstrated the functioning Chromium Manifest V3 extension, off-main-thread Web Worker execution, and on-device WASM tensor generation to course evaluators.
+    - Defended architectural choices regarding local-first execution, ONNX Runtime Web CPU threading, memory lifecycle controls, and sub-10ms warm inference latencies.
+    - Documented evaluator feedback regarding modular boundaries for upcoming active tab capture and vector retrieval pipelines.
+    - Commenced academic revision for mid-semester theory and laboratory examinations.
+
+    ##### **Jyotsna Sachdeva (Member 2)**
+    - Prepared and defended the system modeling artifacts (Level 0, 1, 2 DFDs and Entity-Relationship Diagram) during the Mid-Semester Evaluation session.
+    - Presented the data dictionary, data boundaries, and verification metrics for the 384-dimensional vector embedding pipeline.
+    - Co-demonstrated the offline execution benchmarks, showing zero network overhead, unit vector normalization, and verified cosine similarity separation.
+    - Commenced academic preparation for mid-semester theory and laboratory examinations.
+
+    ##### **Bisman Singh Rai (Member 3)**
+    - Handled visual slide management and presentation logistics during the official Mid-Semester Evaluation session.
+    - Delivered the introductory presentation segments: project background, user problem statement, and team overview.
+    - Recorded evaluator questions, discussion remarks, and feedback for team documentation.
+    - Commenced academic preparation for mid-semester theory and laboratory examinations.
+
+    #### 🎯 Outcomes & Milestones
+    - Successfully presented and defended the Milestone 1 technical prototype before course evaluators.
+    - Gathered structured evaluator feedback and established the baseline for post-examination sprint goals.
+
+---
+
+=== "Week 8: Mid-Semester Examination Period"
+    ### 23 September – 7 October 2026
+
+    #### 📌 Objectives
+    Complete institutional mid-semester theory and laboratory examinations, conduct an evaluation retrospective, and plan post-exam development resumption.
+
+    #### 🛠️ Individual Contributions
+
+    ##### **Rahul Dadwal (Member 1)**
+    - Appeared for mid-semester academic examinations across theory and laboratory subjects.
+    - Conducted a mid-semester retrospective on prototype engineering milestones and evaluator suggestions.
+    - Outlined priority technical modules and implementation targets to resume immediately following the examination break.
+
+    ##### **Jyotsna Sachdeva (Member 2)**
+    - Appeared for mid-semester academic examinations across theory and practical courses.
+    - Reviewed evaluator feedback regarding IndexedDB schema scalability and binary asset storage in OPFS.
+    - Maintained academic course deliverables and prepared for post-examination sprint sessions.
+
+    ##### **Bisman Singh Rai (Member 3)**
+    - Appeared for mid-semester academic examinations across theory and laboratory subjects.
+    - Reviewed presentation assets and slide deck organization post-evaluation.
+    - Prepared initial notes on usability aspects to discuss with team members following examinations.
+
+    #### 🎯 Outcomes & Milestones
+    - Concluded the mid-semester examination period across all enrolled subjects.
+    - Formulated an initial agenda and schedule for post-examination project planning.
+
+---
+
+=== "Week 9: Architecture & Future Implementation Planning"
+    ### 7 October – 13 October 2026
+
+    #### 📌 Objectives
+    Resume active engineering sprints, establish detailed technical specifications for Milestone 2 (Capture & Storage) and Milestone 3 (Cosine Vector Search), and conduct user workflow research.
+
+    #### 🛠️ Individual Contributions
+
+    ##### **Rahul Dadwal (Member 1)**
+    - Resumed active development and led technical architecture planning for upcoming milestones (Milestones 2 & 3).
+    - Researched and benchmarked content script DOM parsing pipelines using `@mozilla/readability` inside isolated extension execution contexts.
+    - Designed the background service worker IPC state machine for orchestrating tab capture events, Web Worker job queues, and serialization protocols.
+    - Architected the class hierarchy, interfaces, and design patterns for the vector storage engine and in-memory cosine similarity ranking service.
+    - Formulated token-level sliding-window chunking algorithms (256-word chunk size, 50-word overlap) with boundary-aware paragraph splitting.
+
+    ##### **Jyotsna Sachdeva (Member 2)**
+    - Formulated the database architecture and indexing strategy for client-side storage: IndexedDB (`meridian-db`) for structured document chunks and vectors, and Origin Private File System (OPFS) for WebP visual snapshots.
+    - Designed database object stores (`artifacts`, `chunks`, `embeddings`, `layout_positions`) with composite key indexes for fast multi-attribute filtering.
+    - Planned database schema versioning, transaction boundaries, and rollback policies for atomic document saves.
+    - Drafted data sanitization and schema validation rules for incoming DOM text chunks, code blocks, and metadata fields.
+
+    ##### **Bisman Singh Rai (Member 3)**
+    - Coordinated team meeting schedules, documented discussion minutes, and updated the project sprint roadmap.
+    - Researched user journey patterns and cognitive workflows for web research, literature surveys, and student note-taking.
+    - Collected visual UI design references, color palettes, and layout styles from spatial knowledge and canvas-based productivity applications.
+    - Planned the outline and chapter structure for the future User Guide and project manual.
+
+    #### 🎯 Outcomes & Milestones
+    - Finalized technical design blueprints for content script DOM extraction and tiered IndexedDB/OPFS persistence.
+    - Established detailed state machine specifications, data contracts, and user research catalogs.
+
+---
+
+=== "Week 10: Scalability, Retrieval & Usability Planning"
+    ### 14 October – 20 October 2026
+
+    #### 📌 Objectives
+    Design non-blocking 2D spatial layout workers, formulate mathematical cosine retrieval models, establish test harness suites, and conduct usability reviews.
+
+    #### 🛠️ Individual Contributions
+
+    ##### **Rahul Dadwal (Member 1)**
+    - Researched mathematical models and algorithms for dynamic 2D spatial clustering: evaluated UMAP (Uniform Manifold Approximation and Projection) and t-SNE performance in JavaScript environments.
+    - Architected a dedicated Web Worker pipeline for non-blocking UMAP projection ($384\text{d} \to 2\text{D}$) and spring-force collision-resolution physics.
+    - Planned the rendering architecture for the 2D spatial canvas utilizing HTML5 Canvas / Konva.js to guarantee smooth frame rates ($\ge 60\text{ FPS}$) during viewport pan/zoom.
+    - Defined technical acceptance criteria, branch workflow policies, and test suites for upcoming development sprints.
+
+    ##### **Jyotsna Sachdeva (Member 2)**
+    - Planned the technical algorithm for local in-memory cosine similarity search across multi-item vector collections.
+    - Designed vector normalization checks ($L_2\text{ norm} = 1.0$) and scalar quantization (SQ8) to optimize in-memory cosine dot-product computations.
+    - Outlined data lifecycle and retention policies, including automatic 7-day cache pruning for unpinned visual snapshots.
+    - Formulated comprehensive test harness specifications: mock DOM fixtures, chunk segmentation edge cases, and vector distance verification suites.
+
+    ##### **Bisman Singh Rai (Member 3)**
+    - Analyzed usability workflows for non-technical users, identifying potential friction points in active tab capture and canvas navigation.
+    - Conducted comparative usability reviews on card layout density, search bar placement, and floating toolbar accessibility.
+    - Updated project task checklists, milestone progress trackers, and academic journal logs.
+    - Assisted in reviewing non-technical sections of project documentation for clarity and consistency.
+
+    #### 🎯 Outcomes & Milestones
+    - Finalized spatial projection pipeline specifications and sub-20ms cosine scoring models.
+    - Established end-to-end testing fixtures and usability recommendations for canvas development.
+
+---
+
+=== "Week 11: Class & Sequence Design & Implementation Sprint"
+    ### 21 October – 27 October 2026
+
+    #### 📌 Objectives
+    Model formal UML Class and Sequence Diagrams, implement object-oriented class hierarchies and asynchronous message orchestration in code, and redesign frontend UI/UX mockups.
+
+    #### 🛠️ Individual Contributions
+
+    ##### **Rahul Dadwal (Member 1)**
+    - Designed the comprehensive **System Class Diagram** for the Meridian extension:
+      - Modeled core structural classes: `WorkerManager`, `ModelRunner`, `EmbeddingService`, `VectorIndex`, and `CanvasController`.
+      - Defined member variables, typed method signatures, inheritance relationships, and interface abstractions (`IEmbeddingClient`, `IVectorStore`).
+    - Designed the system **Sequence Diagram** capturing the end-to-end capture, embedding generation, and vector retrieval pipeline.
+    - **Implemented the Class Architecture in Code**:
+      - Implemented typed TypeScript classes and interfaces in `code/extension/src/`:
+        - Structured the core client class `EmbeddingClientManager` with singleton lifecycle controls and worker initialization guards.
+        - Implemented `WorkerMessageController` encapsulating typed message dispatch, worker error recovery, and payload serialization.
+        - Implemented clean OOP abstractions separating UI state management from background inference routines.
+
+    ##### **Jyotsna Sachdeva (Member 2)**
+    - Collaborated on designing the **Class Diagram**, focusing on storage entities, data access objects (DAOs), and chunking service classes:
+      - Modeled `DocumentRepository`, `ChunkingService`, `StorageAdapter`, and `CosineSearchEngine` classes with their attributes and associations.
+    - Designed the formal **Sequence Diagram** modeling detailed runtime interactions:
+      - Mapped sequential message flows: User Capture $\to$ Content Script $\to$ Background Worker $\to$ Inference Worker $\to$ IndexedDB Storage $\to$ Canvas UI Dispatch.
+      - Specified asynchronous message payloads, UUID tracking tokens, and error-handling fallback branches.
+    - **Implemented the Sequence Flow in Code**:
+      - Implemented the end-to-end asynchronous sequence execution and event orchestration:
+        - Structured promise-based request-response correlation using unique job IDs (`requestId: crypto.randomUUID()`).
+        - Implemented sequential promise chaining and event listener management to guarantee message delivery without race conditions.
+        - Integrated structured error-propagation flows handling worker busy states and timeout fallbacks.
+
+    ##### **Bisman Singh Rai (Member 3)**
+    - Led the **Ideation Redesign** for the next generation of the Meridian user interface:
+      - Redesigned visual wireframes and concept mockups for the interactive 2D research canvas, exploring card grouping aesthetics and node clustering layouts.
+      - Re-conceptualized the spatial navigation experience: designed floating control docks for zooming, minimap overlays, and card clustering toggles.
+      - Redesigned the contextual Search Modal layout, creating visual concepts for real-time passage highlighting and source URL navigation drawers.
+      - Proposed refined dark and light mode UI theme accents (amber and slate palettes) aligned with project branding.
+    - Documented user interaction scenarios, edge-case usability flows, and presented the redesigned interface concepts to the team for review.
+
+    #### 🎯 Outcomes & Milestones
+    - Completed formal UML Class Diagram and Sequence Diagram adhering to object-oriented software engineering standards.
+    - Successfully implemented core class hierarchies and asynchronous sequence correlation in TypeScript.
+    - Delivered the comprehensive UI/UX redesign wireframes and interaction specifications for the research canvas.
+

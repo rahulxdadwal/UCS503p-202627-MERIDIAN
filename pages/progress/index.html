@@ -759,16 +759,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#multi-milestone-development-roadmap" class="md-nav__link">
+  <a href="#multi-milestone-development-roadmap-gantt-timeline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🗺️ Multi-Milestone Development Roadmap
+        🗺️ Multi-Milestone Development Roadmap &amp; Gantt Timeline
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🗺️ Multi-Milestone Development Roadmap">
+    <nav class="md-nav" aria-label="🗺️ Multi-Milestone Development Roadmap &amp; Gantt Timeline">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-progress-summary-weeks-1-to-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Phase Progress Summary (Weeks 1 to 11)
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#milestone-2-capture-and-storage" class="md-nav__link">
@@ -971,7 +982,7 @@
 <li>Foundation implementation is committed on branch:
   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>origin/codex/foundation (Commit: 1253aae)
 </span></code></pre></div></li>
-<li>Local weekly journals and Gantt charts are synchronized through Week 6.</li>
+<li>Local weekly journals and Gantt charts are synchronized through Week 11.</li>
 </ul>
 <hr />
 <h2 id="current-limitations-incomplete-work">🚧 Current Limitations &amp; Incomplete Work<a class="headerlink" href="#current-limitations-incomplete-work" title="Permanent link">&para;</a></h2>
@@ -1022,23 +1033,134 @@
 <li><strong>Branching Strategy:</strong> Establish dedicated feature branches for Milestone 2 work (<code>feature/capture-content-script</code>, <code>feature/indexeddb-storage</code>).</li>
 </ol>
 <hr />
-<h2 id="multi-milestone-development-roadmap">🗺️ Multi-Milestone Development Roadmap<a class="headerlink" href="#multi-milestone-development-roadmap" title="Permanent link">&para;</a></h2>
+<h2 id="multi-milestone-development-roadmap-gantt-timeline">🗺️ Multi-Milestone Development Roadmap &amp; Gantt Timeline<a class="headerlink" href="#multi-milestone-development-roadmap-gantt-timeline" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>[!NOTE] Detailed Gantt Chart Deliverables
+The project maintains a complete, synchronized 11-week Gantt schedule accessible across multiple formats:</p>
+<ul>
+<li><strong>Excel Spreadsheet (<code>.xlsx</code>)</strong>: <a href="../../GANTT-Chart/GANTT-Chart.xlsx"><code>docs/GANTT-Chart/GANTT-Chart.xlsx</code></a> (Fully styled OpenXML with calendar columns)</li>
+<li><strong>Printable / Numbers PDF</strong>: <a href="../../GANTT-Chart/GANTT-Chart.pdf"><code>docs/GANTT-Chart/GANTT-Chart.pdf</code></a> (3-page landscape vector layout)</li>
+<li><strong>Interactive HTML Viewer</strong>: <a href="../../GANTT-Chart/GANTT-Chart.html"><code>docs/GANTT-Chart/GANTT-Chart.html</code></a> (Live filtering by member)</li>
+<li><strong>Universal Data (<code>.csv</code>)</strong>: <a href="../../GANTT-Chart/GANTT-Chart.csv"><code>docs/GANTT-Chart/GANTT-Chart.csv</code></a></li>
+</ul>
+</blockquote>
 <pre class="mermaid"><code>gantt
-    title Meridian Milestone Roadmap
+    title Meridian Spatial Cartographer - Milestone Timeline (Weeks 1 to 11)
     dateFormat YYYY-MM-DD
     axisFormat %b %d
-    todayMarker stroke-width:2px,stroke:#e65100,opacity:0.6
+    todayMarker stroke-width:2px,stroke:#e65100,opacity:0.7
 
-    section Completed
-    Milestone 1 - Foundation Prototype          :done, m1, 2026-09-02, 2026-09-08
+    section Inception &amp; Modeling
+    W1: Team Formation &amp; Problem Id    :done, w1, 2026-08-05, 2026-08-11
+    W2: Proposal &amp; Requirements       :done, w2, 2026-08-12, 2026-08-18
+    W3: Architectural Diagrams (DFD)  :done, w3, 2026-08-19, 2026-08-25
+    W4: Detailed Design &amp; Refinement  :done, w4, 2026-08-26, 2026-09-01
 
-    section In Progress and Upcoming
-    Milestone 2 - Capture and Storage           :active, m2, 2026-09-16, 2026-09-29
-    Milestone 3 - Working Search Prototype      :m3, 2026-09-30, 2026-10-13
-    Milestone 4 - Deep Research Chunking        :m4, 2026-10-14, 2026-10-27
-    Milestone 5 - Spatial 2D Map (UMAP)         :m5, 2026-10-28, 2026-11-10
-    Milestone 6 - Product Completion and Export :m6, 2026-11-11, 2026-11-24
-    Milestone 7 - Validation and Final Handover :m7, 2026-11-25, 2026-12-08</code></pre>
+    section Foundation &amp; Evaluation
+    W5: Level 0 Foundation Prototype  :done, w5, 2026-09-02, 2026-09-08
+    W6: Activity Diagrams &amp; Report    :done, w6, 2026-09-09, 2026-09-15
+    W7: Mid-Sem Evaluation &amp; Defense  :done, w7, 2026-09-16, 2026-09-22
+    W8: Mid-Sem Examination Period    :done, w8, 2026-09-23, 2026-10-07
+
+    section Active Architecture &amp; Design
+    W9: Ingestion &amp; Storage Planning  :active, w9, 2026-10-07, 2026-10-13
+    W10: Canvas Layout &amp; Retrieval    :active, w10, 2026-10-14, 2026-10-20
+    W11: Class, Sequence &amp; Redesign   :active, w11, 2026-10-21, 2026-10-27
+
+    section Upcoming Implementation
+    Milestone 2 - Capture &amp; Persistence :crit, m2, 2026-10-28, 2026-11-10
+    Milestone 3 - Spatial Canvas &amp; UMAP :crit, m3, 2026-11-11, 2026-11-24</code></pre>
+<h3 id="phase-progress-summary-weeks-1-to-11">📋 Phase Progress Summary (Weeks 1 to 11)<a class="headerlink" href="#phase-progress-summary-weeks-1-to-11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Timeline</th>
+<th>Primary Focus</th>
+<th>Assignees</th>
+<th style="text-align: center;">Status &amp; Completion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase 1: Team Formation &amp; Problem Identification</strong></td>
+<td>Aug 5 – Aug 11</td>
+<td>Problem space exploration, concept formulation</td>
+<td>Team</td>
+<td style="text-align: center;"><strong>100% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 2: Project Proposal &amp; Requirements Analysis</strong></td>
+<td>Aug 12 – Aug 18</td>
+<td>Academic proposal, user interaction &amp; DFD scope</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>100% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 3: Architectural Modeling &amp; Initial Diagrams</strong></td>
+<td>Aug 19 – Aug 25</td>
+<td>Level 0/1/2 DFDs, Use Case diagram, initial deck</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>100% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 4: Detailed Design &amp; Refinement</strong></td>
+<td>Aug 26 – Sep 1</td>
+<td>DFD refinements, presentation readiness</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>100% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 5: Level 0 Foundation Prototype</strong></td>
+<td>Sep 2 – Sep 8</td>
+<td>Manifest V3 setup, WASM Transformers.js pipeline</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>100% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 6: Activity Diagrams &amp; Stage Report</strong></td>
+<td>Sep 9 – Sep 15</td>
+<td>Swimlane modeling, ER schemas, prototype stage report</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>90% – 95% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 7: Mid-Semester Evaluation &amp; Defense</strong></td>
+<td>Sep 16 – Sep 22</td>
+<td>Live prototype demo, data flow defense, evaluator logs</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>90% – 95% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 8: Mid-Semester Examination Period</strong></td>
+<td>Sep 23 – Oct 7</td>
+<td>Academic exams, prototype review retrospective</td>
+<td>Team</td>
+<td style="text-align: center;"><strong>80% – 90% Completed</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 9: Ingestion &amp; Storage Architecture Planning</strong></td>
+<td>Oct 7 – Oct 13</td>
+<td>Readability DOM parsing, IndexedDB/OPFS schemas</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>75% – 85% Progress</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 10: Canvas Layout &amp; Retrieval Planning</strong></td>
+<td>Oct 14 – Oct 20</td>
+<td>UMAP projection worker, cosine SQ8, usability review</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>70% – 85% Progress</strong></td>
+</tr>
+<tr>
+<td><strong>Phase 11: Class, Sequence &amp; UX Redesign</strong></td>
+<td>Oct 21 – Oct 27</td>
+<td>Class &amp; Sequence modeling, OOP code, Canvas UI wireframes</td>
+<td>Rahul, Jyotsna, Bisman</td>
+<td style="text-align: center;"><strong>75% – 90% Progress</strong></td>
+</tr>
+</tbody>
+</table>
 <h3 id="milestone-2-capture-and-storage">Milestone 2: Capture and Storage<a class="headerlink" href="#milestone-2-capture-and-storage" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Focus:</strong> Active tab DOM extraction and client-side database persistence.</li>
@@ -1140,7 +1262,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 21:21:49 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 28, 2026 05:00:54 UTC">October 28, 2026</span>
   </span>
 
     

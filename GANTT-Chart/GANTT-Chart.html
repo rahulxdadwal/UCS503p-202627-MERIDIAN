@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Spatial Cartographer - Project Gantt Chart</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --border: #334155;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body { background: var(--bg); color: var(--text); padding: 24px; }
+  header { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+  h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 14px; }
+  .meta-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 13px; }
+  .meta-card span { display: block; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+  .meta-card strong { font-size: 14px; color: #fff; }
+  
+  .filters { display: flex; gap: 10px; margin: 18px 0; flex-wrap: wrap; align-items: center; }
+  .filter-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 6px; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #0f172a; font-weight: 600; border-color: var(--accent); }
+  
+  .table-container { overflow-x: auto; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; white-space: nowrap; }
+  th, td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  th { background: #131d2e; color: var(--text-muted); text-align: left; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; position: sticky; top: 0; }
+  tr.phase-header { background: #1a2436; font-weight: 700; color: #e2e8f0; }
+  tr.phase-header td { padding: 10px 12px; font-size: 13px; }
+  .badge-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-rahul { background: #1e3a5f; color: #93c5fd; border: 1px solid #2563eb; }
+  .badge-jyotsna { background: #3b1e54; color: #d8b4fe; border: 1px solid #9333ea; }
+  .badge-bisman { background: #3f2e1e; color: #fdba74; border: 1px solid #ea580c; }
+  .badge-team { background: #1e3f20; color: #86efac; border: 1px solid #16a34a; }
+  
+  .progress-wrap { width: 100px; background: #334155; border-radius: 999px; height: 7px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px; }
+  .progress-bar { height: 100%; border-radius: 999px; background: var(--accent); }
+  .progress-text { font-size: 11px; font-weight: 600; display: inline-block; width: 34px; text-align: right; }
+
+  /* Timeline Gantt track */
+  .timeline-cell { position: relative; min-width: 450px; padding: 4px 10px !important; }
+  .timeline-track { position: relative; height: 18px; width: 100%; background: rgba(255,255,255,0.03); border-radius: 4px; }
+  .timeline-bar { position: absolute; height: 100%; border-radius: 4px; opacity: 0.9; display: flex; align-items: center; padding-left: 6px; font-size: 10px; font-weight: 700; color: #1e293b; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  
+  .legend { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; font-size: 12px; color: var(--text-muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Meridian Spatial Cartographer - Schedule & Gantt Chart</h1>
+  <p style="color: var(--text-muted); font-size: 14px;">UCS503P: Software Engineering (TIET) • Milestone Tracking & Project Timeline</p>
+  <div class="meta-grid">
+    <div class="meta-card"><span>Project Start</span><strong>Wed, Aug 5, 2026</strong></div>
+    <div class="meta-card"><span>Current Timeline</span><strong>Tue, Oct 27, 2026 (Week 11)</strong></div>
+    <div class="meta-card"><span>Total Phases</span><strong>11 Academic Phases</strong></div>
+    <div class="meta-card"><span>Total Tracked Tasks</span><strong>67 Detailed Tasks</strong></div>
+    <div class="meta-card"><span>Project Status</span><strong style="color: #38bdf8;">Week 11 Milestone Active</strong></div>
+  </div>
+</header>
+
+<div class="filters">
+  <span style="font-size: 13px; color: var(--text-muted); margin-right: 4px;">Filter Assignee:</span>
+  <button class="filter-btn active" onclick="filterTasks('all')">All Members (67)</button>
+  <button class="filter-btn" onclick="filterTasks('Rahul')">Rahul Dadwal</button>
+  <button class="filter-btn" onclick="filterTasks('Jyotsna')">Jyotsna Sachdeva</button>
+  <button class="filter-btn" onclick="filterTasks('Bisman')">Bisman Singh Rai</button>
+  <button class="filter-btn" onclick="filterTasks('Team')">Shared Team</button>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 320px;">Task Description</th>
+        <th style="width: 150px;">Assigned To</th>
+        <th style="width: 140px;">Progress</th>
+        <th style="width: 85px;">Start</th>
+        <th style="width: 85px;">End</th>
+        <th>August 2026 &nbsp;&nbsp;➔&nbsp;&nbsp; September 2026 &nbsp;&nbsp;➔&nbsp;&nbsp; October 2026 Timeline Bar</th>
+      </tr>
+    </thead>
+    <tbody id="task-tbody">
+
+      <tr class="phase-header" data-phase="1">
+        <td colspan="5"><strong style="color: #B8CCE4;">●</strong> Phase 1: Team Formation & Problem Identification <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 1)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #B8CCE4</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Team">
+        <td>Team Formation & Project Brainstorming</td>
+        <td><span class="badge-tag badge-team">Team (All Members)</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #B8CCE4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/5/26</td>
+        <td>8/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 2.22%; width: 3.33%; background: #B8CCE4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Real-World Problem Analysis & Exploration</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #B8CCE4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/6/26</td>
+        <td>8/9/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 3.33%; width: 4.44%; background: #B8CCE4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Meridian Latent Cartographer Concept Study</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #B8CCE4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/7/26</td>
+        <td>8/10/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 4.44%; width: 4.44%; background: #B8CCE4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Project Motivation & Problem Domain Exploration</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #B8CCE4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/8/26</td>
+        <td>8/11/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 5.56%; width: 4.44%; background: #B8CCE4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Team">
+        <td>Problem Statement & Direction Finalization</td>
+        <td><span class="badge-tag badge-team">Team (All Members)</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #B8CCE4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/10/26</td>
+        <td>8/11/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 7.78%; width: 2.22%; background: #B8CCE4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="2">
+        <td colspan="5"><strong style="color: #F2C4C4;">●</strong> Phase 2: Project Proposal & Requirements Analysis <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 2)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #F2C4C4</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Proposal Development & Solution Documentation</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #F2C4C4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/12/26</td>
+        <td>8/15/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 10.00%; width: 4.44%; background: #F2C4C4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Functional Analysis & User Interaction Study</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #F2C4C4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/13/26</td>
+        <td>8/16/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 11.11%; width: 4.44%; background: #F2C4C4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Data Flow Analysis & Workflow Mapping</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #F2C4C4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/14/26</td>
+        <td>8/17/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 12.22%; width: 4.44%; background: #F2C4C4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Presentation Information Gathering & Structure</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #F2C4C4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/12/26</td>
+        <td>8/16/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 10.00%; width: 5.56%; background: #F2C4C4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Presentation Content Drafting (Problem & Goals)</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #F2C4C4;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/15/26</td>
+        <td>8/18/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 13.33%; width: 4.44%; background: #F2C4C4;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="3">
+        <td colspan="5"><strong style="color: #C8DEC3;">●</strong> Phase 3: Architectural Modeling & Initial Diagrams <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 3)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #C8DEC3</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Initial Use Case Diagram & Actor Analysis</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C8DEC3;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/19/26</td>
+        <td>8/22/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 17.78%; width: 4.44%; background: #C8DEC3;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Level 0 Context DFD Preparation</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C8DEC3;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/19/26</td>
+        <td>8/22/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 17.78%; width: 4.44%; background: #C8DEC3;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Level 1 DFD Process & Data Flow Modeling</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C8DEC3;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/21/26</td>
+        <td>8/25/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 20.00%; width: 5.56%; background: #C8DEC3;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Level 2 DFD Internal Workflow Modeling</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C8DEC3;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/22/26</td>
+        <td>8/25/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 21.11%; width: 4.44%; background: #C8DEC3;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Project Presentation Slide Deck Complete Draft</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C8DEC3;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/19/26</td>
+        <td>8/25/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 17.78%; width: 7.78%; background: #C8DEC3;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="4">
+        <td colspan="5"><strong style="color: #DACAE6;">●</strong> Phase 4: Detailed Design & Refinement <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 4)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #DACAE6</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Detailed Use Case Diagram & Interaction Extension</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #DACAE6;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/26/26</td>
+        <td>8/29/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 25.56%; width: 4.44%; background: #DACAE6;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Detailed Level 0 & Level 1 DFD Refinement</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #DACAE6;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/26/26</td>
+        <td>8/30/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 25.56%; width: 5.56%; background: #DACAE6;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Detailed Level 2 DFD Expansion & Cross-Sync</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #DACAE6;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/28/26</td>
+        <td>9/1/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 27.78%; width: 5.56%; background: #DACAE6;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Presentation Updates for New Project Scope</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #DACAE6;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/26/26</td>
+        <td>8/30/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 25.56%; width: 5.56%; background: #DACAE6;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Final Presentation Polish & Submission Readiness</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #DACAE6;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>8/30/26</td>
+        <td>9/1/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 30.00%; width: 3.33%; background: #DACAE6;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="5">
+        <td colspan="5"><strong style="color: #C6D9F1;">●</strong> Phase 5: Foundation Prototype – Milestone 1 (Level 0 Implementation) <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 5)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #C6D9F1</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Manifest V3 Extension Setup & Local Runtime Architecture</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C6D9F1;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/2/26</td>
+        <td>9/5/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 33.33%; width: 4.44%; background: #C6D9F1;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Transformers.js & MiniLM WASM Worker Pipeline Setup</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C6D9F1;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/3/26</td>
+        <td>9/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 34.44%; width: 5.56%; background: #C6D9F1;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Data Contracts & Worker IPC Message Protocol</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C6D9F1;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/4/26</td>
+        <td>9/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 35.56%; width: 4.44%; background: #C6D9F1;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Offline Inference Verification & Similarity Testing</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C6D9F1;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/5/26</td>
+        <td>9/8/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 36.67%; width: 4.44%; background: #C6D9F1;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Demonstration Planning & Overview Review</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #C6D9F1;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/5/26</td>
+        <td>9/8/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 36.67%; width: 4.44%; background: #C6D9F1;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="6">
+        <td colspan="5"><strong style="color: #FCD5B5;">●</strong> Phase 6: Activity Diagrams, Architecture Implementation & Prototype Report <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 6)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #FCD5B5</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Activity Diagram & Swimlane Workflow Modeling</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/9/26</td>
+        <td>9/12/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 41.11%; width: 4.44%; background: #FCD5B5;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Worker Pipeline Optimization & Memory Management</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>9/10/26</td>
+        <td>9/15/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 42.22%; width: 6.67%; background: #FCD5B5;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Prototype Stage Report (Technical Architecture & Benchmarks)</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>9/12/26</td>
+        <td>9/15/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 44.44%; width: 4.44%; background: #FCD5B5;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Entity-Relationship (ER) Storage Schema Modeling</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/9/26</td>
+        <td>9/12/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 41.11%; width: 4.44%; background: #FCD5B5;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Offline Latency Profiling & Multi-Sentence Validation</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>9/11/26</td>
+        <td>9/14/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 43.33%; width: 4.44%; background: #FCD5B5;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Prototype Presentation Technical Architecture Slides</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>9/12/26</td>
+        <td>9/15/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 44.44%; width: 4.44%; background: #FCD5B5;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Presentation Assembly & Slide Formatting</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #FCD5B5;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>9/13/26</td>
+        <td>9/15/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 45.56%; width: 3.33%; background: #FCD5B5;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="7">
+        <td colspan="5"><strong style="color: #FDE9D9;">●</strong> Phase 7: Mid-Semester Evaluation & Prototype Defense <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 7)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #FDE9D9</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Live Prototype Demonstration & WASM Execution Defense</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #FDE9D9;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>9/16/26</td>
+        <td>9/20/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 48.89%; width: 5.56%; background: #FDE9D9;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Architecture Modeling & DFD/ER Data Flow Defense</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #FDE9D9;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>9/16/26</td>
+        <td>9/20/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 48.89%; width: 5.56%; background: #FDE9D9;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Evaluation Presentation Delivery & Session Coordination</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #FDE9D9;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/16/26</td>
+        <td>9/21/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 48.89%; width: 6.67%; background: #FDE9D9;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Team">
+        <td>Evaluator Question Logging & Feedback Synthesis</td>
+        <td><span class="badge-tag badge-team">Team (All Members)</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #FDE9D9;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>9/19/26</td>
+        <td>9/22/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 52.22%; width: 4.44%; background: #FDE9D9;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="8">
+        <td colspan="5"><strong style="color: #D9D9D9;">●</strong> Phase 8: Mid-Semester Examination Period <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 8)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #D9D9D9</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Team">
+        <td>Mid-Semester Theory & Practical Examinations</td>
+        <td><span class="badge-tag badge-team">Team (All Members)</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 100%; background: #D9D9D9;"></div>
+          </div>
+          <span class="progress-text">100%</span>
+        </td>
+        <td>9/23/26</td>
+        <td>10/4/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 56.67%; width: 13.33%; background: #D9D9D9;">
+              100%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Technical Architecture Retrospective & Milestone 2 Scope</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #D9D9D9;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/4/26</td>
+        <td>10/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 68.89%; width: 4.44%; background: #D9D9D9;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>IndexedDB Scalability & Storage Requirements Review</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #D9D9D9;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/4/26</td>
+        <td>10/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 68.89%; width: 4.44%; background: #D9D9D9;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Presentation Assets Organization & Archive Management</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #D9D9D9;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>10/4/26</td>
+        <td>10/7/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 68.89%; width: 4.44%; background: #D9D9D9;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="9">
+        <td colspan="5"><strong style="color: #B7DEE8;">●</strong> Phase 9: Ingestion, Storage & Workflow Architecture Planning <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 9)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #B7DEE8</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Readability DOM Parsing & Extension Extraction Research</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/7/26</td>
+        <td>10/10/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 72.22%; width: 4.44%; background: #B7DEE8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Background Service Worker IPC State Machine Design</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/9/26</td>
+        <td>10/12/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 74.44%; width: 4.44%; background: #B7DEE8;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Sliding-Window Tokenizer (256w/50o) Algorithm Formulation</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 75%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">75%</span>
+        </td>
+        <td>10/10/26</td>
+        <td>10/13/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 75.56%; width: 4.44%; background: #B7DEE8;">
+              75%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Tiered Client-Side Persistence Architecture (IndexedDB & OPFS)</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/7/26</td>
+        <td>10/11/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 72.22%; width: 5.56%; background: #B7DEE8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Object Store Schemas & Composite Key Indexing Plan</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/9/26</td>
+        <td>10/12/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 74.44%; width: 4.44%; background: #B7DEE8;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Database Transaction Boundaries & Atomic Save Rollback Rules</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 75%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">75%</span>
+        </td>
+        <td>10/11/26</td>
+        <td>10/13/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 76.67%; width: 3.33%; background: #B7DEE8;">
+              75%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Team Meeting Minutes & Sprint Schedule Alignment</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 95%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">95%</span>
+        </td>
+        <td>10/7/26</td>
+        <td>10/10/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 72.22%; width: 4.44%; background: #B7DEE8;">
+              95%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Cognitive User Journey & Web Research Workflow Study</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/8/26</td>
+        <td>10/12/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 73.33%; width: 5.56%; background: #B7DEE8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Spatial Canvas UI Design Pattern Reference Collection</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #B7DEE8;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>10/10/26</td>
+        <td>10/13/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 75.56%; width: 4.44%; background: #B7DEE8;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="10">
+        <td colspan="5"><strong style="color: #C5D9F1;">●</strong> Phase 10: Canvas Layout, Scalability & Retrieval Strategy Planning <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 10)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #C5D9F1</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Dynamic 2D Spatial Layout & UMAP Algorithm Research</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/14/26</td>
+        <td>10/17/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 80.00%; width: 4.44%; background: #C5D9F1;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>Non-Blocking UMAP Projection Web Worker Architecture</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 75%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">75%</span>
+        </td>
+        <td>10/16/26</td>
+        <td>10/19/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 82.22%; width: 4.44%; background: #C5D9F1;">
+              75%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>HTML5 Canvas / Konva Viewport Rendering Pipeline (60 FPS)</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 70%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">70%</span>
+        </td>
+        <td>10/17/26</td>
+        <td>10/20/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 83.33%; width: 4.44%; background: #C5D9F1;">
+              70%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>In-Memory Cosine Similarity & SQ8 Quantization Algorithm</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/14/26</td>
+        <td>10/18/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 80.00%; width: 5.56%; background: #C5D9F1;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Data Lifecycle Rules & 7-Day Snapshot Cache Pruning Policy</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/16/26</td>
+        <td>10/19/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 82.22%; width: 4.44%; background: #C5D9F1;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Automated Test Strategy & Edge-Case DOM Fixtures Specification</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 75%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">75%</span>
+        </td>
+        <td>10/17/26</td>
+        <td>10/20/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 83.33%; width: 4.44%; background: #C5D9F1;">
+              75%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Non-Technical Usability Analysis & Tab Capture Friction</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/14/26</td>
+        <td>10/17/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 80.00%; width: 4.44%; background: #C5D9F1;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Card Density & Floating Toolbar Usability Review</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/16/26</td>
+        <td>10/19/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 82.22%; width: 4.44%; background: #C5D9F1;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Sprint Task Checklists & Journal Log Synchronization</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #C5D9F1;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>10/18/26</td>
+        <td>10/20/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 84.44%; width: 3.33%; background: #C5D9F1;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="phase-header" data-phase="11">
+        <td colspan="5"><strong style="color: #D7C4E8;">●</strong> Phase 11: Class & Sequence Modeling, OOP Implementation, Sequence Flow & UX Redesign <span style="color: var(--text-muted); font-weight: normal; font-size: 11px;">(Week 11)</span></td>
+        <td style="color: var(--text-muted); font-size: 11px;">Phase Color: #D7C4E8</td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>System Class Diagram Design (Core Worker & Controller Classes)</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>10/21/26</td>
+        <td>10/24/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 87.78%; width: 4.44%; background: #D7C4E8;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>System Sequence Diagram Modeling (End-to-End Pipeline)</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/22/26</td>
+        <td>10/25/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 88.89%; width: 4.44%; background: #D7C4E8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Rahul">
+        <td>OOP Class Architecture Implementation (EmbeddingClientManager, WorkerMessageController)</td>
+        <td><span class="badge-tag badge-rahul">Rahul Dadwal</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/24/26</td>
+        <td>10/27/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 91.11%; width: 4.44%; background: #D7C4E8;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Storage Entity Class Diagram Design (DocumentRepository, StorageAdapter)</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 90%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">90%</span>
+        </td>
+        <td>10/21/26</td>
+        <td>10/24/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 87.78%; width: 4.44%; background: #D7C4E8;">
+              90%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Sequence Diagram Event Orchestration & Runtime Message Flows</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/22/26</td>
+        <td>10/25/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 88.89%; width: 4.44%; background: #D7C4E8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Jyotsna">
+        <td>Asynchronous Sequence Implementation (Promise Correlation & Dispatch)</td>
+        <td><span class="badge-tag badge-jyotsna">Jyotsna Sachdeva</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 75%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">75%</span>
+        </td>
+        <td>10/24/26</td>
+        <td>10/27/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 91.11%; width: 4.44%; background: #D7C4E8;">
+              75%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>2D Research Canvas Wireframes & Ideation Redesign</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/21/26</td>
+        <td>10/24/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 87.78%; width: 4.44%; background: #D7C4E8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Spatial Minimap & Floating Navigation Dock Mockups</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 80%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">80%</span>
+        </td>
+        <td>10/23/26</td>
+        <td>10/26/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 90.00%; width: 4.44%; background: #D7C4E8;">
+              80%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="task-row" data-assignee="Bisman">
+        <td>Contextual Search Modal Layout & Theme Accent Specifications</td>
+        <td><span class="badge-tag badge-bisman">Bisman Singh Rai</span></td>
+        <td>
+          <div class="progress-wrap">
+            <div class="progress-bar" style="width: 85%; background: #D7C4E8;"></div>
+          </div>
+          <span class="progress-text">85%</span>
+        </td>
+        <td>10/24/26</td>
+        <td>10/27/26</td>
+        <td class="timeline-cell">
+          <div class="timeline-track">
+            <div class="timeline-bar" style="left: 91.11%; width: 4.44%; background: #D7C4E8;">
+              85%
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background: #B8CCE4;"></div>Phase 1 (W1)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #F2C4C4;"></div>Phase 2 (W2)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #C8DEC3;"></div>Phase 3 (W3)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #DACAE6;"></div>Phase 4 (W4)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #C6D9F1;"></div>Phase 5 (W5)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #FCD5B5;"></div>Phase 6 (W6)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #FDE9D9;"></div>Phase 7 (W7)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #D9D9D9;"></div>Phase 8 (W8)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #B7DEE8;"></div>Phase 9 (W9)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #C5D9F1;"></div>Phase 10 (W10)</div>
+  <div class="legend-item"><div class="legend-dot" style="background: #D7C4E8;"></div>Phase 11 (W11)</div>
+</div>
+
+<script>
+function filterTasks(who) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  const rows = document.querySelectorAll('.task-row');
+  rows.forEach(r => {
+    if (who === 'all' || r.dataset.assignee === who) {
+      r.style.display = '';
+    } else {
+      r.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

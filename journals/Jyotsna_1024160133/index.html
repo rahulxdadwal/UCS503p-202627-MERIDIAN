@@ -813,6 +813,88 @@
 <li>Technical implementation tested and verified with benchmarked offline inference performance.</li>
 <li>Technical slides of the Prototype Presentation completed and integrated into the slide deck.</li>
 </ul>
+<hr />
+<h1 id="week-7-mid-semester-evaluation-modeling-defense">Week 7: Mid-Semester Evaluation &amp; Modeling Defense<a class="headerlink" href="#week-7-mid-semester-evaluation-modeling-defense" title="Permanent link">&para;</a></h1>
+<h3 id="16-september-22-september">16 September – 22 September<a class="headerlink" href="#16-september-22-september" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_6">Work Done<a class="headerlink" href="#work-done_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Prepared and defended the system modeling artifacts (Level 0, 1, 2 DFDs and Entity-Relationship Diagram) during the Mid-Semester Evaluation session.</li>
+<li>Presented the data dictionary, data boundaries, and verification metrics for the 384-dimensional vector embedding pipeline.</li>
+<li>Co-demonstrated the offline execution benchmarks, showing zero network overhead, unit vector normalization, and verified cosine similarity separation.</li>
+<li>Commenced academic preparation for mid-semester theory and laboratory examinations.</li>
+</ul>
+<h2 id="outcome_6">Outcome<a class="headerlink" href="#outcome_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Successfully defended system modeling, data flow, and database schema artifacts before project evaluators.</li>
+<li>Validated prototype data integrity and schema compliance under evaluation scrutiny.</li>
+</ul>
+<hr />
+<h1 id="week-8-mid-semester-examination-period">Week 8: Mid-Semester Examination Period<a class="headerlink" href="#week-8-mid-semester-examination-period" title="Permanent link">&para;</a></h1>
+<h3 id="23-september-7-october">23 September – 7 October<a class="headerlink" href="#23-september-7-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_7">Work Done<a class="headerlink" href="#work-done_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Appeared for mid-semester academic examinations across theory and practical courses.</li>
+<li>Reviewed evaluator feedback regarding IndexedDB schema scalability and binary asset storage in OPFS.</li>
+<li>Maintained academic course deliverables and prepared for post-examination sprint sessions.</li>
+</ul>
+<h2 id="outcome_7">Outcome<a class="headerlink" href="#outcome_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Successfully concluded the mid-semester examination period.</li>
+<li>Documented schema improvements to be incorporated into upcoming storage sprint planning.</li>
+</ul>
+<hr />
+<h1 id="week-9-storage-schema-data-pipeline-planning">Week 9: Storage Schema &amp; Data Pipeline Planning<a class="headerlink" href="#week-9-storage-schema-data-pipeline-planning" title="Permanent link">&para;</a></h1>
+<h3 id="7-october-13-october">7 October – 13 October<a class="headerlink" href="#7-october-13-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_8">Work Done<a class="headerlink" href="#work-done_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Formulated the database architecture and indexing strategy for client-side storage: IndexedDB (<code>meridian-db</code>) for structured document chunks and vectors, and Origin Private File System (OPFS) for WebP visual snapshots.</li>
+<li>Designed database object stores (<code>artifacts</code>, <code>chunks</code>, <code>embeddings</code>, <code>layout_positions</code>) with composite key indexes for fast multi-attribute filtering.</li>
+<li>Planned database schema versioning, transaction boundaries, and rollback policies for atomic document saves.</li>
+<li>Drafted data sanitization and schema validation rules for incoming DOM text chunks, code blocks, and metadata fields.</li>
+</ul>
+<h2 id="outcome_8">Outcome<a class="headerlink" href="#outcome_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Complete technical blueprint for client-side tiered persistence (IndexedDB &amp; OPFS) finalized.</li>
+<li>Data validation rules and database transaction flows mapped out for implementation.</li>
+</ul>
+<hr />
+<h1 id="week-10-query-retrieval-test-strategy-planning">Week 10: Query Retrieval &amp; Test Strategy Planning<a class="headerlink" href="#week-10-query-retrieval-test-strategy-planning" title="Permanent link">&para;</a></h1>
+<h3 id="14-october-20-october">14 October – 20 October<a class="headerlink" href="#14-october-20-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_9">Work Done<a class="headerlink" href="#work-done_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Planned the technical algorithm for local in-memory cosine similarity search across multi-item vector collections.</li>
+<li>Designed vector normalization checks (<span class="arithmatex">\(L_2\text{ norm} = 1.0\)</span>) and scalar quantization (SQ8) to optimize in-memory cosine dot-product computations.</li>
+<li>Outlined data lifecycle and retention policies, including automatic 7-day cache pruning for unpinned visual snapshots.</li>
+<li>Formulated comprehensive test harness specifications: mock DOM fixtures, chunk segmentation edge cases, and vector distance verification suites.</li>
+</ul>
+<h2 id="outcome_9">Outcome<a class="headerlink" href="#outcome_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Detailed retrieval pipeline specification and mathematical vector scoring model finalized.</li>
+<li>Automated testing strategy and data fixture catalog prepared for the upcoming sprint.</li>
+</ul>
+<hr />
+<h1 id="week-11-class-sequence-design-sequence-implementation">Week 11: Class &amp; Sequence Design &amp; Sequence Implementation<a class="headerlink" href="#week-11-class-sequence-design-sequence-implementation" title="Permanent link">&para;</a></h1>
+<h3 id="21-october-27-october">21 October – 27 October<a class="headerlink" href="#21-october-27-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_10">Work Done<a class="headerlink" href="#work-done_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Collaborated on designing the <strong>Class Diagram</strong>, focusing on storage entities, data access objects (DAOs), and chunking service classes:</li>
+<li>Modeled <code>DocumentRepository</code>, <code>ChunkingService</code>, <code>StorageAdapter</code>, and <code>CosineSearchEngine</code> classes with their attributes and associations.</li>
+<li>Designed the formal <strong>Sequence Diagram</strong> modeling detailed runtime interactions:</li>
+<li>Mapped sequential message flows: User Capture <span class="arithmatex">\(\to\)</span> Content Script <span class="arithmatex">\(\to\)</span> Background Worker <span class="arithmatex">\(\to\)</span> Inference Worker <span class="arithmatex">\(\to\)</span> IndexedDB Storage <span class="arithmatex">\(\to\)</span> Canvas UI Dispatch.</li>
+<li>Specified asynchronous message payloads, UUID tracking tokens, and error-handling fallback branches.</li>
+<li><strong>Implemented the Sequence Flow in Code</strong>:</li>
+<li>Implemented the end-to-end asynchronous sequence execution and event orchestration:<ul>
+<li>Structured promise-based request-response correlation using unique job IDs (<code>requestId: crypto.randomUUID()</code>).</li>
+<li>Implemented sequential promise chaining and event listener management to guarantee message delivery without race conditions.</li>
+<li>Integrated structured error-propagation flows handling worker busy states and timeout fallbacks.</li>
+</ul>
+</li>
+</ul>
+<h2 id="outcome_10">Outcome<a class="headerlink" href="#outcome_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Completed Class Diagram and Sequence Diagram aligned with object-oriented standards.</li>
+<li>Successfully implemented asynchronous sequence flow and correlation logic in the codebase.</li>
+</ul>
 
 
 
@@ -833,7 +915,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 21:29:25 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 28, 2026 04:38:44 UTC">October 28, 2026</span>
   </span>
 
     

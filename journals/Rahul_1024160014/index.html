@@ -811,6 +811,90 @@
 <li>Enhanced core extension implementation with improved vector inference efficiency, worker resilience, and reduced execution latency.</li>
 <li>Authored the technical architecture, WASM benchmark data, and implementation sections for the Prototype Stage Report.</li>
 </ul>
+<hr />
+<h1 id="week-7-mid-semester-evaluation-technical-defense">Week 7: Mid-Semester Evaluation &amp; Technical Defense<a class="headerlink" href="#week-7-mid-semester-evaluation-technical-defense" title="Permanent link">&para;</a></h1>
+<h3 id="16-september-22-september">16 September – 22 September<a class="headerlink" href="#16-september-22-september" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_6">Work Done<a class="headerlink" href="#work-done_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Prepared and delivered the technical prototype demonstration for the official Mid-Semester Evaluation session.</li>
+<li>Demonstrated the functioning Chromium Manifest V3 extension, off-main-thread Web Worker execution, and on-device WASM tensor generation to course evaluators.</li>
+<li>Defended architectural choices regarding local-first execution, ONNX Runtime Web CPU threading, memory lifecycle controls, and sub-10ms warm inference latencies.</li>
+<li>Documented evaluator feedback regarding modular boundaries for upcoming active tab capture and vector retrieval pipelines.</li>
+<li>Commenced academic revision for mid-semester theory and laboratory examinations.</li>
+</ul>
+<h2 id="outcome_6">Outcome<a class="headerlink" href="#outcome_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Successfully demonstrated the Milestone 1 technical foundation to course evaluators.</li>
+<li>Clarified architectural feedback and established an evaluation baseline for upcoming milestones.</li>
+</ul>
+<hr />
+<h1 id="week-8-mid-semester-examination-period">Week 8: Mid-Semester Examination Period<a class="headerlink" href="#week-8-mid-semester-examination-period" title="Permanent link">&para;</a></h1>
+<h3 id="23-september-7-october">23 September – 7 October<a class="headerlink" href="#23-september-7-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_7">Work Done<a class="headerlink" href="#work-done_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Appeared for mid-semester academic examinations across theory and laboratory subjects.</li>
+<li>Conducted a mid-semester retrospective on prototype engineering milestones and evaluator suggestions.</li>
+<li>Outlined priority technical modules and implementation targets to resume immediately following the examination break.</li>
+</ul>
+<h2 id="outcome_7">Outcome<a class="headerlink" href="#outcome_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Completed the mid-semester examination period.</li>
+<li>Formulated the post-examination technical engineering agenda for Milestones 2 and 3.</li>
+</ul>
+<hr />
+<h1 id="week-9-architecture-future-implementation-planning">Week 9: Architecture &amp; Future Implementation Planning<a class="headerlink" href="#week-9-architecture-future-implementation-planning" title="Permanent link">&para;</a></h1>
+<h3 id="7-october-13-october">7 October – 13 October<a class="headerlink" href="#7-october-13-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_8">Work Done<a class="headerlink" href="#work-done_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Resumed active development and led technical architecture planning for upcoming milestones (Milestones 2 &amp; 3).</li>
+<li>Researched and benchmarked content script DOM parsing pipelines using <code>@mozilla/readability</code> inside isolated extension execution contexts.</li>
+<li>Designed the background service worker IPC state machine for orchestrating tab capture events, Web Worker job queues, and serialization protocols.</li>
+<li>Architected the class hierarchy, interfaces, and design patterns for the vector storage engine and in-memory cosine similarity ranking service.</li>
+<li>Formulated token-level sliding-window chunking algorithms (256-word chunk size, 50-word overlap) with boundary-aware paragraph splitting.</li>
+</ul>
+<h2 id="outcome_8">Outcome<a class="headerlink" href="#outcome_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Comprehensive technical implementation plan established for Milestone 2 (Active Tab Capture &amp; Storage).</li>
+<li>Interface specifications and state machine diagrams finalized for background orchestration.</li>
+</ul>
+<hr />
+<h1 id="week-10-canvas-layout-scalability-architecture-planning">Week 10: Canvas Layout &amp; Scalability Architecture Planning<a class="headerlink" href="#week-10-canvas-layout-scalability-architecture-planning" title="Permanent link">&para;</a></h1>
+<h3 id="14-october-20-october">14 October – 20 October<a class="headerlink" href="#14-october-20-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_9">Work Done<a class="headerlink" href="#work-done_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Researched mathematical models and algorithms for dynamic 2D spatial clustering: evaluated UMAP (Uniform Manifold Approximation and Projection) and t-SNE performance in JavaScript environments.</li>
+<li>Architected a dedicated Web Worker pipeline for non-blocking UMAP projection (<span class="arithmatex">\(384\text{d} \to 2\text{D}\)</span>) and spring-force collision-resolution physics.</li>
+<li>Planned the rendering architecture for the 2D spatial canvas utilizing HTML5 Canvas / Konva.js to guarantee smooth frame rates (<span class="arithmatex">\(\ge 60\text{ FPS}\)</span>) during viewport pan/zoom.</li>
+<li>Defined technical acceptance criteria, branch workflow policies, and test suites for upcoming development sprints.</li>
+</ul>
+<h2 id="outcome_9">Outcome<a class="headerlink" href="#outcome_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Technical specifications for spatial projection and canvas rendering workers finalized.</li>
+<li>Modular sprint breakdown and coding guidelines established for the team.</li>
+</ul>
+<hr />
+<h1 id="week-11-class-sequence-design-class-implementation">Week 11: Class &amp; Sequence Design &amp; Class Implementation<a class="headerlink" href="#week-11-class-sequence-design-class-implementation" title="Permanent link">&para;</a></h1>
+<h3 id="21-october-27-october">21 October – 27 October<a class="headerlink" href="#21-october-27-october" title="Permanent link">&para;</a></h3>
+<h2 id="work-done_10">Work Done<a class="headerlink" href="#work-done_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Designed the comprehensive <strong>System Class Diagram</strong> for the Meridian extension:</li>
+<li>Modeled core structural classes: <code>WorkerManager</code>, <code>ModelRunner</code>, <code>EmbeddingService</code>, <code>VectorIndex</code>, and <code>CanvasController</code>.</li>
+<li>Defined member variables, typed method signatures, inheritance relationships, and interface abstractions (<code>IEmbeddingClient</code>, <code>IVectorStore</code>).</li>
+<li>Designed the system <strong>Sequence Diagram</strong> capturing the end-to-end capture, embedding generation, and vector retrieval pipeline.</li>
+<li><strong>Implemented the Class Architecture in Code</strong>:</li>
+<li>Implemented typed TypeScript classes and interfaces in <code>code/extension/src/</code>:<ul>
+<li>Structured the core client class <code>EmbeddingClientManager</code> with singleton lifecycle controls and worker initialization guards.</li>
+<li>Implemented <code>WorkerMessageController</code> encapsulating typed message dispatch, worker error recovery, and payload serialization.</li>
+<li>Implemented clean OOP abstractions separating UI state management from background inference routines.</li>
+</ul>
+</li>
+<li>Coordinated with Jyotsna to align class method signatures with her asynchronous sequence flow implementation.</li>
+</ul>
+<h2 id="outcome_10">Outcome<a class="headerlink" href="#outcome_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Formal Class Diagram and Sequence Diagram completed and integrated into system design documentation.</li>
+<li>Robust object-oriented class structure implemented in the codebase with full TypeScript type safety.</li>
+</ul>
 
 
 
@@ -831,7 +915,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 15, 2026 21:29:25 UTC">September 15, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 28, 2026 04:38:44 UTC">October 28, 2026</span>
   </span>
 
     

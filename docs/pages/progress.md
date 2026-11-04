@@ -38,7 +38,7 @@ code/extension/
   ```text
   origin/codex/foundation (Commit: 1253aae)
   ```
-- Local weekly journals and Gantt charts are synchronized through Week 6.
+- Local weekly journals and Gantt charts are synchronized through Week 11.
 
 ---
 
@@ -96,26 +96,61 @@ flowchart LR
 
 ---
 
-## 🗺️ Multi-Milestone Development Roadmap
+## 🗺️ Multi-Milestone Development Roadmap & Gantt Timeline
+
+> [!NOTE] Detailed Gantt Chart Deliverables
+> The project maintains a complete, synchronized 11-week Gantt schedule accessible across multiple formats:
+> 
+> - **Excel Spreadsheet (`.xlsx`)**: [`docs/GANTT-Chart/GANTT-Chart.xlsx`](../GANTT-Chart/GANTT-Chart.xlsx) (Fully styled OpenXML with calendar columns)
+> - **Printable / Numbers PDF**: [`docs/GANTT-Chart/GANTT-Chart.pdf`](../GANTT-Chart/GANTT-Chart.pdf) (3-page landscape vector layout)
+> - **Interactive HTML Viewer**: [`docs/GANTT-Chart/GANTT-Chart.html`](../GANTT-Chart/GANTT-Chart.html) (Live filtering by member)
+> - **Universal Data (`.csv`)**: [`docs/GANTT-Chart/GANTT-Chart.csv`](../GANTT-Chart/GANTT-Chart.csv)
 
 ```mermaid
 gantt
-    title Meridian Milestone Roadmap
+    title Meridian Spatial Cartographer - Milestone Timeline (Weeks 1 to 11)
     dateFormat YYYY-MM-DD
     axisFormat %b %d
-    todayMarker stroke-width:2px,stroke:#e65100,opacity:0.6
+    todayMarker stroke-width:2px,stroke:#e65100,opacity:0.7
 
-    section Completed
-    Milestone 1 - Foundation Prototype          :done, m1, 2026-09-02, 2026-09-08
+    section Inception & Modeling
+    W1: Team Formation & Problem Id    :done, w1, 2026-08-05, 2026-08-11
+    W2: Proposal & Requirements       :done, w2, 2026-08-12, 2026-08-18
+    W3: Architectural Diagrams (DFD)  :done, w3, 2026-08-19, 2026-08-25
+    W4: Detailed Design & Refinement  :done, w4, 2026-08-26, 2026-09-01
 
-    section In Progress and Upcoming
-    Milestone 2 - Capture and Storage           :active, m2, 2026-09-16, 2026-09-29
-    Milestone 3 - Working Search Prototype      :m3, 2026-09-30, 2026-10-13
-    Milestone 4 - Deep Research Chunking        :m4, 2026-10-14, 2026-10-27
-    Milestone 5 - Spatial 2D Map (UMAP)         :m5, 2026-10-28, 2026-11-10
-    Milestone 6 - Product Completion and Export :m6, 2026-11-11, 2026-11-24
-    Milestone 7 - Validation and Final Handover :m7, 2026-11-25, 2026-12-08
+    section Foundation & Evaluation
+    W5: Level 0 Foundation Prototype  :done, w5, 2026-09-02, 2026-09-08
+    W6: Activity Diagrams & Report    :done, w6, 2026-09-09, 2026-09-15
+    W7: Mid-Sem Evaluation & Defense  :done, w7, 2026-09-16, 2026-09-22
+    W8: Mid-Sem Examination Period    :done, w8, 2026-09-23, 2026-10-07
+
+    section Active Architecture & Design
+    W9: Ingestion & Storage Planning  :active, w9, 2026-10-07, 2026-10-13
+    W10: Canvas Layout & Retrieval    :active, w10, 2026-10-14, 2026-10-20
+    W11: Class, Sequence & Redesign   :active, w11, 2026-10-21, 2026-10-27
+
+    section Upcoming Implementation
+    Milestone 2 - Capture & Persistence :crit, m2, 2026-10-28, 2026-11-10
+    Milestone 3 - Spatial Canvas & UMAP :crit, m3, 2026-11-11, 2026-11-24
 ```
+
+### 📋 Phase Progress Summary (Weeks 1 to 11)
+
+| Phase | Timeline | Primary Focus | Assignees | Status & Completion |
+|---|---|---|---|:---:|
+| **Phase 1: Team Formation & Problem Identification** | Aug 5 – Aug 11 | Problem space exploration, concept formulation | Team | **100% Completed** |
+| **Phase 2: Project Proposal & Requirements Analysis** | Aug 12 – Aug 18 | Academic proposal, user interaction & DFD scope | Rahul, Jyotsna, Bisman | **100% Completed** |
+| **Phase 3: Architectural Modeling & Initial Diagrams** | Aug 19 – Aug 25 | Level 0/1/2 DFDs, Use Case diagram, initial deck | Rahul, Jyotsna, Bisman | **100% Completed** |
+| **Phase 4: Detailed Design & Refinement** | Aug 26 – Sep 1 | DFD refinements, presentation readiness | Rahul, Jyotsna, Bisman | **100% Completed** |
+| **Phase 5: Level 0 Foundation Prototype** | Sep 2 – Sep 8 | Manifest V3 setup, WASM Transformers.js pipeline | Rahul, Jyotsna, Bisman | **100% Completed** |
+| **Phase 6: Activity Diagrams & Stage Report** | Sep 9 – Sep 15 | Swimlane modeling, ER schemas, prototype stage report | Rahul, Jyotsna, Bisman | **90% – 95% Completed** |
+| **Phase 7: Mid-Semester Evaluation & Defense** | Sep 16 – Sep 22 | Live prototype demo, data flow defense, evaluator logs | Rahul, Jyotsna, Bisman | **90% – 95% Completed** |
+| **Phase 8: Mid-Semester Examination Period** | Sep 23 – Oct 7 | Academic exams, prototype review retrospective | Team | **80% – 90% Completed** |
+| **Phase 9: Ingestion & Storage Architecture Planning** | Oct 7 – Oct 13 | Readability DOM parsing, IndexedDB/OPFS schemas | Rahul, Jyotsna, Bisman | **75% – 85% Progress** |
+| **Phase 10: Canvas Layout & Retrieval Planning** | Oct 14 – Oct 20 | UMAP projection worker, cosine SQ8, usability review | Rahul, Jyotsna, Bisman | **70% – 85% Progress** |
+| **Phase 11: Class, Sequence & UX Redesign** | Oct 21 – Oct 27 | Class & Sequence modeling, OOP code, Canvas UI wireframes | Rahul, Jyotsna, Bisman | **75% – 90% Progress** |
+
 
 ### Milestone 2: Capture and Storage
 - **Focus:** Active tab DOM extraction and client-side database persistence.

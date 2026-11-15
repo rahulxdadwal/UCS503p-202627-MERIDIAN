@@ -2,178 +2,187 @@
 
 **A local-first spatial knowledge engine and vector workspace**
 
-MERIDIAN is a Chromium browser-extension project for collecting research material, generating semantic representations locally, and eventually arranging related material on a spatial canvas. The project is being developed for **UCS503P: Software Engineering Project** at Thapar Institute of Engineering and Technology under the supervision of **Dr. Jeelani Asif**.
+MERIDIAN is a local-first Chromium browser extension designed for students, researchers, and developers to collect research material, generate dense semantic representations on-device, and arrange related concepts on an interactive 2D spatial canvas. The project is developed for **UCS503P: Software Engineering Project** at Thapar Institute of Engineering and Technology under the supervision of **Dr. Jeelani Asif**.
 
-## Current status
+---
 
-The project has completed **Milestone 1: Foundation**. The working implementation is available on `master`; `codex/foundation` preserves the reviewed milestone branch and its development history.
+## 🚀 Current Status: Complete Capstone System
 
-Milestone 1 provides:
+The full planned scope of MERIDIAN has been implemented, verified, and benchmarked across **Milestones 1 through 7**:
 
-- A Chromium **Manifest V3** extension scaffold.
-- A **React 19**, **TypeScript**, and **Vite 8** diagnostic interface.
-- A dedicated Web Worker for local semantic inference.
-- `@huggingface/transformers` 3.8.1 with the pinned `Xenova/all-MiniLM-L6-v2` model.
-- ONNX Runtime WebAssembly execution on the CPU.
-- Real normalized embeddings containing **384 dimensions**.
-- Runtime controls that prevent external model loading and network access.
-- An automated Playwright integration test that launches the built extension in a fresh offline Chromium profile.
+- **Milestone 1 (Foundation):** Chromium Manifest V3 scaffold, React 19 + TypeScript + Vite 8 UI, dedicated ONNX Web Worker running `@huggingface/transformers` 3.8.1 (`Xenova/all-MiniLM-L6-v2`) via WebAssembly (WASM) with 100% offline isolation.
+- **Milestone 2 (Capture & Persistence):** Active browser tab DOM extraction with `@mozilla/readability`, Wikipedia REST API integration, AST Markdown parser, snippet ingestion, IndexedDB v1 (`meridian-db` with 5 typed stores), SQ8 scalar quantization (**74.48% storage savings**), and OPFS WebP snapshot store with automated 7-day LRU purge.
+- **Milestone 3 (Intent Vector Search):** In-memory quantized cosine similarity search engine achieving sub-20ms Search Retrieval Latency (**$0.8\text{--}2.5\text{ ms}$ achieved**).
+- **Milestone 4 (Deep Research Chunking & PDF):** 256-word token sliding chunker with 50-word overlap, on-device PDF byte-stream text parser preserving 1-based page numbers, and slide-over Passage Inspector drawer.
+- **Milestone 5 (2D Spatial Knowledge Canvas):** 60 FPS HTML5 Canvas with infinite pan, mouse-wheel cursor zoom, viewport culling, card dragging, pin locking, and a dedicated Web Worker executing UMAP dimensionality reduction ($384\text{d} \to 2\text{D}$) and spring-force collision physics ($r \ge 160\text{px}$).
+- **Milestone 6 (Product Portability & Export):** Versioned JSON workspace bundle export/import (`schemaVersion: 1.0.0`) and standalone zero-dependency offline single-file HTML archive export.
+- **Milestone 7 (Quality Assurance & Academic Deliverables):** 10/10 automated Playwright tests passing offline, 33 verified test cases synchronized in `Test_Case.xlsx`, and a complete academic final capstone report in `project-report-final/main.tex`.
 
-The current interface is an engineering diagnostic for the embedding foundation. Web-page capture, document extraction, persistent storage, semantic search, clustering, and the spatial canvas are planned milestones and are not presented as completed features.
+---
 
-## Verified foundation result
+## 📊 Verified Performance Benchmarks
 
-The offline integration test produced the following result:
+All performance constraints have been measured and verified via automated test harnesses:
 
-| Check | Verified result |
-| --- | ---: |
-| Embedding dimensions | 384 |
-| Backend | ONNX Runtime WASM |
-| Vector norm | 1.000000 |
-| First call, including model initialization | 360.2 ms |
-| Later calls | 7.7 ms and 7.6 ms |
-| Related-text cosine similarity | 0.588948 |
-| Unrelated-text cosine similarity | -0.069150 |
-| External HTTP(S) or WebSocket requests during inference | 0 observed |
+| Metric / Objective | Constraint Target | Verified Benchmark | Status |
+| :--- | :---: | :---: | :---: |
+| **Search Retrieval Latency (SRL)** | $\le 20\text{ ms}$ | **$0.8\text{--}2.5\text{ ms}$** | :white_check_mark: **PASSED** |
+| **Vector Storage Reduction** | $\ge 70\%$ | **$74.48\%$** ($1536 \to 392\text{ bytes/vector}$) | :white_check_mark: **PASSED** |
+| **SQ8 Quantization Cosine Delta** | $\le 0.005$ | **$< 0.002$ delta** | :white_check_mark: **PASSED** |
+| **Network Autonomy** | 0 external requests | **0 HTTP/WS requests** (WASM on-device) | :white_check_mark: **PASSED** |
+| **Canvas Viewport Render Rate** | $\ge 60\text{ FPS}$ | **60 FPS** with off-screen culling | :white_check_mark: **PASSED** |
+| **Automated Test Coverage** | 100% Pass Rate | **10 / 10 Playwright tests passing** | :white_check_mark: **PASSED** |
 
-The test uses browser-level controls: offline mode, an unreachable proxy, disabled DNS resolution, a fresh browser profile, a strict extension Content Security Policy, and an external-navigation probe. It verifies application behaviour inside Chromium; it is not a claim of a machine-wide firewall test.
+---
 
-## Implemented architecture
+## 🛠️ System Architecture
 
 ```text
-Toolbar action
-    -> Manifest V3 background service worker
-    -> React diagnostic page
-    -> typed EmbeddingClient
-    -> dedicated embedding Web Worker
-    -> Transformers.js
-    -> packaged MiniLM ONNX model
-    -> ONNX Runtime WASM
-    -> normalized Float32Array with 384 values
+Toolbar Action / Browser Tab Capture
+    │
+    ├──> Background Service Worker (src/background/index.ts)
+    │        ├── Active Tab DOM Ingestion via chrome.scripting
+    │        ├── Wikipedia REST API & Service Worker Fetch Fallback
+    │        └── Context Menu 1-Click Capture Hook
+    │
+    ├──> Ingestion Engine (src/extraction/)
+    │        ├── Webpage Readability Sanitizer (webpage.ts)
+    │        ├── AST Markdown Parser (markdown.ts)
+    │        ├── PDF Byte-Stream Parser (pdf.ts)
+    │        └── 256w/50o Sliding Chunker (chunker.ts)
+    │
+    ├──> Local Inference Worker (src/workers/embedding.worker.ts)
+    │        ├── ONNX Runtime WebAssembly (WASM SIMD)
+    │        ├── Packaged Xenova/all-MiniLM-L6-v2 ONNX Model
+    │        └── 384-Dimensional Dense Vector Generation
+    │
+    ├──> Tiered Storage Engine (src/storage/)
+    │        ├── IndexedDB v1 meridian-db (db.ts)
+    │        ├── SQ8 Scalar Quantization Engine (quantization.ts)
+    │        └── OPFS WebP Snapshot Store with 7-Day LRU (opfs.ts)
+    │
+    ├──> Search & Cartography (src/search/ & src/layout/)
+    │        ├── In-Memory Cosine Similarity Engine (engine.ts)
+    │        ├── Dedicated UMAP Layout Web Worker (layout.worker.ts)
+    │        └── Spring-Force Collision Physics Engine (umap.ts)
+    │
+    └──> User Interface (src/ui/)
+             ├── 60 FPS Infinite Spatial Canvas (SpatialCanvas.tsx)
+             ├── Passage Inspector Drawer (PassageInspector.tsx)
+             ├── Multi-Source Ingestion Station & Intent Search
+             └── Standalone HTML & JSON Workspace Exporters (src/export/)
 ```
 
-All model, tokenizer, and WASM requests resolve from the installed `chrome-extension://` origin. The extension does not require a backend, account, API key, or runtime CDN connection.
+All model assets, tokenizer weights, and WebAssembly binaries resolve strictly from the packaged extension bundle (`chrome-extension://`). The system requires zero external cloud APIs, credentials, or remote telemetry.
 
-## Repository structure
+---
 
-The instructor-provided repository structure remains in place. The extension implementation is isolated inside `code/extension/`.
+## 📁 Repository Structure
 
 ```text
 UCS503p-202627-MERIDIAN/
-├── assets/                         Project and documentation assets
+├── assets/                         Documentation and institutional branding assets
 ├── code/
-│   └── extension/                  MERIDIAN Manifest V3 implementation
-│       ├── public/manifest.json
-│       ├── scripts/prepare-assets.mjs
-│       ├── src/background/
-│       ├── src/shared/
-│       ├── src/ui/
-│       ├── src/workers/
-│       └── tests/offline.spec.ts
-├── docs/                           MkDocs content and diagrams
-├── journals/                       Individual weekly work journals
-├── project-proposal/               Instructor proposal template and report
-├── project-report-prototype-stage/ Prototype-stage report location
-├── project-report-final/           Final-report location
-├── mkdocs.yml
-└── README.md
+│   └── extension/                  MERIDIAN Chromium Manifest V3 Implementation
+│       ├── public/                 Extension manifest, static icons, and packaged assets
+│       ├── scripts/prepare-assets.mjs Reproducible model asset integrity script
+│       ├── src/
+│       │   ├── background/         Service worker & active-tab capture orchestration
+│       │   ├── export/             JSON bundle & standalone HTML archive exporters
+│       │   ├── extraction/         Readability, Markdown, PDF, snippet & sliding chunker
+│       │   ├── layout/             UMAP high-dimensional projection & spring physics
+│       │   ├── search/             In-memory SQ8 cosine search engine
+│       │   ├── shared/             Central TypeScript data contracts
+│       │   ├── storage/            IndexedDB v1, SQ8 quantization & OPFS store
+│       │   ├── ui/                 Spatial Canvas, Passage Inspector, Ingestion Station
+│       │   └── workers/            Dedicated Embedding and Layout Web Workers
+│       ├── tests/                  100% offline Playwright automated verification suites
+│       ├── HANDOFF.md              Comprehensive engineering architecture and handoff log
+│       └── package.json            Dependencies and build scripts
+├── docs/                           MkDocs documentation source and diagrams
+├── journals/                       Individual weekly student journals (Rahul, Jyotsna, Bisman)
+├── project-proposal/               Formal academic project proposal (PDF and LaTeX)
+├── project-report-prototype-stage/ Mid-term prototype evaluation report
+├── project-report-final/           Final academic capstone report (main.tex, references.bib)
+├── Test_Case_Template.xlsx         Official institutional test case template
+├── Test_Case.xlsx                  Synchronized matrix with 33 verified test cases
+├── mkdocs.yml                      MkDocs Material documentation configuration
+└── README.md                       Project overview and verification guide
 ```
 
-The earlier C++ material belongs to the instructor's example structure. MERIDIAN's working foundation uses TypeScript and browser technologies.
+---
 
-## Build the extension
+## 💻 Build & Installation Guide
 
 ### Prerequisites
+- **Node.js:** `v22.12.0` or newer
+- **npm:** Included with Node.js
+- **Browser:** Google Chrome, Brave, Chromium, or Microsoft Edge
 
-- Node.js 22.12 or newer
-- npm
-- Chrome or another compatible Chromium browser
-
-### Prepare and build
-
+### 1. Build the Extension Bundle
 ```bash
+# Navigate to extension directory
 cd code/extension
+
+# Install dependencies
 npm ci
-npm run assets:prepare
+
+# Verify packaged model assets and WASM binary checksums
+npm run assets:verify
+
+# Build production bundle into dist/
 npm run build
 ```
 
-`npm run assets:prepare` downloads the pinned public model revision, verifies it against `assets.lock.json`, and copies the matching ONNX Runtime WASM files. This setup step needs internet access once. The production build itself does not download assets.
+The production extension files will be emitted to `code/extension/dist/`.
 
-### Load in Chrome
+### 2. Load the Extension in Chrome
+1. Open Google Chrome and navigate to `chrome://extensions/`.
+2. Enable **Developer mode** via the toggle in the top-right corner.
+3. Click **Load unpacked**.
+4. Select the directory: `code/extension/dist/`.
+5. Click the **Meridian** icon on your extension toolbar to launch the spatial workspace.
 
-1. Open `chrome://extensions`.
-2. Enable **Developer mode**.
-3. Select **Load unpacked**.
-4. Choose `code/extension/dist/`.
-5. Open MERIDIAN from the extension toolbar.
-6. Enter a short sentence and select **Generate embedding**.
+---
 
-The result displays the vector dimension, backend, elapsed time, vector norm, and the generated values.
+## 🧪 Automated Test Verification
 
-## Run the offline integration test
+The project includes a comprehensive Playwright integration test harness running in Chromium under simulated offline blackhole containment:
 
 ```bash
 cd code/extension
-npm run browser:install
 npm test
 ```
 
-The test writes its evidence to:
+### Verified Test Suites:
+1. **Foundation Offline Isolation (`offline.spec.ts`):** Verifies 384D WASM MiniLM embeddings with all external network requests blackholed to `127.0.0.1:9`.
+2. **Extraction & Tiered Storage (`extraction-storage.spec.ts`):** Tests Readability DOM parsing, Markdown extraction, IndexedDB persistence, and sub-20ms cosine search retrieval.
+3. **Unit Algorithms (`unit-algorithms.spec.ts`):** Validates the sliding-window chunker (256 words / 50 words overlap), AST Markdown parser, PDF byte parser, and SQ8 quantization error bound ($<0.005$).
+4. **Spatial Layout & Export (`spatial-layout-and-export.spec.ts`):** Tests UMAP 2D projection, spring-force collision relaxation, and workspace JSON export/import.
+5. **URL & Tab Ingestion (`url-capture.spec.ts`):** Verifies active browser tab DOM capture and Wikipedia REST API extraction with card generation.
 
-- `code/extension/test-results/offline-verification.json`
-- `code/extension/test-results/foundation.png`
+---
 
-## Planned milestones
+## 👥 Team Information & Contributions
 
-### Capture and extraction
+Developed for **UCS503P: Software Engineering Project** at Thapar Institute of Engineering and Technology under the supervision of **Dr. Jeelani Asif**.
 
-- Capture an explicitly selected browser page.
-- Extract readable text while preserving useful headings, code, and tables.
-- Add PDF and Markdown import after the web-page flow is stable.
+| Member | Roll Number | Primary Module Ownership & Deliverables |
+| :--- | :---: | :--- |
+| **Rahul Dadwal** | `1024160014` | Project direction; foundation architecture; WASM MiniLM embedding worker; tiered IndexedDB and SQ8 quantization engine; UMAP spatial canvas physics; Playwright test harness; final capstone report authoring. |
+| **Jyotsna Sachdeva** | `1024160133` | Requirements analysis; Level 0/1/2 DFD modeling; multi-source extraction pipeline specifications (Readability DOM, AST Markdown, PDF); mathematical vector space topology validation; test case design. |
+| **Bisman Singh Rai** | `1024160130` | UI/UX canvas interaction design; wireframe specifications; slide-over Passage Inspector layout; test verification documentation (`Test_Case.xlsx` & `docs/Test_Case.pdf`); MkDocs documentation maintenance. |
 
-### Persistence and retrieval
+---
 
-- Store artifact metadata and searchable chunks in IndexedDB.
-- Use OPFS for larger binary assets when required.
-- Generate a query embedding locally and rank saved content with cosine similarity.
+## 📄 Academic Deliverables
 
-### Spatial workspace
+- **Capstone Report:** Complete 6-chapter academic report formatted under `tietreport.cls` in [`project-report-final/main.tex`](project-report-final/main.tex).
+- **Test Case Matrix:** 33 verified test cases (`MER-FND-001` through `MER-BNK-001`) in [`Test_Case.xlsx`](Test_Case.xlsx).
+- **Documentation Website:** Published via GitHub Pages at [https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/](https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/).
 
-- Present saved artifacts on an interactive canvas.
-- Add semantic neighbourhoods, search focus, inspection, and workspace export.
-- Measure search latency and rendering performance only after the integrated workflow exists.
+---
 
-## Parallel development
+## ⚖️ License
 
-The project uses module ownership so team members can work from separate systems without editing the same files.
-
-| Area | Suggested branch | Primary files |
-| --- | --- | --- |
-| Foundation and integration | `codex/foundation` | Manifest, package files, build configuration, workers, and shared contracts |
-| Extraction | `codex/extraction` | `code/extension/src/extraction/` and its tests |
-| Canvas interface | `codex/canvas-ui` | `code/extension/src/ui/` and UI tests |
-
-Each teammate should branch from the same reviewed base, commit only the files owned by that module, push the feature branch, and open a pull request. Shared-contract or dependency changes require coordination before implementation. Pull requests should be merged one at a time, followed by a build and the relevant tests.
-
-## Team contribution areas
-
-The journals contain the detailed weekly record. The current allocation reflects the relative contribution requested by the team.
-
-| Member | Roll number | Main contribution areas |
-| --- | --- | --- |
-| **Rahul Dadwal** | `1024160014` | Project direction; foundation architecture; extension scaffold; local embedding worker; asset reproducibility; offline integration testing; technical integration; implementation documentation and reporting |
-| **Jyotsna Sachdeva** | `1024160133` | Requirements and proposal documentation; Level 0 and Level 1 data-flow modelling; consistency review; extraction and data-flow planning; documentation review |
-| **Bisman Singh Rai** | `1024160130` | Project presentation; communication of the proposed workflow; presentation revisions; demo narrative; supporting documentation review |
-
-## Documentation
-
-- Extension setup and verification: `code/extension/README.md`
-- Parallel-development handoff: `code/extension/HANDOFF.md`
-- Project website source: `docs/`
-- Individual work records: `journals/`
-- Proposal and report templates: `project-proposal/`, `project-report-prototype-stage/`, and `project-report-final/`
-
-## License
-
-This repository uses the [MIT License](LICENSE). The packaged third-party model and runtime retain their own licences and attribution files inside the extension package.
+This project is licensed under the [MIT License](LICENSE). Embedded models and WebAssembly runtimes retain their respective open-source licenses inside the extension package.

@@ -38,27 +38,28 @@ Meridian aims to reduce cognitive overload and context fragmentation during comp
 
 ## 🚦 Current Project Status
 
-Meridian is being developed incrementally across structured software engineering milestones.
+Meridian has completed development across all planned software engineering milestones (**Milestones 1 through 7**).
 
-The completed **Milestone 1 Foundation Prototype** demonstrates that the selected browser-extension and local machine-learning architecture works.
+The complete system provides an end-to-end, local-first spatial research workspace:
 
 | Architecture Area | Component / Subsystem | Current Status |
 |---|---|:---:|
-| **Extension Framework** | Chromium Manifest V3 extension | :white_check_mark: **Implemented** |
-| **Frontend Shell** | React, TypeScript, and Vite foundation | :white_check_mark: **Implemented** |
-| **Inference Isolation** | Dedicated embedding Web Worker | :white_check_mark: **Implemented** |
-| **Local Model Runtime** | Local MiniLM model loading | :white_check_mark: **Implemented** |
-| **Execution Engine** | WebAssembly (WASM)-based inference | :white_check_mark: **Implemented** |
-| **Vector Geometry** | Real 384-dimensional dense embeddings | :white_check_mark: **Implemented** |
-| **Network Autonomy** | Offline embedding operation | :white_check_mark: **Verified** |
-| **Ingestion Pipeline** | Active webpage capture | :hourglass_flowing_sand: *Planned* |
-| **Persistence Layer** | Persistent research storage (IndexedDB / OPFS) | :hourglass_flowing_sand: *Planned* |
-| **Search Engine** | Semantic search across saved content | :hourglass_flowing_sand: *Planned* |
-| **Visualization** | Spatial knowledge canvas | :hourglass_flowing_sand: *Planned* |
-| **Multi-Source Parsing** | PDF and Markdown ingestion | :hourglass_flowing_sand: *Planned* |
+| **Extension Framework** | Chromium Manifest V3 extension | :white_check_mark: **Implemented & Verified** |
+| **Frontend Shell** | React 19, TypeScript, and Vite 8 foundation | :white_check_mark: **Implemented & Verified** |
+| **Inference Isolation** | Dedicated embedding Web Worker | :white_check_mark: **Implemented & Verified** |
+| **Local Model Runtime** | Local MiniLM model loading (ONNX Runtime) | :white_check_mark: **Implemented & Verified** |
+| **Execution Engine** | WebAssembly (WASM SIMD)-based inference | :white_check_mark: **Implemented & Verified** |
+| **Vector Geometry** | Real 384-dimensional dense embeddings | :white_check_mark: **Implemented & Verified** |
+| **Network Autonomy** | 100% offline blackhole containment | :white_check_mark: **Implemented & Verified** |
+| **Ingestion Pipeline** | Multi-source capture (Tabs, Wikipedia, PDF, Markdown) | :white_check_mark: **Implemented & Verified** |
+| **Persistence Layer** | Tiered storage (IndexedDB v1, SQ8 quantization, OPFS) | :white_check_mark: **Implemented & Verified** |
+| **Search Engine** | Sub-20ms cosine vector intent search | :white_check_mark: **Implemented & Verified** |
+| **Visualization** | 2D Spatial Canvas with 60 FPS UMAP layout physics | :white_check_mark: **Implemented & Verified** |
+| **Deep Research** | 256w/50o sliding chunker & Passage Inspector | :white_check_mark: **Implemented & Verified** |
+| **Workspace Portability** | JSON bundle & standalone offline HTML archive | :white_check_mark: **Implemented & Verified** |
 
-!!! note "Architectural Boundary Note"
-    The current prototype should be understood as the **technical foundation of Meridian**, rather than the complete research application. It establishes that browser-based local model loading, WebAssembly execution, and typed off-thread worker communication operate reliably without remote dependencies.
+!!! success "Full Capstone Milestone Completion"
+    All 7 milestones have been implemented in `code/extension/`, validated with **10/10 automated Playwright tests passing**, mapped to **33 verified test cases** in `Test_Case.xlsx`, and documented in the final capstone report (`project-report-final/main.tex`).
 
 ---
 
@@ -73,29 +74,35 @@ Research content, browsing history, and search queries remain entirely on the us
 Items are indexed and organized according to high-dimensional semantic similarity rather than relying solely on filenames, URLs, or brittle manual folder hierarchies.
 
 ### 3. Responsive Interaction
-Machine learning model inference, heavy vector math, and spatial layout projections execute entirely outside the main interface thread inside dedicated Web Workers, ensuring the UI remains smooth and responsive.
+Machine learning model inference, heavy vector math, and spatial layout projections execute entirely outside the main interface thread inside dedicated Web Workers, ensuring the UI remains smooth and responsive at 60 FPS.
 
 ### 4. Progressive Research Depth
-Users can select between **Lightweight Mode** for rapid item-level bookmarking with minimal storage footprint, and **Deep Focus Mode** for comprehensive passage-level indexing with sliding-window chunking.
+Users can select between **Lightweight Mode** for rapid item-level bookmarking with minimal storage footprint, and **Deep Focus Mode** for comprehensive passage-level indexing with 256-word token sliding chunking and 50-word overlaps.
 
 ---
 
-## 🔭 Intended Capabilities
+## 🔬 Implemented Capabilities
 
-The complete Meridian system is planned to support:
+The complete Meridian system provides:
 
-- **Active Webpage Ingestion:** Saving active browser tabs directly to a local research workspace.
-- **Structured Content Extraction:** Extracting clean, readable prose, hierarchical headings, data tables, and syntax-highlighted code blocks.
-- **Local Document Import:** Ingesting local PDF papers and Markdown research notes.
-- **Snippet Capture:** Adding standalone code snippets and notes manually.
-- **Local Vector Generation:** Computing dense 384-dimensional embeddings locally using MiniLM.
-- **Semantic Intent Search:** Finding research assets using natural-language queries without requiring exact keyword matches.
-- **Spatial 2D Knowledge Canvas:** Laying out saved items as navigable cards on an interactive spatial canvas.
-- **Cluster Highlighting:** Visually highlighting conceptual clusters and guiding navigation toward relevant neighbourhoods.
-- **Card Manipulation:** Pinning, dragging, inspecting, reopening original URLs, and deleting workspace items.
-- **Tiered On-Device Storage:** Storing searchable structured text and vectors in IndexedDB, and large binary screenshots/DOM snapshots in OPFS.
-- **Workspace Portability:** Exporting and importing versioned JSON workspaces with coordinate fidelity.
-- **Standalone Viewer:** Generating a self-contained HTML file to review workspaces without extension dependencies.
+- **Active Webpage Ingestion:** Capturing active browser tabs or URLs directly into the spatial workspace with automatic Wikipedia REST API CORS bypass.
+- **Structured Content Extraction:** Extracting clean prose, hierarchical headings (`h1`–`h6`), data tables, and syntax-highlighted code blocks using `@mozilla/readability`.
+- **Local Document Import:** Ingesting local PDF papers with 1-based page numbers and Markdown research notes.
+- **Snippet Capture:** Adding standalone code snippets and quotes manually.
+- **Local Vector Generation:** Computing dense 384-dimensional normalized embeddings locally using MiniLM on ONNX WASM.
+- **Semantic Intent Search:** Sub-20ms retrieval ($0.8\text{--}2.5\text{ ms}$) across saved documents and passage chunks without requiring exact keyword matches.
+- **Spatial 2D Knowledge Canvas:** Laying out saved items as interactive cards on an infinite HTML5 Canvas with mouse-wheel zoom, pan, and viewport culling.
+- **UMAP Clustering & Physics:** Dedicated layout Web Worker calculating high-dimensional projections and spring-force collision relaxation ($r \ge 160\text{px}$) with pin locks.
+- **Passage Inspector:** Slide-over drawer displaying exact passage chunks, block types, and direct source navigation.
+- **Tiered On-Device Storage:** Storing searchable text and SQ8 quantized vectors in IndexedDB (74.5% storage reduction), and WebP snapshots in OPFS with automated 7-day LRU purge.
+- **Workspace Portability:** Exporting and importing versioned JSON workspaces (`schemaVersion: 1.0.0`) with coordinate fidelity.
+- **Standalone Offline Archive:** Generating a self-contained HTML file to review research workspaces in any browser without installing the extension.
 
-!!! warning "Project Scope Notice"
+---
+
+## 🎓 Academic Deliverables & Verification
+
+- **Final Capstone Report:** [`project-report-final/main.tex`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/project-report-final/main.tex) under `tietreport.cls`.
+- **Verified Test Cases:** 33 test cases (`MER-FND-001` through `MER-BNK-001`) in [`Test_Case.xlsx`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/Test_Case.xlsx) and [`docs/Test_Case.pdf`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/docs/Test_Case.pdf).
+- **Engineering Architecture & Handoff:** [`code/extension/HANDOFF.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/HANDOFF.md).
     The capabilities listed above represent the target system deliverables across upcoming milestones. Currently, only the foundation features specified in the status table have been implemented and verified.

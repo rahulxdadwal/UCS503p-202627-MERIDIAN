@@ -36,36 +36,41 @@ The complete source codebase for the Meridian browser extension is located under
 
 ```text
 code/extension/
-├── README.md                  # Extension setup, build instructions & verification guide
-├── HANDOFF.md                 # Parallel development protocol & module ownership
+├── HANDOFF.md                 # Complete engineering architecture log & milestone verification
 ├── assets.lock.json           # Model checksums & SHA-256 asset integrity record
-├── manifest.json              # Chromium Manifest V3 extension configuration
+├── public/manifest.json       # Chromium Manifest V3 extension configuration
 ├── package.json               # Node.js dependencies & build scripts
 ├── vite.config.ts             # Vite bundler configuration
 ├── src/
-│   ├── background/background.ts    # Manifest V3 service worker
-│   ├── embedding/client.ts         # Main-thread embedding client manager
-│   ├── embedding/worker.ts         # Dedicated WASM inference Web Worker
+│   ├── background/index.ts         # Manifest V3 service worker & active tab capture
+│   ├── export/workspace.ts         # JSON workspace bundle & standalone HTML archive
+│   ├── extraction/                 # Readability DOM, Markdown, PDF, snippet & sliding chunker
+│   ├── layout/umap.ts              # UMAP dimensionality reduction & collision physics
+│   ├── search/engine.ts            # In-memory SQ8 cosine similarity search engine
 │   ├── shared/contracts.ts         # Central TypeScript data contracts
-│   └── ui/App.tsx                  # React diagnostic UI view
-└── dist/                           # Unpacked extension production build output
+│   ├── storage/                    # IndexedDB v1, SQ8 quantization & OPFS WebP store
+│   ├── ui/                         # Spatial Canvas, Passage Inspector, Ingestion Station
+│   └── workers/                    # Dedicated Embedding and Layout Web Workers
+├── tests/                          # 10/10 automated Playwright integration & unit tests
+└── dist/                           # Production extension build bundle
 ```
 
 ### Key Technical Documentation Links
-- **Extension Architecture & Setup:** [`code/extension/README.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/README.md)
-- **Developer Handoff Protocol:** [`code/extension/HANDOFF.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/HANDOFF.md)
-- **Shared Data Contracts:** [`code/extension/src/shared/contracts.ts`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/src/shared/contracts.ts)
+- **Engineering Architecture & Handoff Log:** [`code/extension/HANDOFF.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/HANDOFF.md)
+- **Central TypeScript Data Contracts:** [`code/extension/src/shared/contracts.ts`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/src/shared/contracts.ts)
 - **Model Integrity Lockfile:** [`code/extension/assets.lock.json`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/code/extension/assets.lock.json)
+- **Test Case Matrix (XLSX):** [`Test_Case.xlsx`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/Test_Case.xlsx)
+- **Final Capstone LaTeX Report:** [`project-report-final/main.tex`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/project-report-final/main.tex)
 
 ---
 
 ## 📓 Weekly Development Journals
 
-Weekly progress logs recording individual and team contributions across all six development weeks:
+Weekly progress logs recording individual and team contributions across all development weeks:
 
-- **Rahul Dadwal:** [`journals/1024160014-Rahul/Journal.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/1024160014-Rahul/Journal.md)
-- **Jyotsna Sachdeva:** [`journals/1024160133- Jyotsna/Journal.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/1024160133-%20Jyotsna/Journal.md)
-- **Bisman Singh Rai:** [`journals/1024160130- Bisman/Journal.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/1024160130-%20Bisman/Journal.md)
+- **Rahul Dadwal:** [`journals/Rahul_1024160014.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/Rahul_1024160014.md)
+- **Jyotsna Sachdeva:** [`journals/Jyotsna_1024160133.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/Jyotsna_1024160133.md)
+- **Bisman Singh Rai:** [`journals/Bisman_1024160130.md`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/journals/Bisman_1024160130.md)
 
 ---
 
@@ -73,10 +78,11 @@ Weekly progress logs recording individual and team contributions across all six 
 
 | Deliverable | Repository Location | Current Status |
 |---|---|:---:|
-| **Project Presentation Slide Deck** | `docs/ppt/presentation.pptx` | :white_check_mark: **Available** |
+| **Final Capstone Academic Report** | [`project-report-final/main.tex`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/project-report-final/main.tex) | :white_check_mark: **Completed (`tietreport.cls`)** |
+| **Test Case Verification Matrix** | [`Test_Case.xlsx`](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/Test_Case.xlsx) & [`docs/Test_Case.pdf`](../Test_Case.pdf) | :white_check_mark: **33 Verified Test Cases** |
 | **Gantt Project Schedule** | [`docs/GANTT-Chart/`](../GANTT-Chart/GANTT-Chart.html) (`.pdf`, `.xlsx`, `.html`, `.csv`) | :white_check_mark: **Maintained (Weeks 1–11)** |
-| **Prototype Stage Report** | `project-report-prototype-stage/` | :hourglass_flowing_sand: *Under Active Compilation* |
-| **Final Stage Report** | `project-report-final/` | :hourglass_flowing_sand: *Scheduled for Semester End* |
+| **Prototype Stage Report** | `project-report-prototype-stage/` | :white_check_mark: **Completed** |
+| **Project Presentation Slide Deck** | `docs/ppt/presentation.pptx` | :white_check_mark: **Available** |
 
 ---
 

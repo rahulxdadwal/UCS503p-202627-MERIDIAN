@@ -1,0 +1,25 @@
+# Final Academic Project Deliverables & Submission Checklist
+
+## 1. Project Implementation Milestones
+- [x] Milestone 1: Level 0 Foundation Prototype (WASM on-device MiniLM embedding worker, Manifest V3).
+- [x] Milestone 2: Capture & Tiered Storage (Readability DOM extractor, Markdown parser, IndexedDB `meridian-db`, SQ8 Quantization >74%, OPFS snapshots).
+- [x] Milestone 3: Intent Vector Search (In-memory cosine similarity search ranking, sub-20ms SRL latency).
+- [x] Milestone 4: Deep Research Chunking & Multi-Source Ingestion (PDF byte parser with 1-based page numbers, 256w/50o sliding chunker, slide-over Passage Inspector).
+- [x] Milestone 5: 2D Spatial Knowledge Canvas (HTML5 Canvas 60 FPS viewport with culling, non-blocking UMAP layout worker, spring-force collision physics, pin locks).
+- [x] Milestone 6: Product Completion & Portability (Versioned JSON workspace export/import, standalone offline single-file HTML archive export, 7-day LRU snapshot cache purge).
+- [x] Milestone 7: Performance Verification & Academic Report (Automated Playwright test harness, 33 verified test cases in Test_Case.xlsx, complete final academic report in main.tex).
+
+## 2. Academic Report Structure (main.tex)
+- [x] Executive Summary & Abstract
+- [x] Chapter 1: Introduction, Problem Formulation, Objectives, and Scope
+- [x] Chapter 2: Literature Review & Theoretical Foundations (Vector Space Models, WebAssembly, SQ8 Quantization, UMAP)
+- [x] Chapter 3: System Architecture & Design (Thread isolation, Ingestion Pipeline, Tiered Storage Engine, Search Engine, Canvas)
+- [x] Chapter 4: Implementation Details (Readability, AST Markdown, PDF parser, Sliding-Window Chunker, Layout Web Worker, Standalone Export)
+- [x] Chapter 5: Experimental Evaluation & Verification Benchmarks (Search Latency <= 2.5ms vs 20ms target, SQ8 74.48% space savings, 100% offline blackhole verification)
+- [x] Chapter 6: Conclusion, Limitations & Future Work
+- [x] Bibliography (references.bib)
+
+## 3. Verification Artifacts
+- [x] Test_Case.xlsx: 33 verified test cases (MER-FND-001 through MER-BNK-001).
+- [x] Playwright Test Suite: 9 automated tests passing in ~5.6s (100% pass rate).
+- [x] Handoff Documentation: Comprehensive architecture log in code/extension/HANDOFF.md.

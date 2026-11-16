@@ -25,16 +25,16 @@
       
       
       <link rel="icon" href="../../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
   <title>Weekly Journal - MERIDIAN : Latent Cartographer</title>
 
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -1252,6 +1252,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#28-october-3-november-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28 October – 3 November 2026
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="28 October – 3 November 2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectives_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Objectives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#individual-contributions_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Individual Contributions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outcomes-milestones_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Outcomes &amp; Milestones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1741,6 +1791,57 @@
 </div>
 </div>
 </div>
+<hr />
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Week 12: Foundation Test Suite Implementation &amp; Verification</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 id="28-october-3-november-2026">28 October – 3 November 2026<a class="headerlink" href="#28-october-3-november-2026" title="Permanent link">&para;</a></h3>
+<h4 id="objectives_11">📌 Objectives<a class="headerlink" href="#objectives_11" title="Permanent link">&para;</a></h4>
+<p>Formulate, implement, and verify the comprehensive 15-test-case Foundation Test Verification suite across engine lifecycle, vector space topology, worker isolation, and security constraints; compile the formal verification report PDF.</p>
+<h4 id="individual-contributions_11">🛠️ Individual Contributions<a class="headerlink" href="#individual-contributions_11" title="Permanent link">&para;</a></h4>
+<h5 id="rahul-dadwal-member-1_11"><strong>Rahul Dadwal (Member 1)</strong><a class="headerlink" href="#rahul-dadwal-member-1_11" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Formulated, implemented, and verified <strong>8 automated and functional test cases</strong> for the Milestone 1 Foundation extension suite:</li>
+<li><strong>MER-FND-001 (Extension Lifecycle)</strong>: Designed and verified extension launch via Chromium action button, ensuring <code>background.js</code> service worker registers and launches <code>index.html</code> diagnostic workspace.</li>
+<li><strong>MER-FND-004 (Embedding Engine)</strong>: Implemented verification for 384-dimensional dense semantic vector generation, checking unit L2 normalization (<span class="arithmatex">\(1.000000\)</span>) and finite float values.</li>
+<li><strong>MER-FND-005 (Embedding Engine)</strong>: Benchmark-tested warm-model inference acceleration across repeated calls, verifying sub-15ms execution latency after cold model initialization (~360ms).</li>
+<li><strong>MER-FND-010 (Worker Security)</strong>: Implemented worker defense-in-depth security tests intercepting and rejecting unauthorized external <code>fetch()</code> calls inside the Web Worker scope.</li>
+<li><strong>MER-FND-011 (Asset Integrity)</strong>: Engineered SHA-256 hash mismatch detection for <code>model_quantized.onnx</code> against <code>assets.lock.json</code>, validating graceful error alerts and worker halt.</li>
+<li><strong>MER-FND-012 (Content Security Policy)</strong>: Verified strict Manifest V3 CSP enforcement, blocking unauthorized remote scripts and inline <code>eval()</code> invocation.</li>
+<li><strong>MER-FND-013 (Worker Concurrency)</strong>: Implemented stress test for serializing rapid consecutive <code>postMessage</code> requests via worker promise queue without race conditions or memory corruption.</li>
+<li><strong>MER-FND-014 (Worker Lifecycle)</strong>: Verified clean termination via <code>worker.terminate()</code> and promise rejection handling (<code>"Embedding client was closed."</code>) upon client disposal.</li>
+<li>Extracted and provided execution logs, timing benchmarks, and code evidence for compilation into the official test report PDF.</li>
+</ul>
+<h5 id="jyotsna-sachdeva-member-2_11"><strong>Jyotsna Sachdeva (Member 2)</strong><a class="headerlink" href="#jyotsna-sachdeva-member-2_11" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Formulated, implemented, and verified <strong>7 functional, mathematical, and isolation test cases</strong> for the Milestone 1 Foundation suite:</li>
+<li><strong>MER-FND-002 (Diagnostic UI)</strong>: Implemented input validation checks ensuring the "Generate embedding" button remains disabled on empty or whitespace-only textarea inputs without UI flicker.</li>
+<li><strong>MER-FND-003 (Diagnostic UI / Boundary)</strong>: Tested upper input boundary limits, confirming strict truncation at <code>MAX_INPUT_CHARACTERS</code> (12,000 characters) without buffer overflow.</li>
+<li><strong>MER-FND-006 (Vector Space Topology)</strong>: Evaluated semantic separation in vector space, verifying that conceptually related texts (<code>cat</code>/<code>kitten</code>) yield high cosine similarity (~0.589) while unrelated texts yield negative similarity (~-0.069), exceeding the 0.15 separation threshold.</li>
+<li><strong>MER-FND-007 (Vector Space Topology)</strong>: Tested mathematical identity boundary condition, proving deterministic reproducibility with identical inputs evaluating to exact unit cosine similarity (<span class="arithmatex">\(1.000000 \pm 0.00001\)</span>).</li>
+<li><strong>MER-FND-008 (Network Isolation)</strong>: Executed isolated Chromium test runs with request interceptors, confirming exactly zero external HTTP, HTTPS, or WebSocket network calls during vector inference.</li>
+<li><strong>MER-FND-009 (Network Isolation)</strong>: Tested offline network containment harness with blackhole proxy (<code>127.0.0.1:9</code>), confirming external probe navigations throw <code>ERR_CONNECTION_REFUSED</code>.</li>
+<li><strong>MER-FND-015 (Diagnostic UI)</strong>: Verified the collapsible vector inspector interface, validating parsing and DOM rendering of the full 384-element float array and Euclidean norm calculations.</li>
+<li>Documented test fixtures, numerical test datasets, and actual vs. expected results for test report compilation.</li>
+</ul>
+<h5 id="bisman-singh-rai-member-3_11"><strong>Bisman Singh Rai (Member 3)</strong><a class="headerlink" href="#bisman-singh-rai-member-3_11" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Compiled, formatted, and updated the formal <strong>Foundation Test Cases Documentation &amp; Report (PDF)</strong> based on technical data and test results provided by Rahul and Jyotsna:</li>
+<li>Organized all 15 foundation test cases into a structured verification matrix (<code>MER-FND-001</code> through <code>MER-FND-015</code>).</li>
+<li>Documented complete test case metadata: Test Case IDs, Target Modules, Scenarios, Test Types (Positive, Negative, Boundary), and Preconditions.</li>
+<li>Formatted step-by-step execution procedures, input test data payloads, expected outcomes, and actual test results.</li>
+<li>Logged execution dates (2026-11-04), priority ratings (High, Medium, Low), Pass/Fail statuses, and source code evidence citations.</li>
+<li>Structured document layout, typography, and page margins to ensure compliance with academic presentation and project submission standards.</li>
+<li>Finalized and published the formal PDF document <a href="../../Test_Case.pdf"><code>docs/Test_Case.pdf</code></a>.</li>
+</ul>
+<h4 id="outcomes-milestones_11">🎯 Outcomes &amp; Milestones<a class="headerlink" href="#outcomes-milestones_11" title="Permanent link">&para;</a></h4>
+<ul>
+<li>All 15 Foundation test cases verified with 100% Pass status across engine, security, topology, and isolation dimensions.</li>
+<li>Published official Foundation Test Verification Report PDF in the documentation archive.</li>
+</ul>
+</div>
+</div>
+</div>
 
 
 
@@ -1761,7 +1862,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 28, 2026 04:38:44 UTC">October 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 15, 2026 23:41:14 UTC">November 15, 2026</span>
   </span>
 
     
@@ -1772,12 +1873,13 @@
   <span class="md-source-file__fact">
     <span class="md-icon" title="Contributors">
       
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg>
       
     </span>
     <nav>
       
-        <a href="mailto:jyotsnasachdeva3@gmail.com">Jyotsna Sachdeva</a>
+        <a href="mailto:jyotsnasachdeva3@gmail.com">Jyotsna Sachdeva</a>, 
+        <a href="mailto:rahulxdadwal@gmail.com">Rahul Dadwal</a>
     </nav>
   </span>
 
@@ -1891,10 +1993,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.footer", "header.autohide", "content.tabs.link", "navigation.tracking", "navigation.top", "toc.integrate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.footer", "header.autohide", "content.tabs.link", "navigation.tracking", "navigation.top", "toc.integrate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       

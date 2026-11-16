@@ -15,36 +15,36 @@ The system requirements are categorized by functional area and tracked against p
 | **FR-07** | The system shall strictly prevent remote model downloads during runtime execution. | :white_check_mark: **Implemented** |
 | **FR-08** | The interface shall display real-time inference lifecycle states (loading, ready, error). | :white_check_mark: **Implemented** |
 | **FR-09** | The diagnostic view shall report vector dimensions, execution backend, latency, and vector norm. | :white_check_mark: **Implemented** |
-| **FR-10** | The user shall be able to initiate explicit capture of an active browser tab. | :hourglass_flowing_sand: *Planned* |
-| **FR-11** | The system shall extract readable content from active webpages using DOM sanitization. | :hourglass_flowing_sand: *Planned* |
-| **FR-12** | Extraction shall preserve structured headings, paragraphs, code blocks, and data tables. | :hourglass_flowing_sand: *Planned* |
-| **FR-13** | The system shall provide a fallback extraction strategy when article extraction fails. | :hourglass_flowing_sand: *Planned* |
-| **FR-14** | The system shall detect duplicate captures of existing URLs and offer updates over duplicates. | :hourglass_flowing_sand: *Planned* |
-| **FR-15** | The user shall be able to choose between Lightweight Mode and Deep Focus Mode capture. | :hourglass_flowing_sand: *Planned* |
-| **FR-16** | Deep Focus Mode shall segment documents using token-based overlapping windows (256w / 50o). | :hourglass_flowing_sand: *Planned* |
-| **FR-17** | Chunks shall retain parent heading hierarchy, page indexes, and source URL metadata. | :hourglass_flowing_sand: *Planned* |
-| **FR-18** | The system shall compute item-level centroid vectors and chunk-level passage vectors. | :hourglass_flowing_sand: *Planned* |
-| **FR-19** | The system shall persist searchable records, chunks, and vectors in browser IndexedDB. | :hourglass_flowing_sand: *Planned* |
-| **FR-20** | The system shall store heavy screenshots and binary snapshots in Origin Private File System (OPFS). | :hourglass_flowing_sand: *Planned* |
-| **FR-21** | Saved research workspaces shall persist reliably across browser restarts and device reboots. | :hourglass_flowing_sand: *Planned* |
-| **FR-22** | The user shall be able to import local PDF documents into the workspace. | :hourglass_flowing_sand: *Planned* |
-| **FR-23** | Extracted PDF passages shall preserve respective page number references. | :hourglass_flowing_sand: *Planned* |
-| **FR-24** | The user shall be able to import local Markdown notes and documentation. | :hourglass_flowing_sand: *Planned* |
-| **FR-25** | The user shall be able to manually create and paste standalone code snippets. | :hourglass_flowing_sand: *Planned* |
-| **FR-26** | The system shall vectorize natural-language search queries using the local model. | :hourglass_flowing_sand: *Planned* |
-| **FR-27** | Search results shall be ranked against stored vectors using cosine similarity scoring. | :hourglass_flowing_sand: *Planned* |
-| **FR-28** | The search interface shall highlight the exact passage matching the query intent. | :hourglass_flowing_sand: *Planned* |
-| **FR-29** | Saved research items shall be rendered as interactive visual cards on a 2D spatial canvas. | :hourglass_flowing_sand: *Planned* |
-| **FR-30** | The canvas shall support smooth panning, multi-level zooming, zoom-to-fit, and card selection. | :hourglass_flowing_sand: *Planned* |
-| **FR-31** | Users shall be able to drag, pin, inspect, delete, and reopen original source tabs from cards. | :hourglass_flowing_sand: *Planned* |
-| **FR-32** | Pinned and manually repositioned cards shall remain fixed during layout updates. | :hourglass_flowing_sand: *Planned* |
-| **FR-33** | The user shall be able to trigger an explicit spatial map reorganization on demand. | :hourglass_flowing_sand: *Planned* |
-| **FR-34** | The system shall provide an accessible tabular list view as an alternative to the 2D canvas. | :hourglass_flowing_sand: *Planned* |
-| **FR-35** | The system shall display storage quota consumption and provide manual cleanup tools. | :hourglass_flowing_sand: *Planned* |
-| **FR-36** | Automated storage cleanup routines shall guarantee the protection of user-pinned assets. | :hourglass_flowing_sand: *Planned* |
-| **FR-37** | The system shall support versioned JSON workspace export and import. | :hourglass_flowing_sand: *Planned* |
-| **FR-38** | Export and import shall preserve all vector data, metadata, and 2D canvas coordinates. | :hourglass_flowing_sand: *Planned* |
-| **FR-39** | The system shall generate a self-contained, standalone HTML file to review workspaces offline. | :hourglass_flowing_sand: *Planned* |
+| **FR-10** | The user shall be able to initiate explicit capture of an active browser tab. | :white_check_mark: **Implemented & Verified** |
+| **FR-11** | The system shall extract readable content from active webpages using DOM sanitization. | :white_check_mark: **Implemented & Verified** |
+| **FR-12** | Extraction shall preserve structured headings, paragraphs, code blocks, and data tables. | :white_check_mark: **Implemented & Verified** |
+| **FR-13** | The system shall provide a fallback extraction strategy when article extraction fails. | :white_check_mark: **Implemented & Verified** |
+| **FR-14** | The system shall detect duplicate captures of existing URLs and offer updates over duplicates. | :white_check_mark: **Implemented & Verified** |
+| **FR-15** | The user shall be able to choose between Lightweight Mode and Deep Focus Mode capture. | :white_check_mark: **Implemented & Verified** |
+| **FR-16** | Deep Focus Mode shall segment documents using token-based overlapping windows (256w / 50o). | :white_check_mark: **Implemented & Verified** |
+| **FR-17** | Chunks shall retain parent heading hierarchy, page indexes, and source URL metadata. | :white_check_mark: **Implemented & Verified** |
+| **FR-18** | The system shall compute item-level centroid vectors and chunk-level passage vectors. | :white_check_mark: **Implemented & Verified** |
+| **FR-19** | The system shall persist searchable records, chunks, and vectors in browser IndexedDB. | :white_check_mark: **Implemented & Verified** |
+| **FR-20** | The system shall store heavy screenshots and binary snapshots in Origin Private File System (OPFS). | :white_check_mark: **Implemented & Verified** |
+| **FR-21** | Saved research workspaces shall persist reliably across browser restarts and device reboots. | :white_check_mark: **Implemented & Verified** |
+| **FR-22** | The user shall be able to import local PDF documents into the workspace. | :white_check_mark: **Implemented & Verified** |
+| **FR-23** | Extracted PDF passages shall preserve respective page number references. | :white_check_mark: **Implemented & Verified** |
+| **FR-24** | The user shall be able to import local Markdown notes and documentation. | :white_check_mark: **Implemented & Verified** |
+| **FR-25** | The user shall be able to manually create and paste standalone code snippets. | :white_check_mark: **Implemented & Verified** |
+| **FR-26** | The system shall vectorize natural-language search queries using the local model. | :white_check_mark: **Implemented & Verified** |
+| **FR-27** | Search results shall be ranked against stored vectors using cosine similarity scoring. | :white_check_mark: **Implemented & Verified** |
+| **FR-28** | The search interface shall highlight the exact passage matching the query intent. | :white_check_mark: **Implemented & Verified** |
+| **FR-29** | Saved research items shall be rendered as interactive visual cards on a 2D spatial canvas. | :white_check_mark: **Implemented & Verified** |
+| **FR-30** | The canvas shall support smooth panning, multi-level zooming, zoom-to-fit, and card selection. | :white_check_mark: **Implemented & Verified** |
+| **FR-31** | Users shall be able to drag, pin, inspect, delete, and reopen original source tabs from cards. | :white_check_mark: **Implemented & Verified** |
+| **FR-32** | Pinned and manually repositioned cards shall remain fixed during layout updates. | :white_check_mark: **Implemented & Verified** |
+| **FR-33** | The user shall be able to trigger an explicit spatial map reorganization on demand. | :white_check_mark: **Implemented & Verified** |
+| **FR-34** | The system shall provide an accessible tabular list view as an alternative to the 2D canvas. | :white_check_mark: **Implemented & Verified** |
+| **FR-35** | The system shall display storage quota consumption and provide manual cleanup tools. | :white_check_mark: **Implemented & Verified** |
+| **FR-36** | Automated storage cleanup routines shall guarantee the protection of user-pinned assets. | :white_check_mark: **Implemented & Verified** |
+| **FR-37** | The system shall support versioned JSON workspace export and import. | :white_check_mark: **Implemented & Verified** |
+| **FR-38** | Export and import shall preserve all vector data, metadata, and 2D canvas coordinates. | :white_check_mark: **Implemented & Verified** |
+| **FR-39** | The system shall generate a self-contained, standalone HTML file to review workspaces offline. | :white_check_mark: **Implemented & Verified** |
 
 ---
 

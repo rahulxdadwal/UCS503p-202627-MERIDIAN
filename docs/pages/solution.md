@@ -82,14 +82,14 @@ Meridian adheres to the strict security, memory, and lifecycle constraints of Ch
 
 ## 🖥️ Research Workspace Design
 
-The planned user interface direction includes:
+The implemented user interface architecture includes:
 
-1. **Full-Tab 2D Canvas:** An infinite spatial plane where research items appear as cards positioned according to semantic meaning.
-2. **Compact Capture Side Panel:** A non-intrusive drawer to initiate active-tab ingestion without disrupting browsing.
-3. **Semantic Search & Filter Bar:** Top-level natural language query bar with instant keyword and cosine scoring.
-4. **Passage Inspector:** Contextual drawer displaying the exact paragraph or code snippet matching a search query.
-5. **Canvas Navigation Controls:** Zoom to fit, reset viewport, cluster filtering, and node arrangement locks.
-6. **Status Monitors:** Visual indicators for model loading, indexing queue, and system memory health.
+1. **Full-Tab 2D Canvas:** An infinite spatial plane where research items appear as cards positioned according to semantic meaning, powered by a dedicated UMAP dimensionality reduction worker and spring-force collision physics.
+2. **Multi-Source Ingestion Station:** Direct active-tab ingestion with Wikipedia REST API CORS bypass, local PDF byte-stream text parser, and Markdown AST reader.
+3. **Intent Vector Search:** Top-level natural language query bar with sub-20ms cosine scoring ($0.8\text{--}2.5\text{ ms}$).
+4. **Passage Inspector:** Slide-over contextual drawer displaying the exact paragraph, code snippet, or table matching a search query with direct source navigation.
+5. **Canvas Navigation Controls:** Zoom to fit, cursor-centric zoom, pan, card dragging, and pin arrangement locks.
+6. **Workspace Portability:** Full JSON workspace backup/restore and standalone zero-dependency offline HTML archive export.
 
 ---
 

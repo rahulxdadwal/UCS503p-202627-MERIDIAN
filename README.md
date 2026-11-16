@@ -17,7 +17,7 @@
   100% on-device neural vector embeddings • Sub-20ms cosine intent search • SQ8 scalar quantization • Zero cloud telemetry.
 </p>
 
-[🌐 Live Documentation Site](https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/) • [📄 Academic Capstone Report](project-report-final/main.tex) • [📊 Verified Test Matrix](Test_Case.xlsx) • [🛠️ Architecture Handoff Log](code/extension/HANDOFF.md)
+[📦 Download Release (v1.0.0)](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/releases/tag/v1.0.0) • [🌐 Live Documentation Site](https://rahulxdadwal.github.io/UCS503p-202627-MERIDIAN/) • [📄 Academic Capstone Report](project-report-final/main.tex) • [📊 Verified Test Matrix](Test_Case.xlsx) • [🛠️ Architecture Handoff Log](code/extension/HANDOFF.md)
 
 </div>
 

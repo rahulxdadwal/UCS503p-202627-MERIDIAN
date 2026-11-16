@@ -10,6 +10,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/blob/master/LICENSE)
 [![Institution](https://img.shields.io/badge/TIET-UCS503P%20Software%20Engineering-crimson?style=flat-square)](https://www.thapar.edu/)
 
+!!! tip "🚀 Quick Install — Pre-Packaged Release Available"
+    Download the pre-built extension package directly from **[GitHub Releases (v1.0.0)](https://github.com/rahulxdadwal/UCS503p-202627-MERIDIAN/releases/tag/v1.0.0)** and load it unpacked in Chromium in under 30 seconds (zero build tools or dependencies required).
+
 ---
 
 ## 📌 Executive Summary

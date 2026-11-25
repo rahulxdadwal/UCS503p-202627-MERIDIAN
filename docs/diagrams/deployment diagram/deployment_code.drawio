@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="QSu4XEiS8K-VMQ8yN7AA" name="Page-4">
+    <mxGraphModel dx="1625" dy="874" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" plantUmlData="{&#xa;  &quot;data&quot;: &quot;@startuml\n\ntitle MERIDIAN\\nDeployment Diagram\n\ntop to bottom direction\n\nskinparam backgroundColor white\nskinparam shadowing false\nskinparam roundcorner 0\nskinparam defaultFontName Arial\nskinparam defaultFontSize 14\nskinparam nodesep 40\nskinparam ranksep 45\nskinparam linetype ortho\nskinparam ArrowColor #475569\n\nskinparam node {\n    BorderThickness 2\n    FontColor #172033\n}\n\nskinparam database {\n    BorderColor #B94747\n    BackgroundColor #FCE5E5\n    FontColor #172033\n}\n\nskinparam cloud {\n    BorderColor #369FC4\n    BackgroundColor #EDF8FC\n    FontColor #172033\n}\n\ncloud \&quot;Internet\\nSource Websites\&quot; as WEB\n\nnode \&quot;User Laptop / Desktop\&quot; as DEVICE &lt;&lt;device&gt;&gt; #F5DCE6\n\nnode \&quot;Web Browser\\nMERIDIAN Application\\nCapture + Interactive Map\&quot; as APP &lt;&lt;executionEnvironment&gt;&gt; #E4E5FF\n\nnode \&quot;Local Processing\\nWebAssembly Embeddings\\nSemantic Layout\&quot; as PROCESS &lt;&lt;executionEnvironment&gt;&gt; #FFF0DA\n\ndatabase \&quot;Local Storage\\nArtifacts / Vectors\&quot; as DB\n\nWEB -down- DEVICE : HTTPS\nDEVICE -down- APP : hosts\n\nAPP -down- PROCESS : local calls\nAPP -down- DB : read / write\n\nPROCESS -[hidden]right- DB\n\n@enduml&quot;,&#xa;  &quot;config&quot;: null&#xa;}" id="Uw4Ojnf9-hFl3kTK8iVL-1">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;labelBackgroundColor=none;fontColor=#143642;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Internet&#xa;Source Websites" plantUmlId="n_0" plantUmlBaseStyle="shape=cloud;fillColor=#EDF8FC;strokeColor=#369FC4;fontSize=14;whiteSpace=wrap;rounded=0;shadow=0;fontColor=#172033;fontFamily=Arial;" plantUmlBaseValue="Internet&#xa;Source Websites" id="Uw4Ojnf9-hFl3kTK8iVL-2">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="shape=cloud;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontSize=14;whiteSpace=wrap;rounded=0;shadow=0;fontColor=#143642;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="55" width="168" x="283.5" y="130" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="«device»&#xa;User Laptop / Desktop" plantUmlId="n_1" plantUmlBaseStyle="shape=cube;size=10;flipH=1;fillColor=#F5DCE6;strokeColor=#181818;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#172033;fontFamily=Arial;" plantUmlBaseValue="«device»&#xa;User Laptop / Desktop" id="Uw4Ojnf9-hFl3kTK8iVL-3">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="shape=cube;size=10;flipH=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#143642;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="55" width="194.5" x="265.5" y="227" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="«executionEnvironment»&#xa;Web Browser&#xa;MERIDIAN Application&#xa;Capture + Interactive Map" plantUmlId="n_2" plantUmlBaseStyle="shape=cube;size=10;flipH=1;fillColor=#E4E5FF;strokeColor=#181818;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#172033;fontFamily=Arial;" plantUmlBaseValue="«executionEnvironment»&#xa;Web Browser&#xa;MERIDIAN Application&#xa;Capture + Interactive Map" id="Uw4Ojnf9-hFl3kTK8iVL-4">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="shape=cube;size=10;flipH=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#143642;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="88" width="226.5" x="253.5" y="318" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="«executionEnvironment»&#xa;Local Processing&#xa;WebAssembly Embeddings&#xa;Semantic Layout" plantUmlId="n_3" plantUmlBaseStyle="shape=cube;size=10;flipH=1;fillColor=#FFF0DA;strokeColor=#181818;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#172033;fontFamily=Arial;" plantUmlBaseValue="«executionEnvironment»&#xa;Local Processing&#xa;WebAssembly Embeddings&#xa;Semantic Layout" id="Uw4Ojnf9-hFl3kTK8iVL-5">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="shape=cube;size=10;flipH=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontSize=14;whiteSpace=wrap;spacingRight=10;spacingTop=9;rounded=0;shadow=0;strokeWidth=2;fontColor=#143642;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="88" width="221" x="120" y="520" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Local Storage&#xa;Artifacts / Vectors" plantUmlId="n_4" plantUmlBaseStyle="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#FCE5E5;strokeColor=#B94747;fontSize=14;whiteSpace=wrap;rounded=0;shadow=0;fontColor=#172033;fontFamily=Arial;" plantUmlBaseValue="Local Storage&#xa;Artifacts / Vectors" id="Uw4Ojnf9-hFl3kTK8iVL-6">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="shape=cylinder3;size=10;boundedLbl=1;backgroundOutline=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontSize=14;whiteSpace=wrap;rounded=0;shadow=0;fontColor=#143642;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="80" width="221" x="451.5" y="520" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="HTTPS" plantUmlId="e_5" plantUmlBaseStyle="strokeColor=#475569;fontColor=#000000;fontSize=14;html=1;labelBackgroundColor=#FFFFFF;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="HTTPS" id="Uw4Ojnf9-hFl3kTK8iVL-7">
+          <mxCell edge="1" parent="Uw4Ojnf9-hFl3kTK8iVL-1" source="Uw4Ojnf9-hFl3kTK8iVL-2" style="strokeColor=#A8201A;fontColor=default;fontSize=14;html=1;labelBackgroundColor=none;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;exitX=0.456;exitY=0.961;exitDx=0;exitDy=0;exitPerimeter=0;" target="Uw4Ojnf9-hFl3kTK8iVL-3">
+            <mxGeometry relative="1" x="-0.0939" y="-12" as="geometry">
+              <mxPoint x="13" y="12" as="offset" />
+              <Array as="points">
+                <mxPoint x="360" y="210" />
+                <mxPoint x="360" y="210" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="hosts" plantUmlId="e_6" plantUmlBaseStyle="strokeColor=#475569;fontColor=#000000;fontSize=14;html=1;labelBackgroundColor=#FFFFFF;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="hosts" id="Uw4Ojnf9-hFl3kTK8iVL-8">
+          <mxCell edge="1" parent="Uw4Ojnf9-hFl3kTK8iVL-1" source="Uw4Ojnf9-hFl3kTK8iVL-3" style="strokeColor=#A8201A;fontColor=default;fontSize=14;html=1;labelBackgroundColor=none;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="Uw4Ojnf9-hFl3kTK8iVL-4">
+            <mxGeometry relative="1" y="7" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="360" y="310" />
+                <mxPoint x="360" y="310" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="local calls" plantUmlId="e_7" plantUmlBaseStyle="strokeColor=#475569;fontColor=#000000;fontSize=14;html=1;labelBackgroundColor=#FFFFFF;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="local calls" id="Uw4Ojnf9-hFl3kTK8iVL-9">
+          <mxCell edge="1" parent="Uw4Ojnf9-hFl3kTK8iVL-1" source="Uw4Ojnf9-hFl3kTK8iVL-4" style="strokeColor=#A8201A;fontColor=default;fontSize=14;html=1;labelBackgroundColor=none;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="Uw4Ojnf9-hFl3kTK8iVL-5">
+            <mxGeometry relative="1" x="0.0977" y="12" as="geometry">
+              <mxPoint as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="read / write" plantUmlId="e_8" plantUmlBaseStyle="strokeColor=#475569;fontColor=#000000;fontSize=14;html=1;labelBackgroundColor=#FFFFFF;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" plantUmlBaseValue="read / write" id="Uw4Ojnf9-hFl3kTK8iVL-10">
+          <mxCell edge="1" parent="Uw4Ojnf9-hFl3kTK8iVL-1" source="Uw4Ojnf9-hFl3kTK8iVL-4" style="strokeColor=#A8201A;fontColor=default;fontSize=14;html=1;labelBackgroundColor=none;labelPosition=right;align=left;endArrow=none;fontFamily=Arial;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;endSize=6;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;" target="Uw4Ojnf9-hFl3kTK8iVL-6">
+            <mxGeometry relative="1" x="-0.0015" y="-12" as="geometry">
+              <mxPoint x="-1" as="offset" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Deployment Diagram" plantUmlId="title_9" plantUmlBaseStyle="text;html=1;fillColor=none;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#000000;align=center;verticalAlign=middle;fontFamily=Arial;" plantUmlBaseValue="MERIDIAN&#xa;Deployment Diagram" id="Uw4Ojnf9-hFl3kTK8iVL-11">
+          <mxCell parent="Uw4Ojnf9-hFl3kTK8iVL-1" style="text;html=1;fillColor=none;strokeColor=none;fontSize=14;fontStyle=1;fontColor=#143642;align=center;verticalAlign=middle;fontFamily=Arial;labelBackgroundColor=none;" vertex="1">
+            <mxGeometry height="44" width="339" x="193.25" y="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

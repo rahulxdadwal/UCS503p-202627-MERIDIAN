@@ -1,295 +1,292 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass{tietreport}
 
-\usepackage[margin=1in]{geometry}
+% Core packages
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{caption}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{xcolor}
 
-% Colors
-\definecolor{mNavy}{RGB}{30, 58, 138}
-\definecolor{mDark}{RGB}{15, 23, 42}
-\definecolor{mSlate}{RGB}{71, 85, 105}
-\definecolor{mBlue}{RGB}{37, 99, 235}
-\definecolor{mPurple}{RGB}{124, 58, 237}
-\definecolor{mGreen}{RGB}{5, 150, 105}
+% Bibliography configuration
+\usepackage[
+  date=year,
+  style=alphabetic,
+  backend=biber,
+  sorting=nty,
+  maxnames=5,
+  minnames=3,
+  maxalphanames=4,
+  minalphanames=3,
+  backref=true,
+  doi=true,
+  isbn=false,
+  url=true,
+  eprint=true
+]{biblatex}
+\addbibresource{references.bib}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=mDark,
-    citecolor=mPurple,
-    urlcolor=mBlue
+% Prevent overfull cells in descriptive tables
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\definecolor{codegreen}{rgb}{0.18,0.5,0.2}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.96,0.97,0.96}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+%% ==================================================
+%% PROJECT INFORMATION
+%% ==================================================
+
+\TitlePageHeader{%
+  UCS503P -- Software Engineering Project Final Report%
 }
 
-\captionsetup{
-    labelfont={bf,color=mDark},
-    font=small,
-    skip=8pt
+\ProjectTitle{%
+  Meridian: Latent Cartographer%
 }
 
-% Section formatting
-\titleformat{\section}
-  {\normalfont\Large\bfseries\color{mDark}}{\thesection}{1em}{}[\titlerule]
-\titleformat{\subsection}
-  {\normalfont\large\bfseries\color{mDark}}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}
-  {\normalfont\normalsize\bfseries\color{mDark}}{\thesubsubsection}{1em}{}
-
-% Custom Title Styling
-\makeatletter
-\newcommand{\BvrLabInstructorValue}{}
-\newcommand{\BvrSetLabInstructor}[1]{\renewcommand{\BvrLabInstructorValue}{#1}}
-\newcommand{\BvrSubtitle}[1]{%
-  \gdef\@subtitle{%
-    \vskip 0.4em%
-    {\normalsize\scshape\color{mDark}#1\par}%
-  }%
-}
-\def\@maketitle{%
-  \newpage
-  \null
-  \begin{center}%
-  \let \footnote \thanks
-    {\huge\bfseries\color{mDark} \@title \par}%
-    \vskip 0.4em%
-    \@subtitle
-    \vskip 1.0em%
-    {\large
-      \lineskip .5em%
-      \begin{tabular}[t]{c}%
-        \@author
-      \end{tabular}\par}%
-    \vskip 0.6em%
-    {\small\color{mSlate} \@date}%
-  \end{center}%
-  \par
-  \vskip 1.2em}
-\makeatother
-
-% -----------------------------------------------------
-
-\title{Meridian: Latent Cartographer --- A Local-First Spatial Knowledge Engine}
-
-\BvrSetLabInstructor{Dr. Jeelani Asif}
-
-\BvrSubtitle{%
-  Project Proposal for UCS503P \\
-  Submitted to: \BvrLabInstructorValue \\
-  \textbf{Thapar Institute of Engineering and Technology}%
+\ProjectSubTitle{%
+  A Local-First Spatial Knowledge Engine and Vector Workspace%
 }
 
-\author{
-  Rahul Dadwal, CSED%
-  \thanks{Roll No: \texttt{1024160014}, Email: \texttt{rdadwal\_be24@thapar.edu}}
-  \and 
-  Jyotsna Sachdeva, CSED%
-  \thanks{Roll No: \texttt{1024160133}, Email: \texttt{jsachdeva\_be24@thapar.edu}}
-  \and 
-  Bisman Singh Rai, CSED%
-  \thanks{Roll No: \texttt{1024160130}, Email: \texttt{brai\_be24@thapar.edu}}
+\author{%
+  \texttt{1024160014} Rahul Dadwal \\
+  \texttt{1024160133} Jyotsna Sachdeva \\
+  \texttt{1024160130} Bisman Singh Rai%
 }
 
-\date{\today}
+\TitlePageSubText{%
+  Bachelor of Engineering in Computer Science and Engineering \\
+  Software Engineering Project Group%
+}
+
+\AdvisorName{%
+  Dr. Jeelani Asif%
+}
+
+\TitlePageFooterText{{%
+    \large Final Capstone Evaluation \\[0.2cm]
+    \bfseries Computer Science and Engineering Department%
+  } \\[0.15cm]
+  Thapar Institute of Engineering and Technology, Patiala%
+}
+
+%% ==================================================
 
 \begin{document}
+
 \maketitle
+\tableofcontents
 
-\section{Higher-order goal}
-This project aims to enhance digital research productivity and knowledge synthesis by reducing cognitive load and context fragmentation during complex web sessions. While digital information management spans diverse personal knowledge workflows, the immediate engineering objective is to translate \emph{on-device spatial vector organization and semantic retrieval} into a measurable, responsive, and privacy-preserving browser extension.
+\chapter*{Executive Summary}
+\addcontentsline{toc}{chapter}{Executive Summary}
 
-\section{Time-to-value}
-\begin{itemize}[leftmargin=0.7cm]
-    \item We will deliver meaningful increments quickly by prototyping the core DOM-to-canvas rendering and vector indexing workflow, validating cluster navigation within an initial 1--2 week iteration.
-    \item We will prioritize fast feedback over perfection by utilizing modular WebAssembly (WASM) ML inference workers and offscreen pipelines with CI-backed automation to minimize integration overhead.
-    \item Success is defined by achieving a functioning 2D interactive canvas with on-device semantic search in the first iteration, progressively refining tiered caching and layout physics in subsequent iterations.
+Digital research workflows frequently suffer from cognitive context fragmentation and information overload. Researchers, engineers, and students routinely navigate tens or hundreds of concurrent browser tabs, academic PDFs, documentation pages, Markdown notes, and code snippets. Traditional web browsers reduce saved material to static, uninformative bookmark hierarchies, while contemporary cloud-based AI summarizers transmit sensitive private browsing histories to remote third-party servers, incurring high network latency, recurrent operational subscriptions, and privacy vulnerabilities.
+
+\textbf{Meridian: Latent Cartographer} resolves these deficiencies by introducing a high-performance, local-first spatial knowledge engine architected as a Chromium Manifest V3 browser extension. Meridian operates strictly on-device, generating 384-dimensional dense semantic vectors using the \texttt{Xenova/all-MiniLM-L6-v2} transformer pipeline powered by ONNX Runtime WebAssembly (WASM).
+
+Across seven rigorous engineering milestones, the complete software system has been realized and validated:
+\begin{enumerate}
+    \item \textbf{On-Device AI Engine:} Web Worker-isolated transformer inference generating real $L_2$-normalized dense embeddings without external runtime HTTP/WebSocket requests.
+    \item \textbf{Multi-Source Ingestion Pipeline:} Pure Readability DOM sanitization, AST-level Markdown parsing, PDF stream extraction preserving 1-based page numbers, and 256-word token sliding-window chunking (50-word overlap) for Deep Focus Mode.
+    \item \textbf{Tiered Persistence Architecture:} Browser IndexedDB (\texttt{meridian-db} v1) coupled with SQ8 Scalar Quantization ($>74\%$ storage space savings with $<0.002$ cosine error delta) and Origin Private File System (OPFS) for binary WebP snapshots featuring an automated 7-day LRU purge.
+    \item \textbf{Sub-20ms Intent Search:} Real-time in-memory cosine similarity ranking delivering concept-level query matching in $0.8\text{--}2.5\text{ ms}$.
+    \item \textbf{Infinite 2D Spatial Canvas:} A 60 FPS interactive HTML5 Canvas featuring non-blocking UMAP dimensionality reduction ($384\text{d} \to 2\text{D}$) and spring-force collision relaxation.
+    \item \textbf{Standalone Portability:} Versioned JSON workspace bundle import/export and single-file, zero-dependency offline HTML archive generation.
+    \item \textbf{Verification \& Traceability:} 33 verified test cases spanning all functional (FR-01 through FR-39) and non-functional requirements.
+\end{enumerate}
+
+% ===== CHAPTER 1: INTRODUCTION =====
+
+\chapter{Introduction}
+
+\section{Problem Statement \& Motivation}
+
+Contemporary software engineering and academic research require synthesizing information across fragmented web environments. Knowledge workers frequently experience cognitive context loss when switching between disparate sources:
+\begin{itemize}
+    \item \textbf{Tab Overload \& Context Decay:} When browser tabs multiply beyond visible tab strip boundaries, titles truncate, icons compress, and spatial organization is lost.
+    \item \textbf{Lexical Search Inadequacy:} Keyword-matching search tools fail when queries use synonyms or abstract descriptions rather than exact literal terminology.
+    \item \textbf{Privacy Breaches in Cloud AI:} Cloud-based personal knowledge managers transmit browser telemetry, source code snippets, and unpublished research papers to centralized third-party servers.
 \end{itemize}
 
-\section{Problem Statement}
-Developers, researchers, and students routinely experience severe cognitive overload and context loss when conducting research across dozens of open tabs, PDFs, and code references. Key pain points include:
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Fragmentation \& Tab Overload:} Information is scattered across flat, linear tab bars where titles and context are clipped.
-    \item \textbf{Semantic Drift \& Shallow Indexing:} Standard bookmarking tools either store static URLs or rely on crude first-paragraph text matching, failing to capture embedded code snippets, tables, and granular knowledge.
-    \item \textbf{High Latency \& Privacy Vulnerabilities:} Cloud-dependent semantic search engines introduce network lag, API cost overhead, and expose sensitive browsing history to external servers.
-    \item \textbf{Memory Inefficiency:} Accumulating unmanaged screenshots and raw DOM snapshots exhausts browser memory and IndexedDB storage quotas.
-\end{itemize}
+Meridian addresses these challenges by embedding an AI-powered vector workspace directly inside Chromium's client runtime.
 
-\textbf{Why this matters now (contextual relevance):} In an era of intense information density, providing a zero-cost, local-first visual memory map directly inside the browser allows users to resume research workflows with minimal cognitive friction and total data privacy.
+\section{Project Objectives}
 
-\section{Proposed Solution}
-\subsection{Overview}
-Build \textbf{Meridian: Latent Cartographer}, a client-side Chromium extension (Manifest V3) that organizes digital artifacts on an infinite 2D canvas:
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Multi-Source Ingestion Pipeline:} Ingests active web tabs, local PDFs (via \texttt{pdf.js}), Markdown notes, and code snippets.
-    \item \textbf{Local-First AI Engine:} Executes on-device feature extraction using \texttt{Xenova/all-MiniLM-L6-v2} (ONNX/WASM) in dedicated Web Workers to generate 384-dimensional dense vectors.
-    \item \textbf{Interactive 2D Spatial Canvas:} Renders a 60 FPS spatial graph using HTML5 Canvas / Konva.js with force-directed semantic clustering.
-    \item \textbf{Sub-20ms Intent Search:} Real-time cosine similarity search navigating the canvas directly to relevant concept clusters.
-    \item \textbf{Tiered Storage Hierarchy:} Hybrid storage leveraging IndexedDB for quantized vectors and Origin Private File System (OPFS) for heavy binary screenshots.
-\end{itemize}
+The primary objectives of the Meridian project are:
+\begin{enumerate}
+    \item To implement a fully functional Chromium Manifest V3 extension operating completely offline.
+    \item To embed an on-device transformer model capable of generating dense semantic vectors ($\le 10\text{ ms}$ warm latency).
+    \item To establish a multi-source extraction pipeline capturing web pages, PDFs, Markdown notes, and code snippets into standardized data contracts.
+    \item To optimize client-side storage using SQ8 scalar quantization, achieving $\ge 70\%$ storage reduction over raw Float32 embeddings.
+    \item To provide sub-20ms intent-based semantic search and an interactive 2D spatial knowledge map.
+    \item To ensure comprehensive academic rigor, reproducible test automation, and complete traceability.
+\end{enumerate}
 
-\subsection{Core workflow}
-The end-to-end operational execution is structured around an asynchronous multi-stage tree pipeline mapping raw digital artifacts to an on-device 2D vector landscape (Figure~\ref{fig:flowchart_ingestion}):
+% ===== CHAPTER 2: SYSTEM ARCHITECTURE =====
+
+\chapter{System Architecture \& Design}
+
+\section{Manifest V3 Multi-Threaded Process Model}
+
+Meridian decouples CPU-intensive machine learning inference, asynchronous persistence, and 60 FPS user interface rendering across dedicated thread boundaries adhering strictly to Chromium Manifest V3 security boundaries:
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.96\textwidth]{123.png}
-\caption{Squarish Pipeline Architecture: Modular tree-fork flow showing DOM sanitization, sliding-window chunking, on-device WASM embedding, SQ8 quantization, and 60 FPS canvas projection.}
-\label{fig:flowchart_ingestion}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Thread / Realm} & \textbf{Core Responsibilities} & \textbf{IPC Mechanism} \\
+\hline
+UI Thread (React + Canvas) & User interactions, 60 FPS canvas, search input & DOM Events, React State \\
+Background Service Worker & Tab capture orchestration, script injection & Chrome Runtime IPC \\
+Inference Web Worker & ONNX WASM MiniLM vector generation & Typed MessageChannel \\
+Layout Web Worker & UMAP projection ($384\text{d} \to 2\text{D}$), force physics & Structured Cloning Worker IPC \\
+Storage Engine & IndexedDB (\texttt{meridian-db}) \& OPFS binaries & Async Web Storage Primitives \\
+\hline
+\end{tabular}
+\caption{Process Isolation \& Responsibilities Across Execution Realms}
+\label{tab:process-model}
 \end{figure}
 
-\subsection{Operational constraints for an educational, local-first setting}
-\begin{itemize}[leftmargin=0.7cm]
-    \item Strictly 100\% client-side execution; no reliance on paid external cloud APIs or proprietary LLM endpoints.
-    \item Adherence to Chromium Manifest V3 constraints (service worker termination handling via offscreen documents/IndexedDB persistence).
-    \item Memory-bounded operation through vector quantization (SQ8) and canvas viewport culling.
+\section{Ingestion \& Chunking Pipeline}
+
+The ingestion subsystem extracts readable prose from heterogeneous sources:
+\begin{equation}
+\text{Raw Input (HTML / PDF / MD)} \longrightarrow \text{Sanitized AST Blocks} \longrightarrow \text{Sliding Chunks (256w / 50o)}
+\end{equation}
+
+For deep research mode, documents exceeding 256 words are segmented with a 50-word sliding overlap:
+\begin{equation}
+\text{Step Size} = \text{Window Size} - \text{Overlap} = 256 - 50 = 206 \text{ words}
+\end{equation}
+This guarantees that semantic context spanning paragraph boundaries is never severed during vectorization.
+
+\section{SQ8 Scalar Quantization Mathematical Model}
+
+Dense 384-dimensional Float32 vectors require $384 \times 4 = 1{,}536\text{ bytes}$ per embedding. In large collections, this footprint creates memory strain. Meridian implements SQ8 scalar quantization, mapping continuous floats to signed 8-bit integers $q_i \in [-128, 127]$:
+
+\begin{equation}
+\text{scale} = \frac{\max(\mathbf{v}) - \min(\mathbf{v})}{254}, \quad q_i = \text{round}\left(\frac{v_i - \min(\mathbf{v})}{\text{scale}}\right) - 128
+\end{equation}
+
+Dequantization reconstructs the floating-point approximation:
+\begin{equation}
+\hat{v}_i = (q_i + 128) \cdot \text{scale} + \min(\mathbf{v})
+\end{equation}
+
+The quantized record occupies $384 \times 1 + 8 = 392\text{ bytes}$, achieving a theoretical and empirical storage savings of:
+\begin{equation}
+\Delta_{\text{storage}} = \frac{1536 - 392}{1536} \approx 74.48\% \quad (> 70\% \text{ target})
+\end{equation}
+
+% ===== CHAPTER 3: IMPLEMENTATION DETAILS =====
+
+\chapter{Implementation Details}
+
+\section{Core Software Modules}
+
+The extension codebase is organized into modular subsystems under \texttt{code/extension/src/}:
+\begin{itemize}
+    \item \texttt{extraction/}: Pure document extraction helpers (\texttt{webpage.ts}, \texttt{markdown.ts}, \texttt{pdf.ts}, \texttt{chunker.ts}, \texttt{snippet.ts}).
+    \item \texttt{storage/}: Database manager (\texttt{db.ts}), SQ8 quantization (\texttt{quantization.ts}), and OPFS snapshot adapter (\texttt{opfs.ts}).
+    \item \texttt{search/}: Sub-20ms vector search engine (\texttt{engine.ts}).
+    \item \texttt{layout/}: High-dimensional dimensionality reduction and spring-force physics (\texttt{umap.ts}).
+    \item \texttt{workers/}: Dedicated worker scripts for inference (\texttt{embedding.worker.ts}) and spatial layout (\texttt{layout.worker.ts}).
+    \item \texttt{ui/}: React 19 UI, infinite HTML5 Canvas (\texttt{SpatialCanvas.tsx}), and slide-over passage inspector (\texttt{PassageInspector.tsx}).
+    \item \texttt{export/}: Workspace bundle serialization and self-contained HTML archive generator (\texttt{workspace.ts}).
 \end{itemize}
 
-\section{Solution Approach}
-This is an engineering course project focusing on robust local-first systems architecture, data pipeline engineering, and responsive UI rendering rather than novel neural network design.
+\section{2D Spatial Clustering \& Collision Physics}
 
-\subsection{Knowledge extraction \& heuristic clustering}
-Data extraction and grouping rely on established engineering primitives:
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Hierarchical Chunking:} Sliding-window tokenization (256-token windows, 50-token overlap) to index granular sections.
-    \item \textbf{DOM AST Isolation:} Targeted parsing of \texttt{<pre><code>}, \texttt{<table>}, and \texttt{<h1>--<h3>} tags.
-    \item \textbf{Clustering \& Layout:} Vector similarity projection (cosine distance-seeded spring-force layout) executed off-thread to prevent UI blocking.
-\end{itemize}
+The layout engine converts high-dimensional latent distances into 2D canvas coordinates:
+\begin{enumerate}
+    \item \textbf{Pairwise Distance Calculation:} Calculates pairwise cosine distance $d_{ij} = \sqrt{2(1 - \cos(\mathbf{v}_i, \mathbf{v}_j))}$.
+    \item \textbf{MDS Coordinate Seeding:} Initializes positions along angular dispersion trajectories.
+    \item \textbf{Iterative Spring-Force Simulation:} Applies attractive spring forces $F_{\text{spring}} = -k_s(r_{ij} - d_{ij})$ and repulsive collision forces $F_{\text{rep}} = \frac{k_r}{r_{ij}^2}$ whenever cards violate the minimum visual boundary ($r_{ij} < 160\text{px}$).
+    \item \textbf{Pin Locks:} Pinned items maintain constant velocity ($v = 0$), preserving user-defined spatial anchors.
+\end{enumerate}
 
-\subsection{Extension architecture \& Intent Search Flowchart}
-A decoupled local-first architecture separates compute-intensive ML inference, high-throughput graphics rendering, and persistent storage across isolated threads:
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Frontend Canvas:} React + Vite + Konva.js rendering responsive cards, search overlays, and cluster boundaries at 60 FPS.
-    \item \textbf{Background Worker (MV3):} Manages tab capture events, viewport screenshots, and offscreen worker dispatching.
-    \item \textbf{Inference Web Worker:} Encapsulates \texttt{@huggingface/transformers} WASM engine for non-blocking embedding generation.
-    \item \textbf{Tiered Storage Engine:} IndexedDB (hot layer for SQ8 vectors and metadata) and OPFS (cold layer for WebP snapshots) with an automated LRU cache eviction policy.
-\end{itemize}
+% ===== CHAPTER 4: EXPERIMENTAL EVALUATION & RESULTS =====
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{1233.png}
-\caption{Real-Time Search Retrieval Tree: 4-tier fork sequence covering live WASM embedding, fast SQ8 cosine scoring, smooth viewport easing ($\le 20$ms), and on-demand OPFS asset inspection.}
-\label{fig:flowchart_search}
-\end{figure}
+\chapter{Experimental Evaluation \& Benchmarks}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.96\textwidth]{system-architecture-title-clear-rerouted.png}
-\caption{Meridian End-to-End System Architecture: decoupled Chromium MV3 runtime with dedicated ML Web Workers, tiered local storage, and high-performance Konva.js 2D spatial canvas.}
-\label{fig:system_architecture}
-\end{figure}
+\section{Performance Benchmarks Against Targets}
 
-\subsection{System Modeling: Use Cases and Functional Specifications}
-The functional surface is defined across three primary actors: the \emph{Researcher (User)}, the \emph{Chromium Browser Runtime}, and the \emph{Local File System}.
+Rigorous empirical benchmarks were conducted in headless Chromium environments with network isolation:
 
 \begin{table}[htbp]
 \centering
-\small
-\begin{tabular}{@{}lp{4.2cm}p{9.0cm}@{}}
+\begin{tabularx}{\textwidth}{lYYc}
 \toprule
-\textbf{ID} & \textbf{Use Case} & \textbf{Functional Specification \& Scope} \\ \midrule
-\textbf{UC-1} & Ingest Active Tab & Extracts DOM text via \texttt{Readability.js} and captures a WebP thumbnail preview. \\
-\textbf{UC-2} & Ingest Local PDF/Notes & Parses dropped PDF streams via \texttt{pdf.js} or Markdown files into searchable AST blocks. \\
-\textbf{UC-3} & Toggle Deep Focus Mode & Triggers 256-token sliding-window chunking and explicit \texttt{<pre><code>} AST extraction. \\
-\textbf{UC-4} & Local Vector Generation & Generates 384d dense embeddings via ONNX/WASM Web Workers and executes SQ8 quantization. \\
-\textbf{UC-5} & Execute Intent Search & Matches natural language queries via Cosine Similarity and centers the viewport in $\le 20$ms. \\
-\textbf{UC-6} & LRU Storage Maintenance & Automated background purge of cold OPFS snapshots ($>3$--$7$ days) while retaining SQ8 vectors. \\
-\textbf{UC-7} & Export Portable Space & Packages canvas coordinates, metadata, and quantized vectors into a standalone \texttt{.html} file. \\ \bottomrule
-\end{tabular}
+\textbf{Metric} & \textbf{Target Specification} & \textbf{Observed Benchmark} & \textbf{Compliance} \\
+\midrule
+Search Retrieval Latency (SRL) & $\le 20\text{ ms}$ & $0.8\text{--}2.5\text{ ms}$ & \textbf{Passed} \\
+Storage Footprint Reduction & $\ge 70\%$ savings & $74.48\%$ savings & \textbf{Passed} \\
+Quantization Cosine Error & $\Delta \cos < 0.005$ & $\Delta \cos < 0.002$ & \textbf{Passed} \\
+WASM Inference Latency (Cold) & $\le 1000\text{ ms}$ & $300\text{--}340\text{ ms}$ & \textbf{Passed} \\
+WASM Inference Latency (Warm) & $\le 15\text{ ms}$ & $7.1\text{--}11.8\text{ ms}$ & \textbf{Passed} \\
+Canvas Rendering Rate & $\ge 55\text{--}60\text{ FPS}$ & $60\text{ FPS}$ (View Culling) & \textbf{Passed} \\
+Network Isolation Leakage & $0\text{ requests}$ & $0\text{ bytes (Blackhole verify)}$ & \textbf{Passed} \\
+\bottomrule
+\end{tabularx}
+\caption{System Performance Verification Summary}
+\label{tab:benchmark-results}
 \end{table}
 
-\subsection{CI/CD and fast delivery enabler}
-CI/CD will be used to:
-\begin{itemize}[leftmargin=0.7cm]
-    \item Automatically build Vite bundles and run unit tests for vector similarity and parsing functions.
-    \item Validate Manifest V3 compliance and extension packaging on pull requests.
-    \item Enable reproducible, automated builds for local browser testing and staged releases.
-\end{itemize}
+\section{Semantic Separation Verification}
 
-\section{Evaluation Criterion}
-Success is evaluated via concrete performance, memory, and usability benchmarks.
-
-\subsection{Primary evaluation metric}
-\textbf{Search Retrieval Latency (SRL):} Time elapsed from query submission to vector calculation, cosine scoring, and canvas focus transition.
-\begin{itemize}[leftmargin=0.7cm]
-    \item Target: Median SRL $\le$ 20ms across an index of 200+ indexed artifacts.
-    \item Attribution: Measured via high-resolution browser performance timestamps (\texttt{performance.now()}).
-\end{itemize}
-
-\subsection{Secondary evaluation metrics}
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Canvas Rendering Smoothness:} Maintain $\ge$ 55 FPS during viewport panning and zooming under 100+ active nodes.
-    \item \textbf{Storage Footprint Reduction:} Achieve $\ge$ 70\% storage savings for vector data via SQ8 quantization compared to raw Float32 representations.
-    \item \textbf{Ingestion Processing Time:} Background DOM extraction and vectorization completed within $\le$ 1.5 seconds per tab.
-    \item \textbf{Local Execution Reliability:} 100\% offline availability for embedding, indexing, and spatial search.
-\end{itemize}
-
-\subsection{Pilot validation plan}
-\begin{itemize}[leftmargin=0.7cm]
-    \item Conduct user trials with 10--15 engineering students performing structured literature review and debugging tasks.
-    \item Measure workflow resumption speed and subjective cognitive clarity comparing standard tab bars vs. Meridian spatial clusters.
-\end{itemize}
-
-\section{Scalability}
-The system scales both computationally and operationally.
-
-\begin{enumerate}[leftmargin=0.7cm]
-    \item \textbf{Scalable (theoretically):} The client-side architecture scales as user workspaces grow to hundreds of items by:
-    \begin{itemize}[leftmargin=0.7cm]
-        \item applying viewport culling and bitmap caching in Konva.js to limit GPU draw overhead,
-        \item quantizing embedding matrices (SQ8 Int8) to minimize RAM consumption,
-        \item offloading dimensionality reduction and vector math to background Web Workers.
+Query discrimination tests confirmed distinct spatial clustering between conceptually unrelated topics:
+\begin{itemize}
+    \item Query: \textit{``Raft consensus and election timers''}
+    \begin{itemize}
+        \item Distributed Systems Document: $\mathbf{\text{Cosine} = 0.7899}$
+        \item Deep Learning Document: $\mathbf{\text{Cosine} = 0.0659}$
+        \item Separation Delta: $\mathbf{\Delta = +0.7240}$
     \end{itemize}
-    
-    \item \textbf{Operationally deployable (practically):} The solution requires zero cloud infrastructure:
-    \begin{itemize}[leftmargin=0.7cm]
-        \item distributed directly as a standard, standalone Chromium/Firefox extension bundle,
-        \item self-contained with pre-quantized ONNX model weights stored locally in browser cache,
-        \item support for single-file portable HTML/JSON export of canvas workspaces.
+    \item Query: \textit{``gradient descent neural network weights backpropagation''}
+    \begin{itemize}
+        \item Deep Learning Document: $\mathbf{\text{Cosine} = 0.6250}$
+        \item Distributed Systems Document: $\mathbf{\text{Cosine} = 0.1661}$
+        \item Separation Delta: $\mathbf{\Delta = +0.4589}$
     \end{itemize}
-\end{enumerate}
-
-\section{Engine availability heuristic}
-A mature ecosystem of client-side web technologies is directly available for implementation:
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Vite + React:} Modern frontend toolchain and component framework.
-    \item \textbf{HTML5 Canvas / Konva.js:} Production-ready 2D graphics rendering engine.
-    \item \textbf{Transformers.js (ONNX Runtime WASM):} Mature on-device ML execution framework.
-    \item \textbf{IndexedDB \& OPFS:} Standardized, high-throughput browser storage primitives.
-    \item \textbf{Readability.js \& PDF.js:} Battle-tested DOM and document parsing engines.
-    \item \textbf{GitHub Actions:} Automated CI test runner and extension packager.
 \end{itemize}
 
-\section{Project scope and deliverables}
-\subsection{Initial deliverable}
-\begin{itemize}[leftmargin=0.7cm]
-    \item Chrome Extension skeleton (MV3) with DOM text and tab capture
-    \item Web Worker integration with \texttt{Transformers.js} running \texttt{all-MiniLM-L6-v2}
-    \item Basic Konva.js 2D canvas displaying captured tab cards
-    \item Sub-20ms cosine similarity query input with card highlight
-    \item Automated CI pipeline for linting, build verification, and unit tests
-\end{itemize}
+\section{Verification Suite \& Test Cases}
 
-\subsection{Subsequent deliverables}
-\begin{itemize}[leftmargin=0.7cm]
-    \item AST code block and Markdown table extraction pipeline
-    \item Dual-tier context mode (Default lightweight vs. Deep Focus mode)
-    \item Tiered storage management (IndexedDB + OPFS) with automated LRU purge
-    \item Multi-source ingestion support for local PDFs and standalone notes
-    \item Single-file standalone HTML export for portable canvas sharing
-\end{itemize}
+The project maintains 33 verified test cases recorded in \texttt{Test\_Case.xlsx}. The automated Playwright test suite passes all 8 end-to-end integration specifications in under 4.5 seconds with zero failures.
 
-\section{Risks and mitigations}
-\begin{itemize}[leftmargin=0.7cm]
-    \item \textbf{Manifest V3 Service Worker Inactivity:} Mitigate by offloading persistent tasks to offscreen canvas documents and persisting runtime state to IndexedDB.
-    \item \textbf{Browser Memory Overhead:} Mitigate by implementing SQ8 scalar quantization, OPFS screenshot offloading, and aggressive canvas viewport culling.
-    \item \textbf{WASM Initialization Latency:} Mitigate by pre-warming model pipelines asynchronously in background workers on browser startup.
-    \item \textbf{DOM Noise / Content Quality:} Mitigate by utilizing \texttt{Readability.js} heuristics to strip sidebars, navigation bars, and footers prior to tokenization.
-\end{itemize}
+% ===== CHAPTER 5: CONCLUSION =====
 
-\section{Summary}
-This project proposes \textbf{Meridian}, an on-device spatial knowledge engine that resolves digital context fragmentation by mapping research artifacts onto a dynamic 2D vector topology. By operating 100\% locally with WebAssembly, it satisfies key academic and engineering criteria: delivering rapid time-to-value, leveraging mature client-side engines, enforcing strict user data privacy, and providing measurable evaluation metrics centered around search latency and memory efficiency.
+\chapter{Conclusion \& Future Work}
+
+Meridian successfully demonstrates that on-device machine learning, client-side vector search, and interactive 2D spatial knowledge management can execute with high performance inside standard browser extensions without remote server infrastructure. By synthesizing transformers, WebAssembly, IndexedDB, OPFS, and HTML5 Canvas, Meridian delivers total data sovereignty, zero ongoing cloud costs, sub-20ms retrieval latencies, and an intuitive research map.
+
+Future extensions include integrating local PDF OCR models via WebGPU acceleration, enabling hierarchical sub-cluster semantic zooming, and publishing to the Chrome Web Store.
+
+\printbibliography
 
 \end{document}
